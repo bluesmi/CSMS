@@ -1,6 +1,12 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
 
+%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <head>
@@ -8,21 +14,21 @@
 <META HTTP-EQUIV="content-script-type" CONTENT="text/JavaScript">
 <META HTTP-EQUIV="content-style-type" CONTENT="text/css">
 <title>用户管理</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/cjpm.css">	
+<link rel="stylesheet" href="<%=basePath%>css/cjpm.css">
 </head>
 
 <SCRIPT LANGUAGE="javaScript">
 <!--
 function gotos()
 {
-	document.forms[0].action="${pageContext.request.contextPath }/system/adduser.jsp";
+	document.forms[0].action="<%=basePath%>/system/adduser.jsp";
 	document.forms[0].submit();
 }
  
  function dodelete(uid){
 	 		var b = window.confirm("您确认删除吗?");
 	 		if(b){
-	 				window.location.href = "${pageContext.request.contextPath }/DeleteUserServlet?uid=" + uid;  
+	 				window.location.href = "<%=basePath%>user/DeleteUserServlet.do?uid=" + uid;
 	 				alert("删除成功");
 	 			}
 	 			
@@ -30,8 +36,8 @@ function gotos()
 -->
 </SCRIPT>
 
-<BODY BACKGROUND="${pageContext.request.contextPath }/image/bg.gif">
-<FORM NAME="mig0101" ID="idmig0101" method="post"  action="${pageContext.request.contextPath }/QueryUserServlet">
+<BODY BACKGROUND="<%=basePath%>image/bg.gif">
+<FORM NAME="mig0101" ID="idmig0101" method="post"  action="<%=basePath%>user/QueryUserServlet.do">
           <table border=0 cellspacing=0 cellpadding=2 width="100%" bgcolor="gray">
 			<tr>
 				<td class="headerbar61">用户明细查询</td>
@@ -88,20 +94,20 @@ function gotos()
 								<c:forEach  items="${list }" var="u" varStatus="s">
 								<tr>
 									<td  class="gridbar11" align="center">${s.count }</td>
-									<td  class="gridbar11" align="center"><a href="${pageContext.request.contextPath }/UpdateUserServletUI?uid=${u.uid } ">${u.loginName }</a></td>
-									<td  class="gridbar11" align="center"><a href="${pageContext.request.contextPath }/UpdateUserServletUI?uid=${u.uid }">${u.realName }</a></td>
+									<td  class="gridbar11" align="center"><a href="<%=basePath%>user/UpdateUserServletUI.do?uid=${u.uid } ">${u.loginName }</a></td>
+									<td  class="gridbar11" align="center"><a href="<%=basePath%>user/UpdateUserServletUI.do?uid=${u.uid }">${u.realName }</a></td>
 									<td  class="gridbar11" align="center">
-										<a href = "#"><img src="${pageContext.request.contextPath }/image/del.gif" align="bottom" border="0" alt="删除" onClick="javascript:dodelete('${u.uid }')" /></a>									</td>
+										<a href = "#"><img src="user/image/del.gif" align="bottom" border="0" alt="删除" onClick="javascript:dodelete('${u.uid }')" /></a>									</td>
 								</tr>
 								</c:forEach>
 								
 								<c:forEach  items="${list1 }" var="u1" varStatus="s1">
 								<tr>
 									<td  class="gridbar11" align="center">${s1.count }</td>
-									<td  class="gridbar11" align="center"><a href="${pageContext.request.contextPath }/UpdateUserServletUI?uid=${u1.uid } ">${u1.loginName }</a></td>
-									<td  class="gridbar11" align="center"><a href="${pageContext.request.contextPath }/UpdateUserServletUI?uid=${u1.uid }">${u1.realName }</a></td>
+									<td  class="gridbar11" align="center"><a href="<%=basePath%>user/UpdateUserServletUI.do?uid=${u1.uid } ">${u1.loginName }</a></td>
+									<td  class="gridbar11" align="center"><a href="<%=basePath%>user/UpdateUserServletUI.do?uid=${u1.uid }">${u1.realName }</a></td>
 									<td  class="gridbar11" align="center">
-										<a href = "#"><img src="${pageContext.request.contextPath }/image/del.gif" align="bottom" border="0" alt="删除" onClick="javascript:dodelete('${u1.uid }')" /></a>									</td>
+										<a href = "#"><img src="<%=basePath%>image/del.gif" align="bottom" border="0" alt="删除" onClick="javascript:dodelete('${u1.uid }')" /></a>									</td>
 								</tr>
 								</c:forEach>
 								

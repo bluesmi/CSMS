@@ -57,7 +57,6 @@ public class ClothController {
             response.getWriter().print(json);
         } catch (Exception e) {
             e.printStackTrace();
-
         }
     }
 }
