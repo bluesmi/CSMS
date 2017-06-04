@@ -1,6 +1,7 @@
 package com.cd.clothes.dao;
 
 import com.cd.clothes.model.User;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * autour m199
@@ -9,7 +10,7 @@ import com.cd.clothes.model.User;
  * time 10:42
  */
 public interface UserDAO {
-    User findByLoginnameAndLoginpass(User user);
-    boolean findByUidAndPassword(int uid, String password);
-    void updatePassword(int uid,String password);
+    User findByLoginnameAndLoginpass(User user) throws Exception;
+    boolean findByUidAndPassword(int uid, String password) throws Exception;
+    void updatePassword(@Param("uid") int uid, @Param("password") String password) throws Exception;
 }

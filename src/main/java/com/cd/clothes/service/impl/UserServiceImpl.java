@@ -17,11 +17,11 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDAO userDAO;
     @Override
-    public User login(User user) {
+    public User login(User user) throws Exception{
         return userDAO.findByLoginnameAndLoginpass(user);
     }
 
-    public User updatePassword(int uid, String newPass, String oldPass){
+    public User updatePassword(int uid, String newPass, String oldPass) throws Exception{
         /*
          * 1. 校验老密码
          */

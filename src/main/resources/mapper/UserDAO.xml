@@ -10,7 +10,7 @@
     </select>
 
     <!-- 修改用户(Update) -->
-    <update id="updatePassword" parameterType="User">
-        update users set password=#{repassword} where uid=#{uid}
+    <update id="updatePassword" >
+        update users set password=#{password} where uid=#{uid}
     </update>
 </mapper>

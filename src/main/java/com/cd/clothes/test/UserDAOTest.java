@@ -29,4 +29,9 @@ public class UserDAOTest {
         System.out.println(user.getRealName());
     }
 
+    @Test
+    public void testupdatePassword() throws Exception {
+        userDAO.updatePassword(2,"123");
+    }
+
 }

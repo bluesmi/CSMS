@@ -9,6 +9,6 @@ import com.cd.clothes.model.User;
  * time 11:05
  */
 public interface UserService {
-    User login(User user);
-    User updatePassword(int uid, String newPass, String oldPass);
+    User login(User user) throws Exception;
+    User updatePassword(int uid, String newPass, String oldPass) throws Exception;
 }
