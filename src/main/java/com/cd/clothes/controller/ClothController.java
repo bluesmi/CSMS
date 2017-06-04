@@ -89,8 +89,8 @@ public class ClothController {
        }
    }
 
-   @RequestMapping("/QueryByCcolorServlet.do")
+   /*@RequestMapping("/QueryByCcolorServlet.do")
     public String queryByCcolorServlet(@Param("ccolor") String ccolor,ModelMap modelMap){
 
-   }
+   }*/
 }

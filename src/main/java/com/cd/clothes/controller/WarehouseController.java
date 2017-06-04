@@ -46,4 +46,17 @@ public class WarehouseController {
         }
     }
 
+    @RequestMapping("/ListWarehouseServlet.do")
+    public String ListWarehouseServlet(ModelMap modelMap){
+        try {
+            List<Warehouse> list = warehouseService.findAll();
+            modelMap.addAttribute("list", list);
+            return "system/listwarehouse";
+        } catch (Exception e) {
+            e.printStackTrace();
+            modelMap.addAttribute("message", "系统维护升级中");
+            return "views/message";
+        }
+    }
+
 }
