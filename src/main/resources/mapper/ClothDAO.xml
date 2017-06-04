@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cd.clothes.dao.ClothDAO">
+    <select id="findAll" resultType="Cloth">
+        select * from clothe
+    </select>
+    <select id="findbyCname" parameterType="String" resultType="Cloth">
+        select * from clothe where cname=#{value}
+    </select>
+    <select id="findbyCcolor" parameterType="String" resultType="Cloth">
+        select * from clothe where ccolor=#{value}
+    </select>
+    <select id="findbyCsize" parameterType="String" resultType="Cloth">
+        select * from clothe where csize=#{value}
+    </select>
+    <select id="find" parameterType="String" resultType="Cloth">
+        select * from clothe where cid = #{value}
+    </select>
+    <insert id="add" parameterType="Cloth">
+        insert into clothe (cname,ccolor,csize,cnumber,cimage,cfacprice,cretprice)
+         values(#{cname},#{ccolor},#{csize},#{cnumber},#{cimage},#{cfacprice},#{cfacprice})
+    </insert>
+    <delete id="delete" parameterType="String">
+        delete from clothe where cid =#{value}
+    </delete>
+</mapper>
