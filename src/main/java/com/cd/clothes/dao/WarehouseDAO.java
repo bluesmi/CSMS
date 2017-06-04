@@ -1,6 +1,7 @@
 package com.cd.clothes.dao;
 
 import com.cd.clothes.model.Warehouse;
+import org.apache.ibatis.annotations.Param;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -25,7 +26,7 @@ public interface WarehouseDAO {
      * @param wid 仓库ID
      * @throws SQLException
      */
-    public void delete(String wid) throws SQLException;
+    public void delete(Integer wid) throws SQLException;
 
     /**
      * 修改仓库信息
@@ -35,14 +36,27 @@ public interface WarehouseDAO {
     public void update(Warehouse w) throws SQLException;
 
     /**
-     *
-     * @return
+     * 查找所有仓库
+     * @return 返回所有仓库
      * @throws SQLException
      */
     public List<Warehouse> findAll() throws SQLException;
-    public Warehouse findByWid(String wid) throws SQLException;
 
+    /**
+     * 根据ID查找仓库
+     * @param wid 仓库ID
+     * @return 仓库对象
+     * @throws SQLException
+     */
+    public Warehouse findByWid(Integer wid) throws SQLException;
 
-    public List<Warehouse> queryWarehouse(String wid, String wname) throws SQLException;
+    /**
+     *
+     * @param wid
+     * @param wname
+     * @return
+     * @throws SQLException
+     */
+    public List<Warehouse> queryWarehouse(@Param("wid") Integer wid, @Param("wname") String wname) throws SQLException;
 
 }
