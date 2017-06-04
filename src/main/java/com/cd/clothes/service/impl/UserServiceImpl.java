@@ -1,6 +1,7 @@
 package com.cd.clothes.service.impl;
 
 import com.cd.clothes.dao.UserDAO;
+import com.cd.clothes.exception.UserException;
 import com.cd.clothes.model.User;
 import com.cd.clothes.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,18 +22,25 @@ public class UserServiceImpl implements UserService {
         return userDAO.findByLoginnameAndLoginpass(user);
     }
 
-    public User updatePassword(int uid, String newPass, String oldPass) throws Exception{
+    public void updatePassword(int uid, String newPass, String oldPass) throws UserException {
+
         /*
          * 1. 校验老密码
          */
-        boolean bool = userDAO.findByUidAndPassword(uid, oldPass);
-        if(!bool) {//如果老密码错误
-            //throw new UserException("旧密码错误！");
-        }
-			/*
+        try {
+           User user =  userDAO.findByUidAndPassword(uid, oldPass);
+            System.out.println(user);
+            userDAO.updatePassword(uid, newPass);
+            if(null == user) {//如果老密码错误
+                throw new UserException("旧密码错误！");
+            }else {
+              /*
 			 * 2. 修改密码
 			 */
-        userDAO.updatePassword(uid, newPass);
-        return null;
+                userDAO.updatePassword(uid, newPass);
+            }
+        }catch (Exception e){
+            throw new RuntimeException();
+        }
     }
 }

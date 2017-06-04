@@ -11,6 +11,6 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface UserDAO {
     User findByLoginnameAndLoginpass(User user) throws Exception;
-    boolean findByUidAndPassword(int uid, String password) throws Exception;
+    User findByUidAndPassword(@Param("uid") int uid,@Param("password") String password) throws Exception;
     void updatePassword(@Param("uid") int uid, @Param("password") String password) throws Exception;
 }

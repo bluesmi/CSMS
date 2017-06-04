@@ -31,7 +31,12 @@ public class UserDAOTest {
 
     @Test
     public void testupdatePassword() throws Exception {
-        userDAO.updatePassword(2,"123");
+        userDAO.updatePassword(1,"123456");
     }
 
+    @Test
+    public void testFind() throws Exception {
+        User user = userDAO.findByUidAndPassword(1,"123456");
+        System.out.println(user.getRealName());
+    }
 }

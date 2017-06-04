@@ -1,5 +1,6 @@
 package com.cd.clothes.controller;
 
+import com.cd.clothes.exception.UserException;
 import com.cd.clothes.model.User;
 import com.cd.clothes.service.UserService;
 import com.cd.clothes.service.impl.UserServiceImpl;
@@ -29,7 +30,7 @@ public class UserController {
 
     @RequestMapping("/enterServlet.do")
     public String enterLogin(){
-        return "login";
+        return "views/login";
     }
 
     @RequestMapping("/LoginServlet.do")
@@ -47,7 +48,7 @@ public class UserController {
 
             if(user==null){
                 modelMap.addAttribute("message","还未登录，请登录");
-                return "login";
+                return "views/login";
             }else{
 
 
@@ -57,36 +58,52 @@ public class UserController {
                 Cookie cookie = new Cookie("loginName", loginName);
                 cookie.setMaxAge(60 * 60 * 24 * 10);
                 response.addCookie(cookie);
-                return "Main";
+                return "views/Main";
             }
         }catch(Exception e){
             e.printStackTrace();
             modelMap.addAttribute("message","系统正在维护升级中");
-            return"message";
+            return"views/message";
         }
     }
     @RequestMapping("UpdateUserPasswordServlet.do")
-    public String userUpdatePass(@RequestParam("password") String password,
-                                  @RequestParam("newpass")String newpass,
-                                 @RequestParam("repassword")String repassword,
-                            HttpServletRequest request,
-                            HttpServletResponse response,
-                            ModelMap modelMap) {
-        User formuser = new User();
-        try {
-            User u = (User) request.getSession().getAttribute("sessionUser");
-            formuser.setNewpass(newpass);
-            formuser.setRepassword(repassword);
-            userService.updatePassword(u.getUid(), formuser.getNewpass(), formuser.getPassword());
-            request.setAttribute("message", "修改密码成功");
-            request.getRequestDispatcher("/message.jsp").forward(request, response);
-        } catch (Exception e) {
-            request.setAttribute("message", e.getMessage());//保存异常信息到request
-            request.setAttribute("user", formuser);//为了回显
-            modelMap.addAttribute("message", "系统正在维护升级中");
-            return "message";
-        }
+    public String userUpdatePass(User formuser,
+                                 HttpServletRequest request,
+                                 ModelMap modelMap) {
+		/*
+		 * 1. 封装表单数据到user中
+		 * 2. 从session中获取uid
+		 * 3. 使用uid和表单中的oldPass和newPass来调用service方法
+		 *   > 如果出现异常，保存异常信息到request中，转发到pwd.jsp
+		 * 4. 保存成功信息到rquest中
+		 * 5. 转发到msg.jsp
+		 */
 
-        return password;
+        User user = (User)request.getSession().getAttribute("sessionUser");
+        // 如果用户没有登录，返回到登录页面，显示错误信息
+        if(user == null) {
+            modelMap.addAttribute("message","您还没有登录！");
+            return "views/message";
+        }
+        try {
+
+            if(formuser.getNewpass().equals(formuser.getRepassword())){
+                userService.updatePassword(user.getUid(), formuser.getNewpass(), user.getPassword());
+                modelMap.addAttribute("message", "修改密码成功");
+                return "views/message";
+            }else {
+                modelMap.addAttribute("message","请重新确认您的密码！");//保存异常信息到request
+                modelMap.addAttribute("user", formuser);//为了回显
+                return "common/updatepassword";
+            }
+        }catch (UserException us){
+            modelMap.addAttribute("message","请重新确认您的密码！");//保存异常信息到request
+            modelMap.addAttribute("user", formuser);//为了回显
+            return "common/updatepassword";
+        }
+        catch (Exception e) {
+            modelMap.addAttribute("message","系统维护升级中");
+            return "views/message";
+        }
     }
 }

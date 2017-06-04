@@ -48,15 +48,15 @@ body {
 			<table border=0 cellspacing=1 cellpadding=2 width="100%" bgcolor="gray">
 			<tr>
 				<td class="textbar81" width="15%">旧密码</td>
-				<td class="textbar01" width="85%"><input type="password" name="password" size="30" value="${user.password }"></td>				
+				<td class="textbar01" width="85%"><input type="password" name="password" size="30" value="${sessionScope.sessionUser.password}"></td>
 			</tr>	
 			<tr>
 				<td class="textbar81" width="15%">新密码</td>
-				<td class="textbar01" width="85%"><input type="password" name="newpass" size="30" value="${user.newpass }"></td>				
+				<td class="textbar01" width="85%"><input type="password" name="newpass" size="30" value="${sessionScope.sessionUser.newpass }"></td>
 			</tr>	
 			<tr>
 				<td class="textbar81" width="15%">确认密码</td>
-				<td class="textbar01" width="85%"><input type="password" name="repassword" size="30" value="${user.repassword }"></td>				
+				<td class="textbar01" width="85%"><input type="password" name="repassword" size="30" value="${sessionScope.sessionUser.repassword }"></td>
 			</tr>			
 			</table>
 			${message }
