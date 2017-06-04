@@ -9,6 +9,10 @@
         select * from users where uid=#{uid} and password=#{password}
     </select>
 
+    <select id="findUserByUid" parameterType="User" resultType="User">
+        select * from users where uid=#{uid}
+    </select>
+
     <!-- 修改用户(Update) -->
     <update id="updatePassword">
         update users set password=#{password} where uid=#{uid}

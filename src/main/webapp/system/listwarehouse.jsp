@@ -1,6 +1,11 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <head>
@@ -40,7 +45,7 @@ function goSearch()
 -->
 </SCRIPT>
 
-<BODY BACKGROUND="${pageContext.request.contextPath }/image/bg.gif">
+<BODY BACKGROUND="<%=basePath%>image/bg.gif">
 <FORM NAME="idFrmMain" ID="idmig0101" METHOD="POST"  ACTION="" ONSUBMIT="return false" >
 
 
@@ -104,11 +109,11 @@ function goSearch()
 		   <c:forEach items="${list }" var="w" varStatus="s">
 				<tr>
 					<td  width="5%" class="gridbar11"> ${s.count }</td>
-					<td  width="10%" class="gridbar11"> <a href="${pageContext.request.contextPath }/UpdateWarehouseServletUI?wid=${w.wid }" >${w.wid }</a></td>
+					<td  width="10%" class="gridbar11"> <a href="<%=basePath%>UpdateWarehouseServletUI?wid=${w.wid }" >${w.wid }</a></td>
 					<td  width="20%" class="gridbar11"> ${w.wname }</td>
 					<td  width="10%" class="gridbar11"> ${w.wnumber }</td>
 					<td  width="5%" class="gridbar11">
-				    <img src="${pageContext.request.contextPath }/image/del.gif" align="bottom" border="0" alt="删除" onclick="javascript:del('${w.wid}')"  style="cursor:hand"/></td>
+				    <img src="<%=basePath%>image/del.gif" align="bottom" border="0" alt="删除" onclick="javascript:del('${w.wid}')"  style="cursor:hand"/></td>
 				</tr>
 			</c:forEach>
 		</table>
