@@ -13,9 +13,9 @@
 <META HTTP-EQUIV="content-script-type" CONTENT="text/JavaScript">
 <META HTTP-EQUIV="content-style-type" CONTENT="text/css">
 <title>日志查询</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/cjpm.css">
-<script type="text/javascript" src="${pageContext.request.contextPath }/js/page.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/js/cjcalendar.js"></script>
+<link rel="stylesheet" href="<%=basePath%>css/cjpm.css">
+<script type="text/javascript" src="<%=basePath%>js/page.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/cjcalendar.js"></script>
 </head>
 <script language="javascript">
 	var CalendarWebControl = new atCalendarControl();
@@ -24,20 +24,20 @@
 <!--
 function gotos()
 {
-	document.forms[0].action="${pageContext.request.contextPath }/system/addwarehouse.jsp";
+	document.forms[0].action="<%=basePath%>system/addwarehouse.jsp";
 	document.forms[0].submit();
 }
 function del(wid)
 {
 	var b = window.confirm("您确认删除吗?");
 	 		if(b){
-		 			window.location.href = "${pageContext.request.contextPath }/DeleteWarehouseServlet?wid=" + wid;  
+		 			window.location.href = "<%=basePath%>DeleteWarehouseServlet?wid=" + wid;
 		 			alert("删除成功");
 	 			} 			
 }
 function goSearch()
 {
-	document.forms[0].action="${pageContext.request.contextPath }/QueryWarehouseServlet";
+	document.forms[0].action="<%=basePath%>QueryWarehouseServlet";
 	document.forms[0].submit();
 }
  
