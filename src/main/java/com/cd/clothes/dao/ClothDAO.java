@@ -1,6 +1,7 @@
 package com.cd.clothes.dao;
 
 import com.cd.clothes.model.Cloth;
+import org.apache.ibatis.annotations.Param;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -74,7 +75,7 @@ public interface ClothDAO {
     /**
      * 按照商品id更新商品的库存量
      */
-    public void updateNumber(int cid,int cunmber) throws SQLException;
+    public void updateNumber(@Param("cid") int cid,@Param("cunmber") int cunmber) throws SQLException;
 
     /**
      * 查询库存

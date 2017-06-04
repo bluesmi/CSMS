@@ -23,4 +23,14 @@
     <delete id="delete" parameterType="String">
         delete from clothe where cid =#{value}
     </delete>
+    <update id="update" parameterType="Cloth">
+        update  clothe set cname=#{cname},ccolor=#{ccolor},csize=#{csize},cnumber=#{cnumber},cimage=#{cimage},cfacprice=#{cfacprice},cretprice=#{cretprice}
+        where cid =#{cid}
+    </update>
+    <update id="updateNumber">
+        update  clothe set cnumber=#{cunmber} where cid =#{cid}
+    </update>
+    <select id="findClotheNumber" parameterType="int" resultType="int">
+        select cnumber from clothe where cid=#{cid}
+    </select>
 </mapper>

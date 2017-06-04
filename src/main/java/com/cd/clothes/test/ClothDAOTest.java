@@ -36,4 +36,14 @@ public class ClothDAOTest {
         Cloth cloth = clothDAO.find("1");
         System.out.println(cloth.getCname());
     }
+    @Test
+    public void testupdateNumber()throws Exception{
+        clothDAO.updateNumber(1,200);
+    }
+
+    @Test
+    public void testfindClotheNumber()throws Exception{
+        System.out.println(clothDAO.findClotheNumber(1));
+    }
+
 }
