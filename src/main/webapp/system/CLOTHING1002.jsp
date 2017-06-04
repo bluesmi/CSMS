@@ -15,51 +15,43 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/cjpm.css">
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/cjcalendar.js"></script>
 <script language="javascript" src="${pageContext.request.contextPath }/js/page.js"></script>
+    <script type="text/javascript"
+            src="<c:url value='<%=basePath%>jquery/jquery-1.5.1.js'/>"></script>
+    <script language="javascript">
+        var CalendarWebControl = new atCalendarControl();
+
+        function save()
+        {
+
+            $("#idFrmMain").attr({"action":"/clothing/AddClothServlet"})
+            document.getElementById("idFrmMain").submit();
+
+            alert("新增成功！");
+
+        }
+        function update()
+        {
+            alert("进入更新");
+            $("#idFrmMain").attr({"action":"/clothing/UpdateClothServlet"})
+            document.getElementById("idFrmMain").submit();
+            alert("修改成功！");
+
+        }
+
+        function back()
+        {
+            history.back();
+        }
+
+    </script>
 </head>
-<script type="text/javascript"
-	src="<c:url value='/jquery/jquery-1.5.1.js'/>"></script>
-<script language="javascript">
-	var CalendarWebControl = new atCalendarControl();
-</script>
-<SCRIPT LANGUAGE="javaScript">
 
-/* function delCom(id){
-	if(id == '1'){
-		document.idFrmMain.gys.value = "";		
-	}else{
-		document.idFrmMain.sccj.value = "";
-	}
-} */
-
-function save()
-{
-	
-	$("#idFrmMain").attr({"action":"/clothing/AddClothServlet"})
-   document.getElementById("idFrmMain").submit();
-
-	alert("新增成功！");
-	
-}
-function update()
-{
-	alert("进入更新");
-	$("#idFrmMain").attr({"action":"/clothing/UpdateClothServlet"})
-   document.getElementById("idFrmMain").submit();
-	alert("修改成功！");
-	
-}
-
-function back()
-{
-	history.back();
-}
-
-</SCRIPT>
 <BODY BACKGROUND="../image/bg.gif"> 
 <FORM NAME="idFrmMain" ID="idFrmMain" METHOD="POST"  ACTION="" ONSUBMIT="return false"> 
   <table border="0" width="100%"> 
     <tr> 
-      <td width="100%" colspan="0" rowspan="0" align="center" valign="center"> <table border="0" width="100%" id="table1" cellspacing="0"  cellpadding="2"  bgcolor="gray"> 
+      <td width="100%" colspan="0" rowspan="0" align="center" valign="center">
+          <table border="0" width="100%" id="table" cellspacing="0"  cellpadding="2"  bgcolor="gray">
           <tr> 
             <td class="headerbar61" width="50%">货号详细</td> 
             <td class="headerbar63" width="50%"> <input type="button" name="save70302002"  onClick="javascript:save()" value="新增确认 "> 

@@ -1,6 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -44,12 +43,6 @@
 			//alert(urlcname); 
 			window.location = basePath+"cloth/QueryByCnameServlet.do?cname="
 					+ urlcname;
-			/* $.get("QueryByCnameServlet",{cname:cname});	
-			var jsondate=${allCloth1};
-			for(i=0;i<jsondate.length;i++){
-			var arr=jsondate[i];
-			${"#foreach"}.append("<td class="gridbar11" align="center">"+arr.cid+" </td>");
-			${"#foreach"}.append("<td class="gridbar11" align="center">"+arr.cname+" </td>") */
 
 		} else if(ccolor !=""){
 			
@@ -71,7 +64,7 @@
 	}
 	function del(id) {
 		if (confirm("您确定删除该条记录？")) {
-			var str = "/clothing/DeleteClothServlet?cid=" + id;
+			var str = basePath+"cloth/DeleteClothServlet.do?cid=" + id;
 
 			window.location.href = str;
 
@@ -84,7 +77,7 @@
 	}
 </SCRIPT>
 
-<BODY BACKGROUND="../image/bg.gif">
+<BODY BACKGROUND="<%=basePath%>image/bg.gif">
 	<FORM NAME="idFrmMain" ID="idmig0101" METHOD="POST" ACTION=""
 		ONSUBMIT="return false">
 
@@ -171,7 +164,7 @@
 				<td></td>
 			</tr>
 		</table>
-		<table border="0" width="100%" id="table1" cellspacing="0"
+		<table border="0" width="100%" id="table2" cellspacing="0"
 			cellpadding="0" bgcolor="gray">
 			<tr>
 				<td width="100%" colspan="1">
@@ -194,7 +187,7 @@
 							<tr id="foreach">
 								<td class="gridbar11" align="center">${status.count}</td>
 								<td class="gridbar11" align="center"><a
-									href="/clothing/QueryClothServlet?cid=${item.cid}">${item.cid}</a></td>
+									href="<%=basePath%>cloth/QueryClothServlet.do?cid=${item.cid}">${item.cid}</a></td>
 								<td class="gridbar11" align="center">${item.ccolor}</td>
 								<td class="gridbar11" align="center">${item.csize}</td>
 								<td class="gridbar11" align="center">${item.cname}</td>
@@ -202,7 +195,7 @@
 								<td class="gridbar11" align="center">${item.cfacprice}</td>
 								<td class="gridbar11" align="center">${item.cretprice}</td>
 								<td class="gridbar11" align="center"><img
-									src="${pageContext.request.contextPath }/image/del.gif"
+									src="<%=basePath%>image/del.gif"
 									align="bottom" border="0" alt="删除"
 									onClick="javascript:del('${item.cid}')" style="cursor:hand" /></td>
 							</tr>
