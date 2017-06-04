@@ -1,5 +1,11 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://"
+            + request.getServerName() + ":" + request.getServerPort()
+            + path + "/";
 
+%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
@@ -10,12 +16,12 @@
 function oa_tool(){
 //alert(window.parent.oa_frame.cols);
 if(window.parent.sss.cols=="180,10,*"){
-frameshow.src="../image/m1.gif";
+frameshow.src="<%=basePath%>image/m1.gif";
 oa_tree.title="显示子栏目"
 window.parent.sss.cols="0,10,*";
 }
 else{
-frameshow.src="../image/m2.gif";
+frameshow.src="<%=basePath%>image/m2.gif";
 oa_tree.title="隐藏子栏目"
 window.parent.sss.cols="180,10,*";
 }
@@ -36,7 +42,7 @@ topMargin=0>
   <TBODY>
   <TR>
       <TD align="center" valign="middle" bgcolor="#B3B3B3"> 
-      <DIV id=oa_tree onclick=oa_tool(); title=隐藏子栏目><IMG src="../image/m2.gif" width="10" height="67" align=middle class="hand"  
+      <DIV id=oa_tree onclick=oa_tool(); title=隐藏子栏目><IMG src="<%=basePath%>image/m2.gif" width="10" height="67" align=middle class="hand"
       id=frameshow ></DIV></TD></TR></TBODY></TABLE></BODY></HTML>
 
 
