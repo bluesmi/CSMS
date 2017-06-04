@@ -9,6 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * autour m199
@@ -23,14 +24,50 @@ public class WarehouseDAOTest {
     private WarehouseDAO warehouseDAO;
 
     @Test
-    public void testAdd() throws SQLException {
+    public void testAdd() throws Exception {
         Warehouse testwarehouse = new Warehouse();
         testwarehouse.setWname("5号仓库");
         testwarehouse.setWuser("老王");
         testwarehouse.setWphone("18374956630");
         testwarehouse.setWnumber(8000);
         warehouseDAO.add(testwarehouse);
-
     }
 
+    @Test
+    public void testDelete() throws Exception{
+        warehouseDAO.delete(9);
+    }
+
+    @Test
+    public void testUpdate() throws Exception{
+        Warehouse testwarehouse = new Warehouse();
+        testwarehouse.setWid(4);
+        testwarehouse.setWphone("13657375963");
+        testwarehouse.setWname("四号仓库");
+        testwarehouse.setWuser("赵四");
+        testwarehouse.setWnumber(10000);
+        warehouseDAO.update(testwarehouse);
+    }
+
+    @Test
+    public void finAll() throws Exception{
+        List<Warehouse> warehouseList = warehouseDAO.findAll();
+        for (Warehouse warehouse:warehouseList){
+            System.out.println(warehouse.getWname());
+        }
+    }
+
+    @Test
+    public void finById() throws Exception{
+        Warehouse warehouse = warehouseDAO.findByWid(2);
+        System.out.println(warehouse.getWname());
+    }
+
+    @Test
+    public void queryWarehouse() throws Exception{
+        List<Warehouse> warehouseList= warehouseDAO.queryWarehouse(1,"号");
+        for (Warehouse warehouse:warehouseList){
+            System.out.println(warehouse.getWname());
+        }
+    }
 }
