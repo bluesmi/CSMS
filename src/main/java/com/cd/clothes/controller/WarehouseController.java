@@ -16,6 +16,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/warehouse")
 public class WarehouseController {
+
     @Autowired
     WarehouseService warehouseService;
 

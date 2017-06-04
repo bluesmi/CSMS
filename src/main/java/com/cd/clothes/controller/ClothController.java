@@ -33,14 +33,14 @@ public class ClothController {
         }
         return "cloth/QueryAllClothServlet.do";
     }
-
+//    http://localhost:8080/csms/cloth/QueryAllClothServlet.do
     @RequestMapping("/QueryAllClothServlet.do")
     public String queryAllClothServlet(ModelMap modelMap){
         List<Cloth> cloth = null;
         try {
             cloth = clothService.getCloth();
-            modelMap.addAttribute("allCloth", cloth);
-            return "system/CLOTHING1001";
+            modelMap.addAttribute("allCloth",cloth);
+            return "redirect:system/CLOTHING1001";
         } catch (Exception e) {
             e.printStackTrace();
             modelMap.addAttribute("message","系统维护升级中");
@@ -68,7 +68,7 @@ public class ClothController {
       try {
           cloth = clothService.findCloth(cid);
           modelMap.addAttribute("oneCloth", cloth);
-          return "/system/CLOTHING1003";
+          return "system/CLOTHING1003";
       } catch (Exception e) {
           e.printStackTrace();
           modelMap.addAttribute("message","系统维护升级中");
@@ -82,15 +82,22 @@ public class ClothController {
            List<Cloth> list = clothService.getbyCname(cname);
            System.out.print(list.size());
            modelMap.addAttribute("allCloth", list);
-           return "/system/CLOTHING1001";
+           return "system/CLOTHING1001";
 
        } catch (Exception e) {
            return "cloth/QueryAllClothServlet.do";
        }
    }
 
-   /*@RequestMapping("/QueryByCcolorServlet.do")
+   @RequestMapping("/QueryByCcolorServlet.do")
     public String queryByCcolorServlet(@Param("ccolor") String ccolor,ModelMap modelMap){
-
-   }*/
+       try {
+           List<Cloth> list = clothService.getbyCcolor(ccolor);
+//           System.out.print(list.size());
+           modelMap.addAttribute("allCloth", list);
+           return "system/CLOTHING1001";
+       } catch (Exception e) {
+           return "cloth/QueryAllClothServlet.do";
+       }
+   }
 }
