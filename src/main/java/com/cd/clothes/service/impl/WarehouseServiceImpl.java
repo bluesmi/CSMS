@@ -41,7 +41,6 @@ public class WarehouseServiceImpl implements WarehouseService {
 
     @Override
     public List<Warehouse> queryWarehouse(Integer wid, String wname) throws Exception {
-        String wanme1 = "%"+wname+"%";
-        return warehouseDAO.queryWarehouse(wid, wanme1);
+        return warehouseDAO.queryWarehouse(wid, wname);
     }
 }
