@@ -2,12 +2,14 @@ package com.cd.clothes.controller;
 
 import com.cd.clothes.model.Cloth;
 import com.cd.clothes.service.ClothService;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -42,6 +44,20 @@ public class ClothController {
             e.printStackTrace();
             modelMap.addAttribute("message","系统维护升级中");
             return "views/message";
+        }
+    }
+
+    @RequestMapping("AjaxQueryAllclothServlet.do")
+    public void AjaxQueryAllclothServlet(HttpServletResponse response){
+        List<Cloth> cloth = null;
+        try {
+            cloth = clothService.getCloth();
+            String json =new Gson().toJson(cloth);
+            response.setCharacterEncoding("utf-8");
+            response.getWriter().print(json);
+        } catch (Exception e) {
+            e.printStackTrace();
+
         }
     }
 }
