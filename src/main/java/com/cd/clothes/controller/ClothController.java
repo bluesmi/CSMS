@@ -85,7 +85,7 @@ public class ClothController {
            return "/system/CLOTHING1001";
 
        } catch (Exception e) {
-           return "cloth//QueryAllClothServlet.do";
+           return "cloth/QueryAllClothServlet.do";
        }
    }
 

@@ -2,6 +2,7 @@ package com.cd.clothes.controller;
 
 import com.cd.clothes.model.Warehouse;
 import com.cd.clothes.service.WarehouseService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -57,6 +58,18 @@ public class WarehouseController {
             modelMap.addAttribute("message", "系统维护升级中");
             return "views/message";
         }
+    }
+
+    @RequestMapping("/DeleteWarehouseServlet.do")
+    public String deleteWarehouse(@Param("wid") Integer wid, ModelMap modelMap) {
+        try {
+            warehouseService.deleteWarehouse(wid);
+        } catch (Exception e) {
+            e.printStackTrace();
+            modelMap.addAttribute("message", "系统维护升级中");
+            return "views/message";
+        }
+        return "warehouse/DeleteWarehouseServlet.do";
     }
 
 }

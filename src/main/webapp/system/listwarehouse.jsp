@@ -68,10 +68,10 @@ function goSearch()
 
     <td class="textbar81" width="15%">仓库编号</td>
 		<td class="textbar01" width="35%">			
-		<input type="text" name="wid" value="${wid }" style="width:210px ">	  </td>    
+		<input type="text" name="wid" value="${wid}" style="width:210px ">	  </td>
 	<td class="textbar81" width="15%">仓库名称</td>
 		<td class="textbar01" width="35%">			
-		<input type="text" name="wname" value="${wname }" style="width:210px ">	  </td>    
+		<input type="text" name="wname" value="${wname}" style="width:210px ">	  </td>
 </tr>   
    
 </table>
