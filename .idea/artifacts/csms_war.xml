@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="csms:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="csms.war">
+      <element id="artifact" artifact-name="csms:war exploded" />
+    </root>
+  </artifact>
+</component>
