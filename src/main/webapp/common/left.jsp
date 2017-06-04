@@ -1,5 +1,11 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
 
+%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -7,8 +13,8 @@
 	<title>无标题文档</title>
 	<link rel="stylesheet" type="text/css" href="../css/frame.css">
 	<script type="text/javascript" src="../js/common.js"></script>
-	<script type="text/jscript" language="JavaScript" src="../js/qq_hidemenu.js"></script>
-	<script type="text/jscript" language="JavaScript" src="../js/page.js"></script>
+	<script type="text/jscript" language="JavaScript" src="<%=basePath%>js/qq_hidemenu.js"></script>
+	<script type="text/jscript" language="JavaScript" src="<%=basePath%>js/page.js"></script>
 </head>
 
 
@@ -26,7 +32,7 @@
 		<table width="100%" cellspacing="0" cellpadding="0" border="0">
 				<tr>
 				<td  class="left1">
-				<a id="exp52" title="折叠" href="javascript:widgets.ToggleWidget(hideTop1);"><img id="exp5" alt="折叠" src="../image/qq_minimize.gif"  border="0"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="exp51" title="折叠" href="javascript:widgets.ToggleWidget(hideTop1);">辅助管理</a></td>
+				<a id="exp52" title="折叠" href="javascript:widgets.ToggleWidget(hideTop1);"><img id="exp5" alt="折叠" src="<%=basePath%>image/qq_minimize.gif"  border="0"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="exp51" title="折叠" href="javascript:widgets.ToggleWidget(hideTop1);">辅助管理</a></td>
 				</tr>
 			</table>
 		</td>
@@ -38,7 +44,7 @@
 		<!--begin个导航1-->
 		<tr>
 		<td>
-		<div  id="menuDiv2" class="menu" onClick="javascript:setClass(menuDiv2);menuGoto('updatepassword.jsp','main');">&nbsp;&nbsp;&nbsp;<img  src="../image/right2.gif" >&nbsp;&nbsp;修改密码</div>
+		<div  id="menuDiv2" class="menu" onClick="javascript:setClass(menuDiv2);menuGoto('updatepassword.jsp','main');">&nbsp;&nbsp;&nbsp;<img  src="<%=basePath%>image/right2.gif" >&nbsp;&nbsp;修改密码</div>
 		</td>
 		</tr>
 		<!--end导航1-->   
