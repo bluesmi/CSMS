@@ -1,6 +1,7 @@
 package com.cd.clothes.controller;
 
 import com.cd.clothes.model.User;
+import com.cd.clothes.service.UserService;
 import com.cd.clothes.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,7 +25,7 @@ import java.net.URLEncoder;
 public class UserController {
 
     @Autowired
-    private UserServiceImpl userService;
+    private UserService userService;
 
     @RequestMapping("/enterServlet.do")
     public String enterLogin(){

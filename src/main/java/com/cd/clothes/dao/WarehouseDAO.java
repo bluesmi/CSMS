@@ -34,7 +34,11 @@ public interface WarehouseDAO {
      */
     public void update(Warehouse w) throws SQLException;
 
-
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public List<Warehouse> findAll() throws SQLException;
     public Warehouse findByWid(String wid) throws SQLException;
 
