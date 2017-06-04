@@ -58,10 +58,10 @@
 					+ urlccolor;
 		} else if(csize !=""){
 			var urlcsize = encodeURI(encodeURI(csize));
-			window.location = "/clothing/QueryBycSizeServlet?csize="
+			window.location = basePath+"cloth/QueryBycSizeServlet.do?csize="
 					+ urlcsize;
 		}else {
-		window.location = "/clothing/QueryAllClothServlet";
+		window.location = basePath+"cloth/QueryAllClothServlet.do";
 					
 		}
 	}

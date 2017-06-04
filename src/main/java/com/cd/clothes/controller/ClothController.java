@@ -86,7 +86,11 @@ public class ClothController {
 
        } catch (Exception e) {
            return "cloth//QueryAllClothServlet.do";
-
        }
+   }
+
+   @RequestMapping("/QueryByCcolorServlet.do")
+    public String queryByCcolorServlet(@Param("ccolor") String ccolor,ModelMap modelMap){
+
    }
 }
