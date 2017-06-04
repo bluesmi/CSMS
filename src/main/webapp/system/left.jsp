@@ -1,5 +1,10 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://"
+            + request.getServerName() + ":" + request.getServerPort()
+            + path + "/";
+    %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -38,16 +43,16 @@ function gotos(surl){
                 <table width="100%"  border="0" cellspacing="1" cellpadding="0"> 
                   
                   <tr> 
-                    <td><div align="right"><img src="${pageContext.request.contextPath }/image/dot1.gif" width="13" height="16"></div></td> 
-                    <td><a href="${pageContext.request.contextPath }/ListUserServlet" target="main">用户管理</a></td> 
+                    <td><div align="right"><img src="<%=basePath%>image/dot1.gif" width="13" height="16"></div></td>
+                    <td><a href="<%=basePath%>ListUserServlet" target="main">用户管理</a></td>
                   </tr> 
 				  <tr> 
-                    <td><div align="right"><img src="${pageContext.request.contextPath }/image/dot1.gif" width="13" height="16"></div></td> 
-                    <td><a href="${pageContext.request.contextPath }/QueryAllClothServlet" target="main">货号</a></td> 
+                    <td><div align="right"><img src="<%=basePath%>image/dot1.gif" width="13" height="16"></div></td>
+                    <td><a href="<%=basePath%>QueryAllClothServlet" target="main">货号</a></td>
                   </tr>                 
 				   <tr> 
-                    <td><div align="right"><img src="${pageContext.request.contextPath }/image/dot1.gif" width="13" height="16"></div></td> 
-                    <td><a href="${pageContext.request.contextPath }/ListWarehouseServlet" target="main">仓库</a></td> 
+                    <td><div align="right"><img src="<%=basePath%>image/dot1.gif" width="13" height="16"></div></td>
+                    <td><a href="<%=basePath%>ListWarehouseServlet" target="main">仓库</a></td>
                   </tr>  
                   <tr> 
                     <td colspan="2"  height="10"></td> 

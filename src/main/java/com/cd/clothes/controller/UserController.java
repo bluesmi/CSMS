@@ -49,8 +49,6 @@ public class UserController {
                 modelMap.addAttribute("message","还未登录，请登录");
                 return "login";
             }else{
-
-
                 request.getSession().setAttribute("sessionUser", user);
 
                 loginName = URLEncoder.encode(loginName, "utf-8");
@@ -66,27 +64,19 @@ public class UserController {
         }
     }
     @RequestMapping("UpdateUserPasswordServlet.do")
-    public String userUpdatePass(@RequestParam("password") String password,
-                                  @RequestParam("newpass")String newpass,
-                                 @RequestParam("repassword")String repassword,
+    public String userUpdatePass(User formuser,
                             HttpServletRequest request,
                             HttpServletResponse response,
                             ModelMap modelMap) {
-        User formuser = new User();
         try {
             User u = (User) request.getSession().getAttribute("sessionUser");
-            formuser.setNewpass(newpass);
-            formuser.setRepassword(repassword);
             userService.updatePassword(u.getUid(), formuser.getNewpass(), formuser.getPassword());
-            request.setAttribute("message", "修改密码成功");
-            request.getRequestDispatcher("/message.jsp").forward(request, response);
+            modelMap.addAttribute("message", "修改密码成功");
+            return "message";
         } catch (Exception e) {
-            request.setAttribute("message", e.getMessage());//保存异常信息到request
-            request.setAttribute("user", formuser);//为了回显
-            modelMap.addAttribute("message", "系统正在维护升级中");
+            modelMap.addAttribute("message", e.getMessage());//保存异常信息到request
+            modelMap.addAttribute("user", formuser);//为了回显
             return "message";
         }
-
-        return password;
     }
 }

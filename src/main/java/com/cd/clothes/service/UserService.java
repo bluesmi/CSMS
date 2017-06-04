@@ -10,5 +10,6 @@ import com.cd.clothes.model.User;
  */
 public interface UserService {
     User login(User user) throws Exception;
-    User updatePassword(int uid, String newPass, String oldPass) throws Exception;
+    void updatePassword(int uid, String newPass, String oldPass) throws Exception;
+    public User findUser(int uid) throws Exception;
 }

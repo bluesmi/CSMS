@@ -21,18 +21,20 @@ public class UserServiceImpl implements UserService {
         return userDAO.findByLoginnameAndLoginpass(user);
     }
 
-    public User updatePassword(int uid, String newPass, String oldPass) throws Exception{
+    public void updatePassword(int uid, String newPass, String oldPass) throws Exception{
         /*
          * 1. 校验老密码
          */
         boolean bool = userDAO.findByUidAndPassword(uid, oldPass);
         if(!bool) {//如果老密码错误
-            //throw new UserException("旧密码错误！");
+            throw new UserException("旧密码错误！");
         }
 			/*
 			 * 2. 修改密码
 			 */
         userDAO.updatePassword(uid, newPass);
-        return null;
+    }
+    public User findUser(int uid) throws Exception{
+            return userDAO.findUserByUid(uid);
     }
 }
