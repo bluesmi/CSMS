@@ -37,7 +37,7 @@ public class ClothController {
         try {
             cloth = clothService.getCloth();
             modelMap.addAttribute("allCloth", cloth);
-            return "system/CLOTHING1001.jsp";
+            return "system/CLOTHING1001";
         } catch (Exception e) {
             e.printStackTrace();
             modelMap.addAttribute("message","系统维护升级中");
