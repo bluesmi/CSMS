@@ -6,8 +6,6 @@ import com.cd.clothes.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
-
 /**
  * autour m199
  * mail  2803934061@qq.com
@@ -21,5 +19,20 @@ public class UserServiceImpl implements UserService {
     @Override
     public User login(User user) {
         return userDAO.findByLoginnameAndLoginpass(user);
+    }
+
+    public User updatePassword(int uid, String newPass, String oldPass){
+        /*
+         * 1. 校验老密码
+         */
+        boolean bool = userDAO.findByUidAndPassword(uid, oldPass);
+        if(!bool) {//如果老密码错误
+            //throw new UserException("旧密码错误！");
+        }
+			/*
+			 * 2. 修改密码
+			 */
+        userDAO.updatePassword(uid, newPass);
+        return null;
     }
 }

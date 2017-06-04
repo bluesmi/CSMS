@@ -10,4 +10,5 @@ import com.cd.clothes.model.User;
  */
 public interface UserService {
     User login(User user);
+    User updatePassword(int uid, String newPass, String oldPass);
 }

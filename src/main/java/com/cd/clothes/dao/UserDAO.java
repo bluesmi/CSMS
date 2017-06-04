@@ -10,4 +10,6 @@ import com.cd.clothes.model.User;
  */
 public interface UserDAO {
     User findByLoginnameAndLoginpass(User user);
+    boolean findByUidAndPassword(int uid, String password);
+    void updatePassword(int uid,String password);
 }

@@ -4,4 +4,13 @@
     <select id="findByLoginnameAndLoginpass" parameterType="User" resultType="User">
         select * from users where loginName=#{loginName} and password=#{password}
     </select>
+
+    <select id="findByUidAndPassword" parameterType="boolean" resultType="java.lang.Boolean">
+        select count(*) from users where uid=#{uid} and password=#{password}
+    </select>
+
+    <!-- 修改用户(Update) -->
+    <update id="updatePassword" parameterType="User">
+        update users set password=#{repassword} where uid=#{uid}
+    </update>
 </mapper>

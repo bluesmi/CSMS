@@ -1,5 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%						
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
 if(request.getParameter("message")!=null){
     String message=(String)request.getParameter("message");
     if(!message.equals("")){
@@ -16,9 +20,9 @@ if(request.getParameter("message")!=null){
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <title>在线通知</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/cjpm.css">	
-<script type="text/javascript" src="${pageContext.request.contextPath }/js/page.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/js/msn_message.js"></script>
+<link rel="stylesheet" href="<%=basePath%>css/cjpm.css">
+<script type="text/javascript" src="<%=basePath%>js/page.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/msn_message.js"></script>
 <style type="text/css">
 <!--
 body {
@@ -27,9 +31,9 @@ body {
 -->
 </style></head>
 
-<BODY BACKGROUND="${pageContext.request.contextPath }/image/bg.gif">
+<BODY BACKGROUND="<%=basePath%>image/bg.gif">
 
-<FORM NAME="BSDTERM001" ID="BSDTERM001" METHOD="post"  action="${pageContext.request.contextPath }/UpdateUserPasswordServlet">
+<FORM NAME="BSDTERM001" ID="BSDTERM001" METHOD="post"  action="<%=basePath%>user/UpdateUserPasswordServlet.do">
 <table border=0 cellspacing=0 cellpadding=2 width="100%" bgcolor="gray">
 			<tr>
 				<td class="headerbar61"> 修改密码</td>

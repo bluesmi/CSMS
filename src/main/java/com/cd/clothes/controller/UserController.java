@@ -31,6 +31,7 @@ public class UserController {
     public String enterLogin(){
         return "login";
     }
+
     @RequestMapping("/LoginServlet.do")
     public String userLogin(@RequestParam("loginName") String loginName,
                                   @RequestParam("password")String password,
@@ -63,5 +64,29 @@ public class UserController {
             modelMap.addAttribute("message","系统正在维护升级中");
             return"message";
         }
+    }
+    @RequestMapping("UpdateUserPasswordServlet.do")
+    public String userUpdatePass(@RequestParam("password") String password,
+                                  @RequestParam("newpass")String newpass,
+                                 @RequestParam("repassword")String repassword,
+                            HttpServletRequest request,
+                            HttpServletResponse response,
+                            ModelMap modelMap) {
+        User formuser = new User();
+        try {
+            User u = (User) request.getSession().getAttribute("sessionUser");
+            formuser.setNewpass(newpass);
+            formuser.setRepassword(repassword);
+            userService.updatePassword(u.getUid(), formuser.getNewpass(), formuser.getPassword());
+            request.setAttribute("message", "修改密码成功");
+            request.getRequestDispatcher("/message.jsp").forward(request, response);
+        } catch (Exception e) {
+            request.setAttribute("message", e.getMessage());//保存异常信息到request
+            request.setAttribute("user", formuser);//为了回显
+            modelMap.addAttribute("message", "系统正在维护升级中");
+            return "message";
+        }
+
+        return password;
     }
 }
