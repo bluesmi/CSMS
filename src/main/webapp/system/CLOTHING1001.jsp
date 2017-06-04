@@ -16,31 +16,33 @@
 <META HTTP-EQUIV="content-style-type" CONTENT="text/css">
 <title>日志查询</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/css/cjpm.css">
+	href="<%=basePath%>css/cjpm.css">
 <script type="text/javascript"
-	src="<c:url value='/jquery/jquery-1.5.1.js'/>"></script>
+	src="<c:url value='<%=basePath%>jquery/jquery-1.5.1.js'/>"></script>
 <script type="text/javascript"
-	src="${pageContext.request.contextPath }/js/page.js"></script>
+	src="<%=basePath%>js/page.js"></script>
 <script type="text/javascript"
-	src="${pageContext.request.contextPath }/js/cjcalendar.js"></script>
+	src="<%=basePath%>js/cjcalendar.js"></script>
 </head>
 <script language="javascript">
 	var CalendarWebControl = new atCalendarControl();
 </script>
 <SCRIPT LANGUAGE="javaScript">
+    var location = (window.location+'').split('/');
+    var basePath = location[0]+'//'+location[2]+'/'+location[3]+'/';
 
-	function doQuery() {
+    function doQuery() {
 		var cid = $("#cid").val();
 		var cname = $("#cname").val();
 		var ccolor = $("#ccolor").val();
 		var csize = $("#csize").val();
 		if (cid != "") {
-			window.location.href = "/clothing/QueryClothServlet?cid=" + cid;
+			window.location.href = basePath+"cloth/QueryClothServlet.do?cid=" + cid;
 		} else if (cname != "") {
 			//alert(cname);
 			var urlcname = encodeURI(encodeURI(cname));
 			//alert(urlcname); 
-			window.location = "/clothing/QueryByCnameServlet?cname="
+			window.location = basePath+"cloth/QueryByCnameServlet.do?cname="
 					+ urlcname;
 			/* $.get("QueryByCnameServlet",{cname:cname});	
 			var jsondate=${allCloth1};
@@ -52,14 +54,14 @@
 		} else if(ccolor !=""){
 			
 			var urlccolor = encodeURI(encodeURI(ccolor));
-			window.location = "/clothing/QueryByCcolorServlet?ccolor="
+			window.location =  basePath+"cloth/QueryByCcolorServlet.do?ccolor="
 					+ urlccolor;
 		} else if(csize !=""){
 			var urlcsize = encodeURI(encodeURI(csize));
-			window.location = "/clothing/QueryBycSizeServlet?csize="
+			window.location = basePath+"cloth/QueryBycSizeServlet.do?csize="
 					+ urlcsize;
 		}else {
-		window.location = "/clothing/QueryAllClothServlet";
+		window.location = basePath+"cloth/QueryAllClothServlet.do";
 					
 		}
 	}
