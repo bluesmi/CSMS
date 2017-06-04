@@ -46,4 +46,10 @@ public class ClothDAOTest {
         System.out.println(clothDAO.findClotheNumber(1));
     }
 
+
+    @Test
+    public void testfindbyCname()throws Exception{
+        System.out.println(clothDAO.findbyCname("长裤"));
+    }
+
 }
