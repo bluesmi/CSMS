@@ -24,21 +24,28 @@
 <!--
 function gotos()
 {
-	document.forms[0].action="<%=basePath%>system/addwarehouse.jsp";
-	document.forms[0].submit();
+	/*document.forms[0].action="<%=basePath%>system/addwarehouse.jsp";
+	document.forms[0].submit();*/
+    $("#idFrmMain").attr({"action":"/system/addwarehouse.jsp"})
+    document.getElementById("idFrmMain").submit();
+
 }
 function del(wid)
 {
 	var b = window.confirm("您确认删除吗?");
 	 		if(b){
-		 			window.location.href = "<%=basePath%>DeleteWarehouseServlet?wid=" + wid;
-		 			alert("删除成功");
+                window.location.href = "/DeleteWarehouseServlet?wid=" + wid;
+                alert("删除成功");
+                /*var str = basePath+"warehouse/DeleteWarehouseServlet.do?wid=" + wid;
+                window.location.href = str;*/
 	 			} 			
 }
 function goSearch()
 {
-	document.forms[0].action="<%=basePath%>QueryWarehouseServlet";
+	document.forms[0].action="<%=basePath%>QueryWarehouseServlet.do";
 	document.forms[0].submit();
+    /*$("#idFrmMain").attr({"action":"/warehouse/QueryWarehouseServlet.do"})
+    document.getElementById("idFrmMain").submit();*/
 }
  
  

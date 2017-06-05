@@ -29,7 +29,7 @@ public class WarehouseController {
             modelMap.addAttribute("message", "系统维护升级中");
             return "views/message";
         }
-        return "warehouse/QueryAllClothServlet.do";
+        return "QueryAllClothServlet.do";
     }
 
     @RequestMapping("/QueryWarehouseServlet.do")
@@ -70,7 +70,19 @@ public class WarehouseController {
             modelMap.addAttribute("message", "系统维护升级中");
             return "views/message";
         }
-        return "warehouse/DeleteWarehouseServlet.do";
+        return "DeleteWarehouseServlet.do";
+    }
+
+    @RequestMapping("/UpdateWarehouseServlet.do")
+    public String updateWarehouse(Warehouse warehouse, ModelMap modelMap) {
+        try {
+            warehouseService.updateWarehouse(warehouse);
+        } catch (Exception e) {
+            e.printStackTrace();
+            modelMap.addAttribute("message", "系统维护升级中");
+            return "views/message";
+        }
+        return "ListWarehouseServlet.do";
     }
 
 }

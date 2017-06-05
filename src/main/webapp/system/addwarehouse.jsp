@@ -1,5 +1,10 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <head>
@@ -7,28 +12,28 @@
 <META HTTP-EQUIV="content-script-type" CONTENT="text/JavaScript">
 <META HTTP-EQUIV="content-style-type" CONTENT="text/css">
 <title> </title>
-<link rel="stylesheet" href="${pageContext.request.contextPath }//css/cjpm.css">
-<script type="text/javascript" src="${pageContext.request.contextPath }//js/cjcalendar.js"></script>
-<script language="javascript" src="${pageContext.request.contextPath }//js/page.js"></script>
+<link rel="stylesheet" href="<%=basePath%>css/cjpm.css">
+<script type="text/javascript" src="<%=basePath%>js/cjcalendar.js"></script>
+<script language="javascript" src="<%=basePath%>js/page.js"></script>
 </head>
 <script language="javascript">
 	var CalendarWebControl = new atCalendarControl();
 </script>
 <SCRIPT LANGUAGE="javaScript">
-<!--
-function delCom(id){
+
+/*function delCom(id){
 	if(id == '1'){
 		document.idFrmMain.gys.value = "";		
 	}else{
 		document.idFrmMain.sccj.value = "";
 	}
-}
+}*/
 
 function save()
 {
-	idFrmMain.action="${pageContext.request.contextPath }/AddWarehouseServlet";
-	idFrmMain.submit();
-	alert("仓库添加成功！");
+    $("#idFrmMain").attr({"action":"/warehouse/AddWarehouseServlet.do"})
+    document.getElementById("idFrmMain").submit();
+    alert("仓库添加成功！");
 }
 
 function back()
@@ -37,7 +42,7 @@ function back()
 }
 
 </SCRIPT>
-<BODY BACKGROUND="${pageContext.request.contextPath }/image/bg.gif">
+<BODY BACKGROUND="<%=basePath%>image/bg.gif">
 <FORM NAME="idFrmMain" ID="idFrmMain" METHOD="POST"  ACTION="" ONSUBMIT="return false"> 
 <table border="0" width="100%">
     <tr>
