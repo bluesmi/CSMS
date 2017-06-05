@@ -12,14 +12,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <META HTTP-EQUIV="content-script-type" CONTENT="text/JavaScript">
 <META HTTP-EQUIV="content-style-type" CONTENT="text/css">
 <title>品牌修改</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/cjpm.css">
-<script type="text/javascript" src="${pageContext.request.contextPath }/js/cjcalendar.js"></script>
-<script language="javascript" src="${pageContext.request.contextPath }/js/page.js"></script>
+<link rel="stylesheet" href="<%=basePath%>css/cjpm.css">
+<script type="text/javascript" src="<%=basePath%>js/cjcalendar.js"></script>
+<script language="javascript" src="<%=basePath%>js/page.js"></script>
 </head>
 <script type="text/javascript"
 	src="<c:url value='/jquery/jquery-1.5.1.js'/>"></script>
 <script language="javascript">
-	var CalendarWebControl = new atCalendarControl();
+
 </script>
 <SCRIPT LANGUAGE="javaScript">
 
@@ -34,7 +34,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 function save()
 {
 	alert("进入新增");
-	$("#idFrmMain").attr({"action":"/clothing/AddClothServlet"})
+	$("#idFrmMain").attr({"action":"/cloth/AddClothServlet.do"})
    document.getElementById("idFrmMain").submit();
 
 	alert("新增成功！");
@@ -43,7 +43,7 @@ function save()
 function update()
 {
 	
-	$("#idFrmMain").attr({"action":"/clothing/UpdateClothServlet"})
+	$("#idFrmMain").attr({"action":"/cloth/UpdateClothServlet.do"})
    document.getElementById("idFrmMain").submit();
 	alert("修改成功！");
 	

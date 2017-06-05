@@ -49,10 +49,10 @@ public class WarehouseController {
     }
 
     @RequestMapping("/ListWarehouseServlet.do")
-    public String ListWarehouseServlet(ModelMap modelMap){
+    public String listWarehouseServlet(ModelMap modelMap){
         try {
-            List<Warehouse> list = warehouseService.findAll();
-            modelMap.addAttribute("list", list);
+            List<Warehouse> warehouseList = warehouseService.findAll();
+            modelMap.addAttribute("list", warehouseList);
             return "system/listwarehouse";
         } catch (Exception e) {
             e.printStackTrace();

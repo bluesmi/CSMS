@@ -1,5 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -12,18 +12,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <META HTTP-EQUIV="content-script-type" CONTENT="text/JavaScript">
 <META HTTP-EQUIV="content-style-type" CONTENT="text/css">
 <title>品牌修改</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/cjpm.css">
-<script type="text/javascript" src="${pageContext.request.contextPath }/js/cjcalendar.js"></script>
-<script language="javascript" src="${pageContext.request.contextPath }/js/page.js"></script>
+<link rel="stylesheet" href="<%=basePath%>css/cjpm.css">
+<script type="text/javascript" src="<%=basePath%>js/cjcalendar.js"></script>
+<script language="javascript" src="<%=basePath%>js/page.js"></script>
     <script type="text/javascript"
-            src="<c:url value='<%=basePath%>jquery/jquery-1.5.1.js'/>"></script>
+            src="<%=basePath%>jquery/jquery-1.5.1.js"></script>
     <script language="javascript">
         var CalendarWebControl = new atCalendarControl();
 
         function save()
         {
 
-            $("#idFrmMain").attr({"action":"/clothing/AddClothServlet"})
+            $("#idFrmMain").attr({"action":"/cloth/AddClothServlet.do"})
             document.getElementById("idFrmMain").submit();
 
             alert("新增成功！");
@@ -38,6 +38,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
         }
 
+
         function back()
         {
             history.back();
@@ -46,8 +47,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </script>
 </head>
 
-<BODY BACKGROUND="../image/bg.gif"> 
-<FORM NAME="idFrmMain" ID="idFrmMain" METHOD="POST"  ACTION="" ONSUBMIT="return false"> 
+<BODY style="background: url('<%=basePath%>image/bg.gif')">
+<FORM NAME="idFrmMain" ID="idFrmMain" METHOD="POST" ONSUBMIT="return false">
   <table border="0" width="100%"> 
     <tr> 
       <td width="100%" colspan="0" rowspan="0" align="center" valign="center">

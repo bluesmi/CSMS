@@ -1,12 +1,14 @@
 package com.cd.clothes.model;
 
+import java.io.Serializable;
+
 /**
  * autour m199
  * mail  2803934061@qq.com
  * date 2017/6/4
  * time 10:33
  */
-public class User {
+public class User implements Serializable {
     private int uid;
     private String loginName;
     private String password;

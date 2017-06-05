@@ -1,5 +1,7 @@
 package com.cd.clothes.model;
 
+import java.io.Serializable;
+
 /**
  * autour m199
  * mail  2803934061@qq.com
@@ -7,7 +9,7 @@ package com.cd.clothes.model;
  * time 15:49
  * 仓库名
  */
-public class Warehouse {
+public class Warehouse implements Serializable {
     /**
      * 仓库号
      */

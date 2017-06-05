@@ -15,14 +15,14 @@
 <script type="text/jscript" language="JavaScript" src="<%=basePath%>js/qq_hidemenu.js"></script>
 </head>
 <SCRIPT language=JavaScript>
-function  Content(){
-parent.main.location="main.htm"
-}
-function gotos(surl){
-	document.idFrmMain.action = surl;
-	document.idFrmMain.target = "main";
-	document.idFrmMain.submit();
-}
+//function  Content(){
+//parent.main.location="main.jsp"
+//}
+//function gotos(surl){
+//	document.idFrmMain.action = surl;
+//	document.idFrmMain.target = "main";
+//	document.idFrmMain.submit();
+//}
 </SCRIPT>
 <body   nLoad="widgets.ToggleWidget(hideTop1);widgets.ToggleWidget(hideTop2);widgets.ToggleWidget(hideTop3)"> 
 <FORM NAME="idFrmMain" ID="idFrmMain" METHOD="POST"  ACTION="" ONSUBMIT="return false"> 
@@ -45,7 +45,7 @@ function gotos(surl){
                   
                   <tr> 
                     <td><div align="right"><img src="<%=basePath%>image/dot1.gif" width="13" height="16"></div></td>
-                    <td><a href="<%=basePath%>/user/ListUserServlet.do" target="main">用户管理</a></td>
+                    <td><a href="<%=basePath%>user/ListUserServlet.do" target="main">用户管理</a></td>
                   </tr> 
 				  <tr> 
                     <td><div align="right"><img src="<%=basePath%>image/dot1.gif" width="13" height="16"></div></td>
@@ -69,7 +69,7 @@ function gotos(surl){
           </tr> 
          
           <tr> 
-            <td height="8"></t d> 
+            <td height="8"></td>
           </tr> 
           <tr> 
             <td>&nbsp;</td> 

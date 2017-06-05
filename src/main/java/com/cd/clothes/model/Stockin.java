@@ -1,5 +1,6 @@
 package com.cd.clothes.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Date;
  * date 2017/6/4
  * time 15:46
  */
-public class Stockin {
+public class Stockin implements Serializable {
     /**
      * 入库号
      */
@@ -57,6 +58,7 @@ public class Stockin {
     public void setLoginName(String loginName) {
         this.loginName = loginName;
     }
+
 
     public Date getStime() {
         return stime;
