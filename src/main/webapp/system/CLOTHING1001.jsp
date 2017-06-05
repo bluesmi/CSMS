@@ -29,6 +29,56 @@
             background: url("<%=basePath%>image/bg.gif");
         }
     </style>
+    <SCRIPT LANGUAGE="javaScript">
+        var location = (window.location+'').split('/');
+        var basePath = location[0]+'//'+location[2]+'/'+location[3]+'/';
+
+        function doQuery() {
+            var cid = $("#cid").val();
+            var cname = $("#cname").val();
+            var ccolor = $("#ccolor").val();
+            var csize = $("#csize").val();
+            if (cid != "") {
+                window.location.href = basePath+"cloth/QueryClothServlet.do?cid=" + cid;
+            } else if (cname != "") {
+                //alert(cname);
+                var urlcname = encodeURI(encodeURI(cname));
+                //alert(urlcname);
+                window.location = basePath+"cloth/QueryByCnameServlet.do?cname="
+                    + urlcname;
+
+            } else if(ccolor !=""){
+
+                var urlccolor = encodeURI(encodeURI(ccolor));
+                window.location =  basePath+"cloth/QueryByCcolorServlet.do?ccolor="
+                    + urlccolor;
+            } else if(csize !=""){
+                var urlcsize = encodeURI(encodeURI(csize));
+                window.location = basePath+"cloth/QueryBycSizeServlet.do?csize="
+                    + urlcsize;
+            }else {
+                window.location = basePath+"cloth/QueryAllClothServlet.do";
+
+            }
+        }
+        function goto1(strURL) {
+            document.forms[0].action = strURL;
+            document.forms[0].submit();
+        }
+        function del(id) {
+            if (confirm("您确定删除该条记录？")) {
+                var str = basePath+"cloth/DeleteClothServlet.do?cid=" + id;
+
+                window.location.href = str;
+
+            }
+        }
+
+        function doAdd() {
+            document.forms[0].action = "system/CLOTHING1002.jsp";
+            document.forms[0].submit();
+        }
+    </SCRIPT>
 </head>
 <body>
     <FORM NAME="idFrmMain" ID="idmig0101" METHOD="POST" ACTION=""
@@ -138,6 +188,15 @@
                                  <td class="gridbar11" align="center">
                                      <a href="<%=basePath%>cloth/QueryClothServlet.do?cid=${cloth.cid}">${cloth.cid}</a>
                                  </td>
+                                 <td class="gridbar11" align="center">${cloth.ccolor}</td>
+                                 <td class="gridbar11" align="center">${cloth.csize}</td>
+                                 <td class="gridbar11" align="center">${cloth.cname}</td>
+                                 <td class="gridbar11" align="center">${cloth.cnumber}</td>
+                                 <td class="gridbar11" align="center">${cloth.cfacprice}</td>
+                                 <td class="gridbar11" align="center">${cloth.cretprice}</td>
+                                <td class="gridbar11" align="center">
+                                    <img src="<%=basePath%>image/del.gif" align="bottom" border="0" alt="删除"
+                                onClick="javascript:del('${cloth.cid}')" style="cursor:hand" /></td>
                             </tr>
                         </c:forEach>
 
