@@ -29,56 +29,54 @@
             background: url("<%=basePath%>image/bg.gif");
         }
     </style>
-    <SCRIPT LANGUAGE="javaScript">
-        var location = (window.location+'').split('/');
-        var basePath = location[0]+'//'+location[2]+'/'+location[3]+'/';
-
+    <script type="text/javascript">
         function doQuery() {
             var cid = $("#cid").val();
             var cname = $("#cname").val();
             var ccolor = $("#ccolor").val();
             var csize = $("#csize").val();
             if (cid != "") {
-                window.location.href = basePath+"cloth/QueryClothServlet.do?cid=" + cid;
+                window.location.href = "/cloth/QueryClothServlet.do?cid=" + cid;
             } else if (cname != "") {
-                //alert(cname);
-                var urlcname = encodeURI(encodeURI(cname));
-                //alert(urlcname);
-                window.location = basePath+"cloth/QueryByCnameServlet.do?cname="
-                    + urlcname;
+            //alert(cname);
+            var urlcname = encodeURI(encodeURI(cname));
+            //alert(urlcname);
+            window.location = "/cloth/QueryByCnameServlet.do?cname="
+            + urlcname;
 
             } else if(ccolor !=""){
 
-                var urlccolor = encodeURI(encodeURI(ccolor));
-                window.location =  basePath+"cloth/QueryByCcolorServlet.do?ccolor="
-                    + urlccolor;
+            var urlccolor = encodeURI(encodeURI(ccolor));
+            window.location =  "/cloth/QueryByCcolorServlet.do?ccolor="
+            + urlccolor;
             } else if(csize !=""){
-                var urlcsize = encodeURI(encodeURI(csize));
-                window.location = basePath+"cloth/QueryBycSizeServlet.do?csize="
-                    + urlcsize;
+            var urlcsize = encodeURI(encodeURI(csize));
+            window.location = "/cloth/QueryBycSizeServlet.do?csize="
+            + urlcsize;
             }else {
-                window.location = basePath+"cloth/QueryAllClothServlet.do";
+            window.location = "/cloth/QueryAllClothServlet.do";
 
             }
         }
         function goto1(strURL) {
             document.forms[0].action = strURL;
             document.forms[0].submit();
-        }
-        function del(id) {
-            if (confirm("您确定删除该条记录？")) {
-                var str = basePath+"cloth/DeleteClothServlet.do?cid=" + id;
-
-                window.location.href = str;
-
             }
+            function del(id) {
+            if (confirm("您确定删除该条记录？")) {
+            var str = basePath+"cloth/DeleteClothServlet.do?cid=" + id;
+
+            window.location.href = str;
+
+         }
         }
 
         function doAdd() {
-            document.forms[0].action = "system/CLOTHING1002.jsp";
+            document.forms[0].action = "/csms/system/CLOTHING1002.jsp";
             document.forms[0].submit();
         }
-    </SCRIPT>
+    </script>
+
 </head>
 <body>
     <FORM NAME="idFrmMain" ID="idmig0101" METHOD="POST" ACTION=""

@@ -26,12 +26,12 @@ public class ClothController {
     public String addCloth(Cloth cloth, ModelMap modelMap){
         try {
             clothService.add(cloth);
+            return "QueryAllClothServlet.do";
         } catch (Exception e) {
             e.printStackTrace();
             modelMap.addAttribute("message","系统维护升级中");
             return "views/message";
         }
-        return "cloth/QueryAllClothServlet.do";
     }
 //    http://localhost:8080/csms/cloth/QueryAllClothServlet.do
     @RequestMapping("/QueryAllClothServlet.do")
@@ -85,7 +85,7 @@ public class ClothController {
            return "system/CLOTHING1001";
 
        } catch (Exception e) {
-           return "cloth/QueryAllClothServlet.do";
+           return "QueryAllClothServlet.do";
        }
    }
 
@@ -97,7 +97,7 @@ public class ClothController {
            modelMap.addAttribute("allCloth", list);
            return "system/CLOTHING1001";
        } catch (Exception e) {
-           return "cloth/QueryAllClothServlet.do";
+           return "QueryAllClothServlet.do";
        }
    }
 }

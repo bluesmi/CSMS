@@ -34,7 +34,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 function save()
 {
 	alert("进入新增");
-	$("#idFrmMain").attr({"action":"/clothing/AddClothServlet"})
+	$("#idFrmMain").attr({"action":"/cloth/AddClothServlet.do"})
    document.getElementById("idFrmMain").submit();
 
 	alert("新增成功！");
@@ -43,7 +43,7 @@ function save()
 function update()
 {
 	
-	$("#idFrmMain").attr({"action":"/clothing/UpdateClothServlet"})
+	$("#idFrmMain").attr({"action":"/cloth/UpdateClothServlet.do"})
    document.getElementById("idFrmMain").submit();
 	alert("修改成功！");
 	
