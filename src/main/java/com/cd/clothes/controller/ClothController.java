@@ -36,10 +36,10 @@ public class ClothController {
 //    http://localhost:8080/csms/cloth/QueryAllClothServlet.do
     @RequestMapping("/QueryAllClothServlet.do")
     public String queryAllClothServlet(ModelMap modelMap){
-        List<Cloth> cloth = null;
+        List<Cloth> allCloth = null;
         try {
-            cloth = clothService.getCloth();
-            modelMap.addAttribute("allCloth",cloth);
+            allCloth = clothService.getCloth();
+            modelMap.addAttribute("allCloth",allCloth);
             return "system/CLOTHING1001";
         } catch (Exception e) {
             e.printStackTrace();

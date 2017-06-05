@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.net.URLEncoder;
 
 /**
@@ -50,9 +51,12 @@ public class UserController {
                 modelMap.addAttribute("message","还未登录，请登录");
                 return "views/login";
             }else{
+                HttpSession session = request.getSession(false);
+                if(null == session){
+                    session = request.getSession(true);
+                }
 
-
-                request.getSession().setAttribute("sessionUser", user);
+                session.setAttribute("sessionUser", user);
 
                 loginName = URLEncoder.encode(loginName, "utf-8");
                 Cookie cookie = new Cookie("loginName", loginName);

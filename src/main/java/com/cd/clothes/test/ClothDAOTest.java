@@ -27,7 +27,7 @@ public class ClothDAOTest {
     public void testSelectCloth() throws Exception {
         List<Cloth> clothList = clothDAO.findAll();
         for (Cloth cloth:clothList) {
-            System.out.println(cloth.getCname());
+            System.out.println(cloth);
         }
     }
 

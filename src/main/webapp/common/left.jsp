@@ -44,7 +44,8 @@
 		<!--begin个导航1-->
 		<tr>
 		<td>
-		<div  id="menuDiv2" class="menu" onClick="javascript:setClass(menuDiv2);menuGoto('updatepassword.jsp','main');">&nbsp;&nbsp;&nbsp;<img  src="<%=basePath%>image/right2.gif" >&nbsp;&nbsp;修改密码</div>
+		<div  id="menuDiv2" class="menu" onClick="javascript:setClass(menuDiv2);menuGoto('updatepassword.jsp','main');">&nbsp;&nbsp;&nbsp;
+			<img  src="<%=basePath%>image/right2.gif" >&nbsp;&nbsp;修改密码</div>
 		</td>
 		</tr>
 		<!--end导航1-->   

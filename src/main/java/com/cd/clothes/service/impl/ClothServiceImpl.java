@@ -15,6 +15,7 @@ import java.util.List;
 public class ClothServiceImpl implements ClothService {
     @Autowired
     ClothDAO clothDAO;
+
     @Override
     public boolean add(Cloth cloth){
         try {

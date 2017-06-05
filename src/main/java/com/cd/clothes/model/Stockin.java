@@ -59,6 +59,7 @@ public class Stockin implements Serializable {
         this.loginName = loginName;
     }
 
+
     public Date getStime() {
         return stime;
     }
