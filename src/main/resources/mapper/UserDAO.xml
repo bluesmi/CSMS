@@ -2,19 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.cd.clothes.dao.UserDAO">
     <select id="findByLoginnameAndLoginpass" parameterType="User" resultType="User">
-        select * from users where loginName=#{loginName} and password=#{password}
+        select * from users where loginName=#{loginName} and password=#{password} and flag = 0
     </select>
 
     <select id="findByUidAndPassword"  resultType="User">
-        select * from users where uid=#{uid} and password=#{password}
+        select * from users where uid=#{uid} and password=#{password} and flag = 0
     </select>
 
     <select id="findUserByUid" parameterType="User" resultType="User">
-        select * from users where uid=#{uid}
+        select * from users where uid=#{uid} and flag = 0
     </select>
 
     <!-- 修改用户(Update) -->
     <update id="updatePassword">
-        update users set password=#{password} where uid=#{uid}
+        update users set password=#{password} where uid=#{uid} and flag = 0
     </update>
 </mapper>

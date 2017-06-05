@@ -2,35 +2,37 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.cd.clothes.dao.ClothDAO">
     <select id="findAll" resultType="Cloth">
-        select * from clothe
+        select * from clothe WHERE flag = 0
     </select>
     <select id="findbyCname" parameterType="String" resultType="Cloth">
-        select * from clothe where cname=#{value}
+        select * from clothe where cname=#{value} and flag = 0
     </select>
     <select id="findbyCcolor" parameterType="String" resultType="Cloth">
-        select * from clothe where ccolor=#{value}
+        select * from clothe where ccolor=#{value} and flag = 0
     </select>
     <select id="findbyCsize" parameterType="String" resultType="Cloth">
-        select * from clothe where csize=#{value}
+        select * from clothe where csize=#{value} and flag = 0
     </select>
     <select id="find" parameterType="String" resultType="Cloth">
-        select * from clothe where cid = #{value}
+        select * from clothe where cid = #{value} and flag = 0
     </select>
     <insert id="add" parameterType="Cloth">
         insert into clothe (cname,ccolor,csize,cnumber,cimage,cfacprice,cretprice)
          values(#{cname},#{ccolor},#{csize},#{cnumber},#{cimage},#{cfacprice},#{cfacprice})
     </insert>
-    <delete id="delete" parameterType="String">
-        delete from clothe where cid =#{value}
-    </delete>
+    <!--软删除-->
+    <!--delete from clothe where cid =#{value}-->
+    <update id="delete" parameterType="String">
+        UPDATE clothe SET flag = 1 WHERE cid =#{value}
+    </update>
     <update id="update" parameterType="Cloth">
         update  clothe set cname=#{cname},ccolor=#{ccolor},csize=#{csize},cnumber=#{cnumber},cimage=#{cimage},cfacprice=#{cfacprice},cretprice=#{cretprice}
-        where cid =#{cid}
+        where cid =#{cid} and flag = 0
     </update>
     <update id="updateNumber">
-        update  clothe set cnumber=#{cunmber} where cid =#{cid}
+        update  clothe set cnumber=#{cunmber} where cid =#{cid} and flag = 0
     </update>
     <select id="findClotheNumber" parameterType="int" resultType="int">
-        select cnumber from clothe where cid=#{cid}
+        select cnumber from clothe where cid=#{cid} and flag = 0
     </select>
 </mapper>

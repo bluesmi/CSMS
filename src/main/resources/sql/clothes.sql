@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost_3306
-Source Server Version : 50625
+Source Server         : my
+Source Server Version : 50022
 Source Host           : localhost:3306
 Source Database       : clothes
 
 Target Server Type    : MYSQL
-Target Server Version : 50625
+Target Server Version : 50022
 File Encoding         : 65001
 
-Date: 2016-06-12 08:20:43
+Date: 2017-06-05 08:12:19
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,37 +20,38 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `clothe`;
 CREATE TABLE `clothe` (
-  `cid` int(11) NOT NULL AUTO_INCREMENT,
-  `cname` varchar(10) DEFAULT NULL,
-  `ccolor` varchar(10) DEFAULT NULL,
-  `csize` varchar(10) DEFAULT NULL,
-  `cnumber` int(11) DEFAULT NULL,
-  `cimage` varchar(20) DEFAULT NULL,
-  `cfacprice` smallint(6) DEFAULT NULL,
-  `cretprice` smallint(6) DEFAULT NULL,
-  PRIMARY KEY (`cid`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+  `cid` int(11) NOT NULL auto_increment,
+  `cname` varchar(10) default NULL,
+  `ccolor` varchar(10) default NULL,
+  `csize` varchar(10) default NULL,
+  `cnumber` int(11) default NULL,
+  `cimage` varchar(20) default NULL,
+  `cfacprice` smallint(6) default NULL,
+  `cretprice` smallint(6) default NULL,
+  `flag` int(11) default NULL,
+  PRIMARY KEY  (`cid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of clothe
 -- ----------------------------
-INSERT INTO `clothe` VALUES ('1', '中款大衣', '黑色', '175', '188', '', '400', '600');
-INSERT INTO `clothe` VALUES ('2', '小款大衣', '红色', '155', '99', null, '400', '600');
-INSERT INTO `clothe` VALUES ('3', '长裤', '紫红色', '165', '111', '123', '1000', '2000');
-INSERT INTO `clothe` VALUES ('4', '裤头', '纯白色', '190', '125', '11', '200', '300');
+INSERT INTO `clothe` VALUES ('1', '中款大衣', '黑色', '175', '200', '', '400', '600', '0');
+INSERT INTO `clothe` VALUES ('2', '小款大衣', '红色', '155', '99', null, '400', '600', '0');
+INSERT INTO `clothe` VALUES ('3', '长裤', '紫红色', '165', '111', '123', '1000', '2000', '0');
+INSERT INTO `clothe` VALUES ('4', '裤头', '纯白色', '190', '125', '11', '200', '300', '0');
 
 -- ----------------------------
 -- Table structure for `stockin`
 -- ----------------------------
 DROP TABLE IF EXISTS `stockin`;
 CREATE TABLE `stockin` (
-  `sid` varchar(25) NOT NULL DEFAULT '0',
-  `wid` int(11) DEFAULT NULL,
-  `loginName` varchar(10) DEFAULT NULL,
-  `stime` date DEFAULT NULL,
-  `sremark` varchar(50) DEFAULT NULL,
-  `sstute` int(5) DEFAULT NULL,
-  PRIMARY KEY (`sid`)
+  `sid` varchar(25) NOT NULL default '0',
+  `wid` int(11) default NULL,
+  `loginName` varchar(10) default NULL,
+  `stime` date default NULL,
+  `sremark` varchar(50) default NULL,
+  `sstute` int(5) default NULL,
+  PRIMARY KEY  (`sid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -75,12 +76,12 @@ INSERT INTO `stockin` VALUES ('rk2016061100004', '1', 'hanbon', '2016-06-11', 'w
 -- ----------------------------
 DROP TABLE IF EXISTS `stockin_item`;
 CREATE TABLE `stockin_item` (
-  `siid` int(11) NOT NULL AUTO_INCREMENT,
-  `sid` varchar(25) DEFAULT NULL,
-  `cid` int(11) DEFAULT NULL,
-  `sinumber` int(11) DEFAULT NULL,
-  PRIMARY KEY (`siid`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+  `siid` int(11) NOT NULL auto_increment,
+  `sid` varchar(25) default NULL,
+  `cid` int(11) default NULL,
+  `sinumber` int(11) default NULL,
+  PRIMARY KEY  (`siid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of stockin_item
@@ -96,14 +97,14 @@ INSERT INTO `stockin_item` VALUES ('5', 'rk2016060200002', '4', '60');
 DROP TABLE IF EXISTS `stockout`;
 CREATE TABLE `stockout` (
   `soid` char(25) NOT NULL,
-  `wid` int(11) DEFAULT NULL,
-  `loginName` varchar(10) DEFAULT NULL,
-  `soremark` varchar(50) DEFAULT NULL,
-  `sotime` date DEFAULT NULL,
-  `sostute` int(11) DEFAULT NULL,
-  `adress` varchar(30) DEFAULT NULL,
-  `sphone` char(11) DEFAULT NULL,
-  PRIMARY KEY (`soid`)
+  `wid` int(11) default NULL,
+  `loginName` varchar(10) default NULL,
+  `soremark` varchar(50) default NULL,
+  `sotime` date default NULL,
+  `sostute` int(11) default NULL,
+  `adress` varchar(30) default NULL,
+  `sphone` char(11) default NULL,
+  PRIMARY KEY  (`soid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -130,12 +131,12 @@ INSERT INTO `stockout` VALUES ('ck2016060800004', '2', '老王', '湖南衡阳�
 -- ----------------------------
 DROP TABLE IF EXISTS `stockoutitem`;
 CREATE TABLE `stockoutitem` (
-  `soiid` int(11) NOT NULL AUTO_INCREMENT,
-  `soid` varchar(25) DEFAULT NULL,
-  `cid` int(11) DEFAULT NULL,
-  `sonumber` int(11) DEFAULT NULL,
-  PRIMARY KEY (`soiid`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
+  `soiid` int(11) NOT NULL auto_increment,
+  `soid` varchar(25) default NULL,
+  `cid` int(11) default NULL,
+  `sonumber` int(11) default NULL,
+  PRIMARY KEY  (`soiid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of stockoutitem
@@ -171,36 +172,37 @@ INSERT INTO `stockoutitem` VALUES ('41', 'ck2016060800004', '1', '10');
 -- ----------------------------
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
-  `uid` int(11) NOT NULL AUTO_INCREMENT,
-  `loginName` varchar(10) DEFAULT NULL,
-  `password` varchar(10) DEFAULT NULL,
-  `realName` varchar(10) DEFAULT NULL,
-  `phone` char(11) DEFAULT NULL,
-  PRIMARY KEY (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+  `uid` int(11) NOT NULL auto_increment,
+  `loginName` varchar(10) default NULL,
+  `password` varchar(10) default NULL,
+  `realName` varchar(10) default NULL,
+  `phone` char(11) default NULL,
+  `flag` int(11) default NULL,
+  PRIMARY KEY  (`uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('1', 'xiaoyou', '123', '游昌劲', '15200857955');
-INSERT INTO `users` VALUES ('2', 'hanbon', '951002', '唐睿', '15574863447');
-INSERT INTO `users` VALUES ('3', 'yuji', '123', '梁宇棋', '15556894699');
-INSERT INTO `users` VALUES ('6', 'dd', '123', '谢金定', '13874873550');
-INSERT INTO `users` VALUES ('7', '小青年', '123', '谢金定', '13874873550');
-INSERT INTO `users` VALUES ('9', 'yuxing', '123', '余星', '15574869863');
+INSERT INTO `users` VALUES ('1', 'xiaoyou', '123', '游昌劲', '15200857955', '0');
+INSERT INTO `users` VALUES ('2', 'hanbon', '123456', '唐睿', '15574863447', '0');
+INSERT INTO `users` VALUES ('3', 'yuji', '123', '梁宇棋', '15556894699', '0');
+INSERT INTO `users` VALUES ('6', 'dd', '123', '谢金定', '13874873550', '0');
+INSERT INTO `users` VALUES ('7', '小青年', '123', '谢金定', '13874873550', '0');
+INSERT INTO `users` VALUES ('9', 'yuxing', '123', '余星', '15574869863', '0');
 
 -- ----------------------------
 -- Table structure for `warehouse`
 -- ----------------------------
 DROP TABLE IF EXISTS `warehouse`;
 CREATE TABLE `warehouse` (
-  `wid` int(11) NOT NULL AUTO_INCREMENT,
-  `wname` varchar(20) DEFAULT NULL,
-  `wuser` varchar(20) DEFAULT NULL,
-  `wphone` char(11) DEFAULT NULL,
-  `wnumber` int(11) DEFAULT NULL,
-  PRIMARY KEY (`wid`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+  `wid` int(11) NOT NULL auto_increment,
+  `wname` varchar(20) default NULL,
+  `wuser` varchar(20) default NULL,
+  `wphone` char(11) default NULL,
+  `wnumber` int(11) default NULL,
+  PRIMARY KEY  (`wid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of warehouse
