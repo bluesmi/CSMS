@@ -26,6 +26,7 @@ public class ClothController {
     public String addCloth(Cloth cloth, ModelMap modelMap){
         try {
             clothService.add(cloth);
+            System.out.println(cloth);
             return "QueryAllClothServlet.do";
         } catch (Exception e) {
             e.printStackTrace();

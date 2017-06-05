@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         function save()
         {
 
-            $("#idFrmMain").attr({"action":"cloth/AddClothServlet.do"})
+            $("#idFrmMain").attr({"action":"/cloth/AddClothServlet.do"})
             document.getElementById("idFrmMain").submit();
 
             alert("新增成功！");
@@ -32,11 +32,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         function update()
         {
             alert("进入更新");
-            $("#idFrmMain").attr({"action":"/cloth/UpdateClothServlet.do"})
+            $("#idFrmMain").attr({"action":"/clothing/UpdateClothServlet"})
             document.getElementById("idFrmMain").submit();
             alert("修改成功！");
 
         }
+
 
         function back()
         {
@@ -47,7 +48,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 
 <BODY style="background: url('<%=basePath%>image/bg.gif')">
-<FORM NAME="idFrmMain" ID="idFrmMain" METHOD="POST"  ACTION="" ONSUBMIT="return false"> 
+<FORM NAME="idFrmMain" ID="idFrmMain" METHOD="POST" ONSUBMIT="return false">
   <table border="0" width="100%"> 
     <tr> 
       <td width="100%" colspan="0" rowspan="0" align="center" valign="center">

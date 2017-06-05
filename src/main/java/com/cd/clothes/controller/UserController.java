@@ -62,7 +62,7 @@ public class UserController {
                 Cookie cookie = new Cookie("loginName", loginName);
                 cookie.setMaxAge(60 * 60 * 24 * 10);
                 response.addCookie(cookie);
-                return "views/Main";
+                return "redirect:/views/Main.jsp";
             }
         }catch(Exception e){
             e.printStackTrace();
