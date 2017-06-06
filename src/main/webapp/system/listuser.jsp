@@ -24,15 +24,17 @@ function gotos()
 	document.forms[0].action="<%=basePath%>/system/adduser.jsp";
 	document.forms[0].submit();
 }
- 
- function dodelete(uid){
-	 		var b = window.confirm("您确认删除吗?");
-	 		if(b){
-	 				window.location.href = "<%=basePath%>user/DeleteUserServlet.do?uid=" + uid;
-	 				alert("删除成功");
-	 			}
-	 			
- 		} 
+
+function dodelete(uid) {
+    var location = (window.location+'').split('/');
+    var basePath = location[0]+'//'+location[2]+'/'+location[3]+'/';
+    if (confirm("您确定删除该条记录？")) {
+        var str = basePath+"user/DeleteUserServlet.do?cid=" + uid;
+
+        window.location.href = str;
+
+    }
+}
 -->
 </SCRIPT>
 
@@ -97,7 +99,7 @@ function gotos()
 									<td  class="gridbar11" align="center"><a href="<%=basePath%>user/UpdateUserServletUI.do?uid=${u.uid } ">${u.loginName }</a></td>
 									<td  class="gridbar11" align="center"><a href="<%=basePath%>user/UpdateUserServletUI.do?uid=${u.uid }">${u.realName }</a></td>
 									<td  class="gridbar11" align="center">
-										<a href = "#"><img src="user/image/del.gif" align="bottom" border="0" alt="删除" onClick="javascript:dodelete('${u.uid }')" /></a>									</td>
+										<a href = "#"><img src="<%=basePath%>image/del.gif" align="bottom" border="0" alt="删除" onClick="javascript:dodelete('${u.uid }')" /></a>									</td>
 								</tr>
 								</c:forEach>
 								

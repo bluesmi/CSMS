@@ -1,13 +1,16 @@
 package com.cd.clothes.controller;
 
 import com.cd.clothes.exception.UserException;
+import com.cd.clothes.model.Cloth;
 import com.cd.clothes.model.User;
 import com.cd.clothes.service.UserService;
 import com.cd.clothes.service.impl.UserServiceImpl;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.Cookie;
@@ -125,4 +128,54 @@ public class UserController {
              return "views/message";
          }
      }
+
+    @RequestMapping("/AddUserServlet.do")
+    public String AddUserServlet(User user,ModelMap modelMap){
+        try{
+            user.setFlag(0);
+            userService.addUser(user);
+            return   "redirect:ListUserServlet.do";
+        }catch(Exception e){
+            e.printStackTrace();
+            modelMap.addAttribute("message", "系统正在维护升级中");
+            return "views/message";
+        }
+    }
+
+    @RequestMapping("/DeleteUserServlet.do")
+    public String DeleteUserServlet(@Param("uid") int uid){
+        try{
+            userService.deleteUser(uid);
+            return   "redirect:ListUserServlet.do";
+        }catch(Exception e){
+            e.printStackTrace();
+            return "ListUserServlet.do";
+        }
+    }
+
+    @RequestMapping("/QueryUserServlet.do")
+    public String QueryUserServlet(User formuser,ModelMap modelMap){
+        try{
+            List list1 = userService.load(formuser.getLoginName(), formuser.getRealName());
+            modelMap.addAttribute("list1", list1);
+            return   "system/listuser";
+        }catch(Exception e){
+            e.printStackTrace();
+            modelMap.addAttribute("message", "系统正在维护升级中");
+            return "views/message";
+        }
+    }
+
+    @RequestMapping(value = "/UpdateUserServlet.do",method = RequestMethod.POST)
+    public String UpdateUserServlet(User formuser, ModelMap modelMap){
+        try {
+            userService.updateUser(formuser);
+            return "redirect:ListUserServlet.do";
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            modelMap.addAttribute("message","系统维护升级中");
+            return "views/message";
+        }
+    }
 }
