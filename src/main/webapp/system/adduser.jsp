@@ -22,20 +22,36 @@ function back()
 {
 	history.back();
 }
+
+
  function adduser(){
-	idmig0102.action="${pageContext.request.contextPath }/AddUserServlet";
-	idmig0102.submit();
-	alert("用户添加成功！");
+     //增加步骤
+//     1.判断哪些输入的项是否为空，例如
+//     var $cname = $("#cname").val();
+//     if($cname==="" || $cnumber==="" || $csize==="" || $cfacprice==="" || $cretprice===""){
+//     2.对电话号码进行正则判断
+//     4.submit操作
+//     注意 除了表单提交时显示为post请求，其余的全部是get请求
+     var $loginName = $("#loginName").val();
+     var $realName = $("#realName").val();
+     var $password = $("#password").val();
+     var $phone = $("#phone").val();
+     if($loginName==="" || $realName==="" || $password==="" || $phone===""){
+         alert("请填写完整");
+     }else {
+         $("#idFrmMain").submit();
+         alert("用户添加成功！");
+     }
 }
 -->
 </SCRIPT>
-<BODY BACKGROUND="${pageContext.request.contextPath }/image/bg.gif">
-<FORM NAME="idFrmMain" ID="idmig0102" METHOD="POST"  ACTION=""> 
+<BODY BACKGROUND="<%=basePath%>image/bg.gif">
+<FORM NAME="idFrmMain" ID="idmig0102" METHOD="POST"  ACTION="<%=basePath%>user/AddUserServlet.do">
 <table border="0" width="100%" id="table1" cellspacing="0"  cellpadding="2"  bgcolor="gray">
 	<tr>
   	<td class="headerbar61" width="15%" colspan="1">用户详细</td>
     <td class="headerbar63" width="85%" colspan="1">
-      <input type="button"  value=" 保 存 " onclick="JavaScript:adduser()">&nbsp;
+      <input type="button"  value=" 保 存 " onClick="javascript:adduser()">&nbsp;
       <input type="button" name="back70302003" onClick="javascript:back()" value=" 返 回 ">
     </td>
   </tr>
