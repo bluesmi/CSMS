@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.net.URLEncoder;
+import java.util.List;
 
 /**
  * autour m199
@@ -111,8 +112,17 @@ public class UserController {
         }
     }
 
-//     @RequestMapping("/ListUserServlet.do")
-//    public String ListUserServlet(){
-//
-//     }
+     @RequestMapping("/ListUserServlet.do")
+    public String ListUserServlet(ModelMap modelMap){
+         try{
+
+             List list = userService.getAllUser();
+             modelMap.addAttribute("list", list);
+		     return   "system/listuser";
+         }catch(Exception e){
+             e.printStackTrace();
+             modelMap.addAttribute("message", "系统正在维护升级中");
+             return "views/message";
+         }
+     }
 }

@@ -93,7 +93,7 @@ function gotos()
 								
 								<c:forEach  items="${list }" var="u" varStatus="s">
 								<tr>
-									<td  class="gridbar11" align="center">${s.count }</td>
+									<td  class="gridbar11" align="center">${s.count}</td>
 									<td  class="gridbar11" align="center"><a href="<%=basePath%>user/UpdateUserServletUI.do?uid=${u.uid } ">${u.loginName }</a></td>
 									<td  class="gridbar11" align="center"><a href="<%=basePath%>user/UpdateUserServletUI.do?uid=${u.uid }">${u.realName }</a></td>
 									<td  class="gridbar11" align="center">
