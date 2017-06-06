@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="clothes@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.2">
+    <root id="1"/>
+    <schema id="2" parent="1" name="0915c_db"/>
+    <schema id="3" parent="1" name="aacesys"/>
+    <schema id="4" parent="1" name="accp"/>
+    <schema id="5" parent="1" name="bbs"/>
+    <schema id="6" parent="1" name="clothes">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="7" parent="1" name="company"/>
+    <schema id="8" parent="1" name="csms_db"/>
+    <schema id="9" parent="1" name="db_librarysys"/>
+    <schema id="10" parent="1" name="db_librarysys.s"/>
+    <schema id="11" parent="1" name="db_ssm"/>
+    <schema id="12" parent="1" name="ebook"/>
+    <schema id="13" parent="1" name="forum"/>
+    <schema id="14" parent="1" name="information_schema"/>
+    <schema id="15" parent="1" name="lesson4"/>
+    <schema id="16" parent="1" name="mysql"/>
+    <schema id="17" parent="1" name="qq"/>
+    <schema id="18" parent="1" name="shop"/>
+    <schema id="19" parent="1" name="student"/>
+    <schema id="20" parent="1" name="sushe"/>
+    <schema id="21" parent="1" name="teasalesmall"/>
+    <schema id="22" parent="1" name="testebook"/>
+    <table id="23" parent="6" name="clothe"/>
+    <table id="24" parent="6" name="stockin"/>
+    <table id="25" parent="6" name="stockin_item"/>
+    <table id="26" parent="6" name="stockout"/>
+    <table id="27" parent="6" name="stockoutitem"/>
+    <table id="28" parent="6" name="users"/>
+    <table id="29" parent="6" name="warehouse"/>
+    <routine id="30" parent="6" name="generate_orderNo">
+      <RoutineKind>procedure</RoutineKind>
+    </routine>
+    <routine id="31" parent="6" name="generate_orderNo1">
+      <RoutineKind>procedure</RoutineKind>
+    </routine>
+    <column id="32" parent="23" name="cid">
+      <Position>1</Position>
+      <DataType>INT(10)|4</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="33" parent="23" name="cname">
+      <Position>2</Position>
+      <DataType>VARCHAR(10)|12</DataType>
+    </column>
+    <column id="34" parent="23" name="ccolor">
+      <Position>3</Position>
+      <DataType>VARCHAR(10)|12</DataType>
+    </column>
+    <column id="35" parent="23" name="csize">
+      <Position>4</Position>
+      <DataType>VARCHAR(10)|12</DataType>
+    </column>
+    <column id="36" parent="23" name="cnumber">
+      <Position>5</Position>
+      <DataType>INT(10)|4</DataType>
+    </column>
+    <column id="37" parent="23" name="cimage">
+      <Position>6</Position>
+      <DataType>VARCHAR(20)|12</DataType>
+    </column>
+    <column id="38" parent="23" name="cfacprice">
+      <Position>7</Position>
+      <DataType>SMALLINT(5)|5</DataType>
+    </column>
+    <column id="39" parent="23" name="cretprice">
+      <Position>8</Position>
+      <DataType>SMALLINT(5)|5</DataType>
+    </column>
+    <column id="40" parent="23" name="flag">
+      <Position>9</Position>
+      <DataType>INT(10)|4</DataType>
+    </column>
+    <key id="41" parent="23" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>cid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="42" parent="24" name="sid">
+      <Position>1</Position>
+      <DataType>VARCHAR(25)|12</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="43" parent="24" name="wid">
+      <Position>2</Position>
+      <DataType>INT(10)|4</DataType>
+    </column>
+    <column id="44" parent="24" name="loginName">
+      <Position>3</Position>
+      <DataType>VARCHAR(10)|12</DataType>
+    </column>
+    <column id="45" parent="24" name="stime">
+      <Position>4</Position>
+      <DataType>DATE(10)|91</DataType>
+    </column>
+    <column id="46" parent="24" name="sremark">
+      <Position>5</Position>
+      <DataType>VARCHAR(50)|12</DataType>
+    </column>
+    <column id="47" parent="24" name="sstute">
+      <Position>6</Position>
+      <DataType>INT(10)|4</DataType>
+    </column>
+    <key id="48" parent="24" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>sid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="49" parent="25" name="siid">
+      <Position>1</Position>
+      <DataType>INT(10)|4</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="50" parent="25" name="sid">
+      <Position>2</Position>
+      <DataType>VARCHAR(25)|12</DataType>
+    </column>
+    <column id="51" parent="25" name="cid">
+      <Position>3</Position>
+      <DataType>INT(10)|4</DataType>
+    </column>
+    <column id="52" parent="25" name="sinumber">
+      <Position>4</Position>
+      <DataType>INT(10)|4</DataType>
+    </column>
+    <key id="53" parent="25" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>siid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="54" parent="26" name="soid">
+      <Position>1</Position>
+      <DataType>CHAR(25)|1</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+    </column>
+    <column id="55" parent="26" name="wid">
+      <Position>2</Position>
+      <DataType>INT(10)|4</DataType>
+    </column>
+    <column id="56" parent="26" name="loginName">
+      <Position>3</Position>
+      <DataType>VARCHAR(10)|12</DataType>
+    </column>
+    <column id="57" parent="26" name="soremark">
+      <Position>4</Position>
+      <DataType>VARCHAR(50)|12</DataType>
+    </column>
+    <column id="58" parent="26" name="sotime">
+      <Position>5</Position>
+      <DataType>DATE(10)|91</DataType>
+    </column>
+    <column id="59" parent="26" name="sostute">
+      <Position>6</Position>
+      <DataType>INT(10)|4</DataType>
+    </column>
+    <column id="60" parent="26" name="adress">
+      <Position>7</Position>
+      <DataType>VARCHAR(30)|12</DataType>
+    </column>
+    <column id="61" parent="26" name="sphone">
+      <Position>8</Position>
+      <DataType>CHAR(11)|1</DataType>
+    </column>
+    <key id="62" parent="26" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>soid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="63" parent="27" name="soiid">
+      <Position>1</Position>
+      <DataType>INT(10)|4</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="64" parent="27" name="soid">
+      <Position>2</Position>
+      <DataType>VARCHAR(25)|12</DataType>
+    </column>
+    <column id="65" parent="27" name="cid">
+      <Position>3</Position>
+      <DataType>INT(10)|4</DataType>
+    </column>
+    <column id="66" parent="27" name="sonumber">
+      <Position>4</Position>
+      <DataType>INT(10)|4</DataType>
+    </column>
+    <key id="67" parent="27" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>soiid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="68" parent="28" name="uid">
+      <Position>1</Position>
+      <DataType>INT(10)|4</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="69" parent="28" name="loginName">
+      <Position>2</Position>
+      <DataType>VARCHAR(10)|12</DataType>
+    </column>
+    <column id="70" parent="28" name="password">
+      <Position>3</Position>
+      <DataType>VARCHAR(10)|12</DataType>
+    </column>
+    <column id="71" parent="28" name="realName">
+      <Position>4</Position>
+      <DataType>VARCHAR(10)|12</DataType>
+    </column>
+    <column id="72" parent="28" name="phone">
+      <Position>5</Position>
+      <DataType>CHAR(11)|1</DataType>
+    </column>
+    <column id="73" parent="28" name="flag">
+      <Position>6</Position>
+      <DataType>INT(10)|4</DataType>
+    </column>
+    <key id="74" parent="28" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>uid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="75" parent="29" name="wid">
+      <Position>1</Position>
+      <DataType>INT(10)|4</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="76" parent="29" name="wname">
+      <Position>2</Position>
+      <DataType>VARCHAR(20)|12</DataType>
+    </column>
+    <column id="77" parent="29" name="wuser">
+      <Position>3</Position>
+      <DataType>VARCHAR(20)|12</DataType>
+    </column>
+    <column id="78" parent="29" name="wphone">
+      <Position>4</Position>
+      <DataType>CHAR(11)|1</DataType>
+    </column>
+    <column id="79" parent="29" name="wnumber">
+      <Position>5</Position>
+      <DataType>INT(10)|4</DataType>
+    </column>
+    <key id="80" parent="29" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>wid</ColNames>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>
