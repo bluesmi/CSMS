@@ -3,6 +3,7 @@ package com.cd.clothes.controller;
 import com.cd.clothes.exception.UserException;
 import com.cd.clothes.model.Cloth;
 import com.cd.clothes.model.User;
+import com.cd.clothes.model.Warehouse;
 import com.cd.clothes.service.UserService;
 import com.cd.clothes.service.impl.UserServiceImpl;
 import org.apache.ibatis.annotations.Param;
@@ -129,7 +130,7 @@ public class UserController {
          }
      }
 
-    @RequestMapping("/AddUserServlet.do")
+    @RequestMapping(value = "/AddUserServlet.do",method = RequestMethod.POST)
     public String AddUserServlet(User user,ModelMap modelMap){
         try{
             user.setFlag(0);
@@ -175,6 +176,20 @@ public class UserController {
         } catch (Exception e) {
             e.printStackTrace();
             modelMap.addAttribute("message","系统维护升级中");
+            return "views/message";
+        }
+    }
+
+    @RequestMapping("/UpdateUserServletUI.do")
+    public String updateWarehouseServletUI(@Param("uid") int uid,ModelMap modelMap){
+
+        try{
+            User user = userService.findUser(uid);
+            modelMap.addAttribute("user", user);
+            return "system/updateuser";
+        }catch(Exception e){
+            e.printStackTrace();
+            modelMap.addAttribute("message", "系统正在维护升级中");
             return "views/message";
         }
     }

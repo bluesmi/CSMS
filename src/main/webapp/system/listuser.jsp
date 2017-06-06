@@ -18,7 +18,7 @@
 </head>
 
 <SCRIPT LANGUAGE="javaScript">
-<!--
+
 function gotos()
 {
 	document.forms[0].action="<%=basePath%>/system/adduser.jsp";
@@ -26,16 +26,17 @@ function gotos()
 }
 
 function dodelete(uid) {
-    var location = (window.location+'').split('/');
-    var basePath = location[0]+'//'+location[2]+'/'+location[3]+'/';
-    if (confirm("您确定删除该条记录？")) {
-        var str = basePath+"user/DeleteUserServlet.do?cid=" + uid;
+    var location = (window.location + '').split('/');
+    var basePath = location[0] + '//' + location[2] + '/' + location[3] + '/';
+    var b = window.confirm("您确认删除吗?");
+    if (b) {
+        var str = basePath + "user/DeleteUserServlet.do?uid=" + uid;
 
         window.location.href = str;
-
+        alert("删除成功");
     }
 }
--->
+
 </SCRIPT>
 
 <BODY BACKGROUND="<%=basePath%>image/bg.gif">

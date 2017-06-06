@@ -26,6 +26,16 @@ public class UserServiceImpl implements UserService {
         return userDAO.findByLoginnameAndLoginpass(user);
     }
 
+    /**
+     * 按uid查找用户
+     * @param uid
+     * @return
+     */
+    @Override
+    public User findUser(int uid) throws Exception{
+        return userDAO.findUserByUid(uid);
+    }
+
     public void updatePassword(int uid, String newPass, String oldPass) throws UserException {
 
         /*

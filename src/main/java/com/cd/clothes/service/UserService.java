@@ -17,6 +17,13 @@ public interface UserService {
     void updatePassword(int uid, String newPass, String oldPass) throws Exception;
 
     /**
+     * 按uid查找用户
+     * @param uid
+     * @return
+     */
+    public User findUser(int uid) throws Exception;
+
+    /**
      * 用户名注册校验
      * @param loginName
      * @return

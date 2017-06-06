@@ -1,5 +1,8 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
@@ -8,7 +11,7 @@
 <META HTTP-EQUIV="content-script-type" CONTENT="text/JavaScript">
 <META HTTP-EQUIV="content-style-type" CONTENT="text/css">
 <title>用户详细</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/cjpm.css">							
+<link rel="stylesheet" href="<%=basePath%>css/cjpm.css">
 </head>
 
 <SCRIPT LANGUAGE="javaScript">
@@ -23,14 +26,18 @@ function back()
 	history.back();
 }
   function updateuser(){
-	idmig0102.action="${pageContext.request.contextPath }/UpdateUserServlet";
+/*	idmig0102.action="${pageContext.request.contextPath }/UpdateUserServlet";
 	idmig0102.submit();
 	alert("用户修改成功！");
+      var location = (window.location + '').split('/');
+      var basePath = location[0] + '//' + location[2] + '/' + location[3] + '/';*/
+      document.getElementById("idmig0102").submit();
+      alert("用户修改成功！");
 }
 -->
 </SCRIPT>
-<BODY BACKGROUND="${pageContext.request.contextPath }/image/bg.gif">
-<FORM NAME="idFrmMain" ID="idmig0102" METHOD="POST"  ACTION=""> 
+<BODY BACKGROUND="<%=basePath%>image/bg.gif">
+<FORM NAME="idFrmMain" ID="idmig0102" METHOD="POST"  ACTION="<%=basePath%>user/UpdateUserServlet.do" ONSUBMIT="return false">
 <table border="0" width="100%" id="table1" cellspacing="0"  cellpadding="2"  bgcolor="gray">
 	<tr>
   	<td class="headerbar61" width="15%" colspan="1">用户详细</td>

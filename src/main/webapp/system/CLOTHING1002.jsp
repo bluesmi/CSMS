@@ -38,7 +38,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         function update()
         {
             alert("进入更新");
-            $("#idFrmMain").attr({"action":"/clothing/UpdateClothServlet"})
+            $("#idFrmMain").attr({"action":"/clothing/UpdateClothServlet.do"})
             document.getElementById("idFrmMain").submit();
             alert("修改成功！");
 

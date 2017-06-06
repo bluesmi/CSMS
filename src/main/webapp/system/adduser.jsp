@@ -1,9 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
     String path = request.getContextPath();
-    String basePath = request.getScheme() + "://"
-            + request.getServerName() + ":" + request.getServerPort()
-            + path + "/";
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
@@ -13,11 +11,11 @@
 <META HTTP-EQUIV="content-style-type" CONTENT="text/css">
 <title>用户详细</title>
 <link rel="stylesheet" href="<%=basePath%>css/cjpm.css">
- 
+ <script type="text/javascript" src="<%=basePath%>jquery/jquery-1.5.1.js"></script>
 </head>
 
 <SCRIPT LANGUAGE="javaScript">
-<!--
+
 function back()
 {
 	history.back();
@@ -36,23 +34,25 @@ function back()
      var $realName = $("#realName").val();
      var $password = $("#password").val();
      var $phone = $("#phone").val();
-     if($loginName==="" || $realName==="" || $password==="" || $phone===""){
-         alert("请填写完整");
+     var regPhone = /^^1[34578]\d{9}$/;
+     console.log($loginName+","+$realName+","+$password+","+regPhone.test($phone));
+     if($loginName==="" || $realName==="" || $password==="" || !regPhone.test($phone)){
+         alert("格式不正确，请重新输入！");
      }else {
-         $("#idFrmMain").submit();
+         document.getElementById("idmig0102").submit();
          alert("用户添加成功！");
      }
 }
--->
+
 </SCRIPT>
 <BODY BACKGROUND="<%=basePath%>image/bg.gif">
-<FORM NAME="idFrmMain" ID="idmig0102" METHOD="POST"  ACTION="<%=basePath%>user/AddUserServlet.do">
+<FORM NAME="idmig0102" ID="idmig0102" method="post"  ACTION="<%=basePath%>user/AddUserServlet.do" ONSUBMIT="return false">
 <table border="0" width="100%" id="table1" cellspacing="0"  cellpadding="2"  bgcolor="gray">
 	<tr>
   	<td class="headerbar61" width="15%" colspan="1">用户详细</td>
     <td class="headerbar63" width="85%" colspan="1">
-      <input type="button"  value=" 保 存 " onClick="javascript:adduser()">&nbsp;
-      <input type="button" name="back70302003" onClick="javascript:back()" value=" 返 回 ">
+      <input type="button" name="save70302002" value=" 保 存 " onclick="javascript:adduser()">&nbsp;
+      <input type="button" name="back70302003" onclick="javascript:back()" value=" 返 回 ">
     </td>
   </tr>
 </table>
@@ -66,20 +66,23 @@ function back()
 <table border="0" width="100%" id="table1" cellspacing="1"  cellpadding="2"  bgcolor="gray">
  
 	<tr>
-  	<td class="textbar81" width="15%" colspan="1">用户登录号</td>
-    <td class="textbar01" width="85%" colspan="1"><input name="loginName" size="20"></td>
+  	<td class="textbar81" width="15%" colspan="1">用户登录名</td>
+    <td class="textbar01" width="85%" colspan="1">
+        <input id="loginName" name="loginName" size="20" >
+
+    </td>
   </tr>          
   <tr>
   	<td class="textbar81" width="15%" colspan="1">用户姓名</td>
-    <td class="textbar01" width="85%" colspan="1"><input name="realName" size="20"></td>
+    <td class="textbar01" width="85%" colspan="1"><input id="realName" name="realName" size="20"></td>
   </tr>          
 	<tr>
   	<td class="textbar81" width="15%" colspan="1">用户密码</td>
-    <td class="textbar01" width="85%" colspan="1"><input type="password" name="password" size="20"></td>
+    <td class="textbar01" width="85%" colspan="1"><input id="password" type="password" name="password" size="20"></td>
   </tr>      
 	<tr>
   	<td class="textbar81" width="15%" colspan="1">电话</td>
-    <td class="textbar01" width="85%" colspan="1"><input name="phone" size="20">
+    <td class="textbar01" width="85%" colspan="1"><input id="phone" name="phone" size="20">
      </td>
   </tr>  
 	         
