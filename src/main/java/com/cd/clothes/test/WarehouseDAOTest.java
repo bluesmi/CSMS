@@ -65,9 +65,9 @@ public class WarehouseDAOTest {
 
     @Test
     public void queryWarehouse() throws Exception{
-        List<Warehouse> warehouseList= warehouseDAO.queryWarehouse(1,"号");
+        List<Warehouse> warehouseList= warehouseDAO.queryWarehouse(1,null);
         for (Warehouse warehouse:warehouseList){
-            System.out.println(warehouse.getWname());
+            System.out.println(warehouse);
         }
     }
 }

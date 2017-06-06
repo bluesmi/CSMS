@@ -15,25 +15,28 @@
 <link rel="stylesheet" href="<%=basePath%>css/cjpm.css">
 <script type="text/javascript" src="<%=basePath%>js/cjcalendar.js"></script>
 <script language="javascript" src="<%=basePath%>js/page.js"></script>
+	<script type="text/javascript" src="<%=basePath%>jquery/jquery-1.5.1.js"></script>
 </head>
-<script language="javascript">
-	var CalendarWebControl = new atCalendarControl();
-</script>
 <SCRIPT LANGUAGE="javaScript">
 
-/*function delCom(id){
-	if(id == '1'){
-		document.idFrmMain.gys.value = "";		
-	}else{
-		document.idFrmMain.sccj.value = "";
-	}
-}*/
+
 
 function save()
 {
-    $("#idFrmMain").attr({"action":"/warehouse/AddWarehouseServlet.do"})
-    document.getElementById("idFrmMain").submit();
-    alert("仓库添加成功！");
+    var $wname = $("#wname").val();
+    var $wuser = $("#wuser").val();
+    var $wnumber = $("#wnumber").val();
+    var $wphone = $("#wphone").val();
+    var regPhone = /^^1[34578]\d{9}$/;
+    var regNumber =/^[0-9]*$/;
+    console.log($wname+","+$wuser+","+regNumber.test($wnumber)+","+regPhone.test($wphone));
+    if(""==$wname || ""==$wuser || !regNumber.test($wnumber) || !regPhone.test($wphone)){
+
+        alert("格式不正确，请重新输入！");
+	}else {
+        document.getElementById("idFrmMain").submit();
+        alert("仓库添加成功！");
+	}
 }
 
 function back()
@@ -43,7 +46,7 @@ function back()
 
 </SCRIPT>
 <BODY BACKGROUND="<%=basePath%>image/bg.gif">
-<FORM NAME="idFrmMain" ID="idFrmMain" METHOD="POST"  ACTION="" ONSUBMIT="return false"> 
+<FORM NAME="idFrmMain" ID="idFrmMain" METHOD="get"  ACTION="<%=basePath%>warehouse/AddWarehouseServlet.do" ONSUBMIT="return false">
 <table border="0" width="100%">
     <tr>
     	<td width="100%" colspan="0" rowspan="0" align="center" valign="center">
@@ -65,35 +68,35 @@ function back()
         <tr>
           	<td class="textbar81" width="15%" colspan="1">仓库编号</td>
             <td class="textbar01" width="85%" colspan="1">
-            	<input type="text" value="自动编号..." size="15" name="wid" readonly="readonly">
+                自动编号...
             </td>
           </tr>
         	
          <tr>        	          
 		<td class="textbar81" width="15%">仓库名称</td>
 		<td class="textbar01" width="85%">
-			<input type="text" name="wname" value="" size="15">						
+			<input type="text" name="wname" id="wname" value="" size="15">
 		</td>         		
          </tr>   
 
          <tr>        	          
 		<td class="textbar81" width="15%" >联系人</td>
 		<td class="textbar01" width="85%">
- 			<input type="text" value="" size="15" name="wuser">								
+ 			<input type="text" value="" id="wuser" size="15" name="wuser">
 		</td>         		
          </tr>  
 
 	            <tr>        	          
 		<td class="textbar81" width="15%" >联系电话</td>
 		<td class="textbar01" width="85%">
- 			<input type="text" value="" size="15" name="wphone">								
+ 			<input type="text" id="wphone" value="" size="15" name="wphone">
 		</td>         		
          </tr>  
          
              <tr>        	          
 		<td class="textbar81" width="15%"  >仓储量</td>
 		<td class="textbar01" width="85%">
- 			<input type="text" value="" size="15" name="wnumber">								
+ 			<input type="text" id="wnumber" value="" size="15" name="wnumber">
 		</td>         		
          </tr>       	   	
         </table>

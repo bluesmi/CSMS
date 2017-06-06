@@ -17,14 +17,14 @@
 <script language="javascript" src="<%=basePath%>js/page.js"></script>
 </head>
 <script language="javascript">
-	var CalendarWebControl = new atCalendarControl();
+
 </script>
 <SCRIPT LANGUAGE="javaScript">
 
 
 function save()
 {
-    $("#idFrmMain").attr({"action":"/warehouse/UpdateWarehouseServlet.do"})
+
     document.getElementById("idFrmMain").submit();
     alert("仓库修改成功！");
 }
