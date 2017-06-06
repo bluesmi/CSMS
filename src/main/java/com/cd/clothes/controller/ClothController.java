@@ -133,5 +133,14 @@ public class ClothController {
         }
     }
 
+    @RequestMapping("/DeleteClothServlet.do")
+    public String DeleteClothServlet(@Param("cid") String cid){
+        try {
+            clothService.deleteCloth(cid);
+            return "redirect:QueryAllClothServlet.do";
+        } catch (Exception e) {
+            return "QueryAllClothServlet.do";
+        }
+    }
 
 }
