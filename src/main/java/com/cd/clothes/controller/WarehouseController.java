@@ -21,10 +21,9 @@ public class WarehouseController {
     @Autowired
     WarehouseService warehouseService;
 
-    @RequestMapping(value = "/AddWarehouseServlet.do",method = RequestMethod.POST)
+    @RequestMapping(value = "/AddWarehouseServlet.do",method = RequestMethod.GET)
     public String addWarehouse(Warehouse warehouse, ModelMap modelMap) {
         try {
-            warehouse.setFlag(0);
             warehouseService.addWarehouse(warehouse);
             return "redirect:ListWarehouseServlet.do";
         } catch (Exception e) {
@@ -34,13 +33,14 @@ public class WarehouseController {
         }
     }
 
-    @RequestMapping(value = "/QueryWarehouseServlet.do",method = RequestMethod.POST)
-    public String queryWarehouseServlet(Warehouse warehouse, ModelMap modelMap) {
+    @RequestMapping(value = "/QueryWarehouseServlet.do",method = RequestMethod.GET)
+    public String queryWarehouseServlet(@Param("wid") String wid,@Param("wname") String wname, ModelMap modelMap) {
         List<Warehouse> warehouseList = null;
         try {
-            warehouseList = warehouseService.queryWarehouse(warehouse.getWid(), warehouse.getWname());
-            modelMap.addAttribute("wid", warehouse.getWid());
-            modelMap.addAttribute("wname", warehouse.getWname());
+            Integer reWid = "".endsWith(wid) ? null : Integer.parseInt(wid);
+            warehouseList = warehouseService.queryWarehouse(reWid,wname);
+            modelMap.addAttribute("wid", wid);
+            modelMap.addAttribute("wname", wname);
             modelMap.addAttribute("list", warehouseList);
             return "system/listwarehouse";
         } catch (Exception e) {
@@ -67,7 +67,7 @@ public class WarehouseController {
     public String deleteWarehouse(@Param("wid") Integer wid, ModelMap modelMap) {
         try {
             warehouseService.deleteWarehouse(wid);
-            return "redirect:DeleteWarehouseServlet.do";
+            return "redirect:ListWarehouseServlet.do";
         } catch (Exception e) {
             return "ListWarehouseServlet.do";
         }
@@ -85,4 +85,24 @@ public class WarehouseController {
         }
     }
 
+
+
+    @RequestMapping("/UpdateWarehouseServletUI.do")
+    public String updateWarehouseServletUI(@Param("wid") String wid,ModelMap modelMap){
+
+        try{
+            Warehouse warehouse = warehouseService.findByWid(Integer.parseInt(wid));
+            modelMap.addAttribute("warehouse", warehouse);
+            return "system/updatewarehouse";
+        }catch(Exception e){
+            e.printStackTrace();
+            modelMap.addAttribute("message", "系统正在维护升级中");
+            return "views/message";
+        }
+    }
+
+    @RequestMapping("/enter.do")
+    public String enter(){
+        return "system/addwarehouse";
+    }
 }

@@ -16,32 +16,22 @@
 <link rel="stylesheet" href="<%=basePath%>css/cjpm.css">
 <script type="text/javascript" src="<%=basePath%>js/page.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/cjcalendar.js"></script>
+<script type="text/javascript" src="<%=basePath%>jquery/jquery-1.5.1.js"></script>
 </head>
 <script language="javascript">
-	var CalendarWebControl = new atCalendarControl();
+
 </script>
 <%--<SCRIPT LANGUAGE="javaScript">--%>
 
 <script type="text/javascript">
 function gotos()
 {
-	/*document.forms[0].action="<%=basePath%>system/addwarehouse.jsp";
-	document.forms[0].submit();*/
-    $("#idFrmMain").attr({"action":"/system/addwarehouse.jsp"})
-    document.getElementById("idFrmMain").submit();
+    var location = (window.location + '').split('/');
+    var basePath = location[0] + '//' + location[2] + '/' + location[3] + '/';
+    window.location.href=basePath+"warehouse/enter.do";
 
 }
-/*function del(wid)
-{
-	var b = window.confirm("您确认删除吗?");
-	 		if(b){
-                window.location.href = "/DeleteWarehouseServlet?wid=" + wid;
-                alert("删除成功");
-                /!*var str = basePath+"warehouse/DeleteWarehouseServlet.do?wid=" + wid;
-                window.location.href = str;*!/
 
-	 			} 		*/
-}
 function del(wid) {
     var location = (window.location + '').split('/');
     var basePath = location[0] + '//' + location[2] + '/' + location[3] + '/';
@@ -53,18 +43,19 @@ function del(wid) {
         alert("删除成功");
     }
 }
-/*function goSearch()
-{
-	document.forms[0].action="<%=basePath%>QueryWarehouseServlet.do";
-	document.forms[0].submit();
-    /!*$("#idFrmMain").attr({"action":"/warehouse/QueryWarehouseServlet.do"})
-    document.getElementById("idFrmMain").submit();*!/
-}*/
 
 function goSearch() {
     var location = (window.location+'').split('/');
     var basePath = location[0]+'//'+location[2]+'/'+location[3]+'/';
-        window.location = basePath+"warehouse/QueryWarehouseServlet.do";
+    var $wid = $("#wid").val();
+    var $wname = $("#wname").val();
+    var rex = /^[0-9]*$/;
+    if(rex.test($wid)){
+        window.location.href = basePath+"warehouse/QueryWarehouseServlet.do?wid="+$wid+"&wname="+$wname;
+	}else {
+        alert("请输入正确格式");
+	}
+
 }
  
  </script>
@@ -78,7 +69,7 @@ function goSearch() {
 <tr>
 	<td class="headerbar61">仓库查询</td>
     <td class="headerbar63" width="50%" colspan="1"><p align="right">
-    	<input type=submit value=" 查 询 " onClick="JavaScript:goSearch();"></p></td>
+    	<input type=submit value=" 查 询 " onClick="JavaScript:goSearch();"></td>
   </tr>
 </table>
 
@@ -93,10 +84,10 @@ function goSearch() {
 
     <td class="textbar81" width="15%">仓库编号</td>
 		<td class="textbar01" width="35%">			
-		<input type="text" name="wid" value="${wid}" style="width:210px ">	  </td>
+		<input type="text" name="wid" id="wid" value="${wid}" style="width:210px ">	  </td>
 	<td class="textbar81" width="15%">仓库名称</td>
 		<td class="textbar01" width="35%">			
-		<input type="text" name="wname" value="${wname}" style="width:210px ">	  </td>
+		<input type="text" name="wname" id="wname" value="${wname}" style="width:210px ">	  </td>
 </tr>   
    
 </table>
@@ -134,7 +125,7 @@ function goSearch() {
 		   <c:forEach items="${list }" var="w" varStatus="s">
 				<tr>
 					<td  width="5%" class="gridbar11"> ${s.count }</td>
-					<td  width="10%" class="gridbar11"> <a href="<%=basePath%>UpdateWarehouseServletUI?wid=${w.wid }" >${w.wid }</a></td>
+					<td  width="10%" class="gridbar11"> <a href="<%=basePath%>warehouse/UpdateWarehouseServletUI.do?wid=${w.wid }" >${w.wid }</a></td>
 					<td  width="20%" class="gridbar11"> ${w.wname }</td>
 					<td  width="10%" class="gridbar11"> ${w.wnumber }</td>
 					<td  width="5%" class="gridbar11">

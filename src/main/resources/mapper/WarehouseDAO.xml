@@ -17,10 +17,17 @@
         select * from warehouse where wid=#{wid}
     </select>
     <select id="queryWarehouse" resultType="Warehouse">
-        select * from warehouse where
+        select * from warehouse
         <if test="wid != null">
-            wid= #{wid} and
+            where  wid= #{wid}
         </if>
-         wname like  CONCAT(CONCAT('%', #{wname}), '%')
+
+        <if test="wid != null and wname != null">
+             and  wname like  CONCAT(CONCAT('%', #{wname}), '%')
+        </if>
+        <if test="wid == null and wname != null">
+            where  wname like  CONCAT(CONCAT('%', #{wname}), '%')
+        </if>
+
     </select>
 </mapper>

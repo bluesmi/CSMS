@@ -18,7 +18,7 @@
 </head>
 
 <SCRIPT LANGUAGE="javaScript">
-<!--
+
 function gotos()
 {
 	document.forms[0].action="<%=basePath%>/system/adduser.jsp";
@@ -33,7 +33,7 @@ function gotos()
 	 			}
 	 			
  		} 
--->
+
 </SCRIPT>
 
 <BODY BACKGROUND="<%=basePath%>image/bg.gif">
