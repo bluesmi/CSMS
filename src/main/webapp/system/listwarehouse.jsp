@@ -20,8 +20,9 @@
 <script language="javascript">
 	var CalendarWebControl = new atCalendarControl();
 </script>
-<SCRIPT LANGUAGE="javaScript">
-<!--
+<%--<SCRIPT LANGUAGE="javaScript">--%>
+
+<script type="text/javascript">
 function gotos()
 {
 	/*document.forms[0].action="<%=basePath%>system/addwarehouse.jsp";
@@ -30,27 +31,44 @@ function gotos()
     document.getElementById("idFrmMain").submit();
 
 }
-function del(wid)
+/*function del(wid)
 {
 	var b = window.confirm("您确认删除吗?");
 	 		if(b){
                 window.location.href = "/DeleteWarehouseServlet?wid=" + wid;
                 alert("删除成功");
-                /*var str = basePath+"warehouse/DeleteWarehouseServlet.do?wid=" + wid;
-                window.location.href = str;*/
-	 			} 			
+                /!*var str = basePath+"warehouse/DeleteWarehouseServlet.do?wid=" + wid;
+                window.location.href = str;*!/
+
+	 			} 		*/
 }
-function goSearch()
+function del(wid) {
+    var location = (window.location + '').split('/');
+    var basePath = location[0] + '//' + location[2] + '/' + location[3] + '/';
+    var b = window.confirm("您确认删除吗?");
+    if (b) {
+        var str = basePath + "warehouse/DeleteWarehouseServlet.do?wid=" + wid;
+
+        window.location.href = str;
+        alert("删除成功");
+    }
+}
+/*function goSearch()
 {
 	document.forms[0].action="<%=basePath%>QueryWarehouseServlet.do";
 	document.forms[0].submit();
-    /*$("#idFrmMain").attr({"action":"/warehouse/QueryWarehouseServlet.do"})
-    document.getElementById("idFrmMain").submit();*/
+    /!*$("#idFrmMain").attr({"action":"/warehouse/QueryWarehouseServlet.do"})
+    document.getElementById("idFrmMain").submit();*!/
+}*/
+
+function goSearch() {
+    var location = (window.location+'').split('/');
+    var basePath = location[0]+'//'+location[2]+'/'+location[3]+'/';
+        window.location = basePath+"warehouse/QueryWarehouseServlet.do";
 }
  
- 
--->
-</SCRIPT>
+ </script>
+
 
 <BODY BACKGROUND="<%=basePath%>image/bg.gif">
 <FORM NAME="idFrmMain" ID="idmig0101" METHOD="POST"  ACTION="" ONSUBMIT="return false" >
