@@ -4,8 +4,11 @@ import com.cd.clothes.dao.UserDAO;
 import com.cd.clothes.exception.UserException;
 import com.cd.clothes.model.User;
 import com.cd.clothes.service.UserService;
+import com.cd.clothes.util.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * autour m199
@@ -42,5 +45,40 @@ public class UserServiceImpl implements UserService {
         }catch (Exception e){
             throw new RuntimeException();
         }
+    }
+
+    @Override
+    public boolean ajaxValidateLoginname(String loginName) {
+        return false;
+    }
+
+    @Override
+    public List<User> getAllUser() {
+        return null;
+    }
+
+    @Override
+    public List<User> load(String loginname, String realname) {
+        return null;
+    }
+
+    @Override
+    public void addUser(User user) {
+
+    }
+
+    @Override
+    public void deleteUser(int uid) {
+
+    }
+
+    @Override
+    public void updateUser(User user) {
+
+    }
+
+    @Override
+    public Page getPageData(String pagenum, String url) {
+        return null;
     }
 }
