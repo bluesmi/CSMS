@@ -21,10 +21,20 @@ public class StockInItems implements Serializable {
      * 服装编号
      */
     private int sinumber;
+
+    private int cid;
     /**
      * 服装对象
      */
     private Cloth cloth;
+
+    public int getCid() {
+        return cid;
+    }
+
+    public void setCid(int cid) {
+        this.cid = cid;
+    }
 
     public int getSiid() {
         return siid;
@@ -59,6 +69,17 @@ public class StockInItems implements Serializable {
     }
 
     @Override
+    public String toString() {
+        return "StockInItems{" +
+                "siid=" + siid +
+                ", sid='" + sid + '\'' +
+                ", sinumber=" + sinumber +
+                ", cid=" + cid +
+                ", cloth=" + cloth +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -67,6 +88,7 @@ public class StockInItems implements Serializable {
 
         if (siid != that.siid) return false;
         if (sinumber != that.sinumber) return false;
+        if (cid != that.cid) return false;
         if (sid != null ? !sid.equals(that.sid) : that.sid != null) return false;
         return cloth != null ? cloth.equals(that.cloth) : that.cloth == null;
     }
@@ -76,17 +98,9 @@ public class StockInItems implements Serializable {
         int result = siid;
         result = 31 * result + (sid != null ? sid.hashCode() : 0);
         result = 31 * result + sinumber;
+        result = 31 * result + cid;
         result = 31 * result + (cloth != null ? cloth.hashCode() : 0);
         return result;
     }
 
-    @Override
-    public String toString() {
-        return "StockInItems{" +
-                "siid=" + siid +
-                ", sid='" + sid + '\'' +
-                ", sinumber=" + sinumber +
-                ", cloth=" + cloth +
-                '}';
-    }
 }

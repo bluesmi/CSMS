@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.cd.clothes.dao.StockInItemsDAO">
+    <insert id="add" parameterType="StockInItems">
+        INSERT INTO stockin_item(sid, cid, sinumber) VALUES (#{sid},#{cid},#{sinumber});
+    </insert>
+    <update id="update" parameterType="StockInItems">
+        update StockIn_item set siid=#{siid},cid=#{cid},sinumber=#{sinumber} where sid=#{sid}
+    </update>
+    <delete id="delete" parameterType="String">
+        DELETE FROM stockin_item WHERE sid=#{sid}
+    </delete>
+    <select id="findAllBySid" resultType="StockInItems"  parameterType="String">
+        select * from StockIn_item where sid=#{sid}
+    </select>
+    <select id="findbySiid" resultType="StockInItems" >
+        select * from StockIn_item where siid=#{siid}
+    </select>
 </mapper>
