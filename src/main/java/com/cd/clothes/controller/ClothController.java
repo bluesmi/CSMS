@@ -23,13 +23,27 @@ public class ClothController {
     @Autowired
     private ClothService clothService;
 
-    @RequestMapping(value = "/AddClothServlet.do",method = RequestMethod.GET)
+    @RequestMapping(value = "/AddClothServlet.do",method = RequestMethod.POST)
     public String addCloth(Cloth cloth, ModelMap modelMap){
         try {
             cloth.setFlag(0);
             clothService.add(cloth);
             System.out.println(cloth);
             return "redirect:QueryAllClothServlet.do";
+        } catch (Exception e) {
+            e.printStackTrace();
+            modelMap.addAttribute("message","系统维护升级中");
+            return "views/message";
+        }
+    }
+
+    @RequestMapping(value = "/UpdateClothServlet.do",method = RequestMethod.POST)
+    public String updateCloth(Cloth cloth, ModelMap modelMap){
+        try {
+            clothService.updateCloth(cloth);
+            modelMap.addAttribute("stute", 2);
+            return "redirect:QueryAllClothServlet.do";
+
         } catch (Exception e) {
             e.printStackTrace();
             modelMap.addAttribute("message","系统维护升级中");
@@ -82,9 +96,9 @@ public class ClothController {
    @RequestMapping("/QueryByCnameServlet.do")
     public String queryByCnameServlet(@Param("cname") String cname,ModelMap modelMap){
        try {
-           List<Cloth> list = clothService.getbyCname(cname);
-           System.out.print(list.size());
-           modelMap.addAttribute("allCloth", list);
+           cname = java.net.URLDecoder.decode(cname, "UTF-8");
+           List<Cloth> allCloth = clothService.getbyCname(cname);
+           modelMap.addAttribute("allCloth", allCloth);
            return "system/CLOTHING1001";
 
        } catch (Exception e) {
@@ -95,6 +109,7 @@ public class ClothController {
    @RequestMapping("/QueryByCcolorServlet.do")
     public String queryByCcolorServlet(@Param("ccolor") String ccolor,ModelMap modelMap){
        try {
+           ccolor = java.net.URLDecoder.decode(ccolor, "UTF-8");
            List<Cloth> list = clothService.getbyCcolor(ccolor);
 //           System.out.print(list.size());
            modelMap.addAttribute("allCloth", list);
@@ -103,4 +118,20 @@ public class ClothController {
            return "QueryAllClothServlet.do";
        }
    }
+
+
+    @RequestMapping("/QueryBycSizeServlet.do")
+    public String queryByCsizeServlet(@Param("csize") String csize,ModelMap modelMap){
+        try {
+            csize = java.net.URLDecoder.decode(csize, "UTF-8");
+            List<Cloth> list = clothService.getbyCsize(csize);
+//           System.out.print(list.size());
+            modelMap.addAttribute("allCloth", list);
+            return "system/CLOTHING1001";
+        } catch (Exception e) {
+            return "QueryAllClothServlet.do";
+        }
+    }
+
+
 }

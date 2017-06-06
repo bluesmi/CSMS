@@ -43,7 +43,7 @@ function save()
 function update()
 {
 	
-	$("#idFrmMain").attr({"action":"/cloth/UpdateClothServlet.do"})
+
    document.getElementById("idFrmMain").submit();
 	alert("修改成功！");
 	
@@ -56,7 +56,7 @@ function back()
 
 </SCRIPT>
 <BODY BACKGROUND="../image/bg.gif"> 
-<FORM NAME="idFrmMain" ID="idFrmMain" METHOD="POST"  ACTION="" ONSUBMIT="return false"> 
+<FORM NAME="idFrmMain" ID="idFrmMain" METHOD="POST"  ACTION="<%=basePath%>cloth/UpdateClothServlet.do" ONSUBMIT="return false">
   <table border="0" width="100%"> 
     <tr> 
       <td width="100%" colspan="0" rowspan="0" align="center" valign="center"> <table border="0" width="100%" id="table1" cellspacing="0"  cellpadding="2"  bgcolor="gray"> 
@@ -64,7 +64,7 @@ function back()
             <td class="headerbar61" width="50%">货号详细</td> 
             <td class="headerbar63" width="50%">  
                
-&nbsp; <input type="button" name="save70302002" onClick="javascript:back()" value=" 返 回 "><input type="button"  name="save70302002" onClick="javascript:update()" value="修改确认 "></td> 
+&nbsp; <input type="button" name="save70302002" onClick="javascript:back()" value=" 返 回 "><input type="button"  name="save70302002" onClick="javascript:update()" value="修改确认 "></td>
           </tr> 
         </table></td> 
     </tr> 

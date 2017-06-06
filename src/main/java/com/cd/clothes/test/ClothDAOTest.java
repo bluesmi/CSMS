@@ -64,7 +64,13 @@ public class ClothDAOTest {
         System.out.println(clothDAO.findAll());
 
     }
-
+    @Test
+    public void testSelectClothByName() throws Exception {
+        List<Cloth> clothList = clothDAO.findbyCname("西装");
+        for (Cloth cloth:clothList) {
+            System.out.println(cloth);
+        }
+    }
 
 
 }

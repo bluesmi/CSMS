@@ -54,7 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 
 <BODY style="background: url('<%=basePath%>image/bg.gif')">
-<FORM NAME="idFrmMain" ID="idFrmMain" method="get" action="<%=basePath%>cloth/AddClothServlet.do">
+<FORM NAME="idFrmMain" ID="idFrmMain" method="post" action="<%=basePath%>cloth/AddClothServlet.do">
   <table border="0" width="100%"> 
     <tr> 
       <td width="100%" colspan="0" rowspan="0" align="center" valign="center">
