@@ -134,7 +134,7 @@ public class ClothController {
     }
 
     @RequestMapping("/DeleteClothServlet.do")
-    public String DeleteClothServlet(@Param("cid") String cid){
+    public String deleteClothServlet(@Param("cid") String cid){
         try {
             clothService.deleteCloth(cid);
             return "redirect:QueryAllClothServlet.do";

@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
+
 /**
  * autour m199
  * mail  2803934061@qq.com
@@ -38,5 +40,17 @@ public class UserDAOTest {
     public void testFind() throws Exception {
         User user = userDAO.findByUidAndPassword(1,"123456");
         System.out.println(user.getRealName());
+    }
+
+    @Test
+    public void testfindByRealnameAndLoginname() throws Exception {
+        List<User> userList = userDAO.findByRealnameAndLoginname("xiaoyou","游昌劲");
+        System.out.println(userList);
+    }
+
+    @Test
+    public void testajaxValidateLoginname() throws Exception {
+        boolean userList = userDAO.ajaxValidateLoginname("xiaoyou");
+        System.out.println(userList);
     }
 }
