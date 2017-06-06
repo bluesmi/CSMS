@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -20,19 +21,20 @@ public class WarehouseController {
     @Autowired
     WarehouseService warehouseService;
 
-    @RequestMapping("/AddWarehouseServlet.do")
+    @RequestMapping(value = "/AddWarehouseServlet.do",method = RequestMethod.POST)
     public String addWarehouse(Warehouse warehouse, ModelMap modelMap) {
         try {
+            warehouse.setFlag(0);
             warehouseService.addWarehouse(warehouse);
+            return "redirect:ListWarehouseServlet.do";
         } catch (Exception e) {
             e.printStackTrace();
             modelMap.addAttribute("message", "系统维护升级中");
             return "views/message";
         }
-        return "QueryAllClothServlet.do";
     }
 
-    @RequestMapping("/QueryWarehouseServlet.do")
+    @RequestMapping(value = "/QueryWarehouseServlet.do",method = RequestMethod.POST)
     public String queryWarehouseServlet(Warehouse warehouse, ModelMap modelMap) {
         List<Warehouse> warehouseList = null;
         try {
@@ -65,24 +67,22 @@ public class WarehouseController {
     public String deleteWarehouse(@Param("wid") Integer wid, ModelMap modelMap) {
         try {
             warehouseService.deleteWarehouse(wid);
+            return "redirect:DeleteWarehouseServlet.do";
         } catch (Exception e) {
-            e.printStackTrace();
-            modelMap.addAttribute("message", "系统维护升级中");
-            return "views/message";
+            return "ListWarehouseServlet.do";
         }
-        return "DeleteWarehouseServlet.do";
     }
 
     @RequestMapping("/UpdateWarehouseServlet.do")
     public String updateWarehouse(Warehouse warehouse, ModelMap modelMap) {
         try {
             warehouseService.updateWarehouse(warehouse);
+            return "redirect:ListWarehouseServlet.do";
         } catch (Exception e) {
             e.printStackTrace();
             modelMap.addAttribute("message", "系统维护升级中");
             return "views/message";
         }
-        return "ListWarehouseServlet.do";
     }
 
 }

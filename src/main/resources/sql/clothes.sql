@@ -201,6 +201,7 @@ CREATE TABLE `warehouse` (
   `wuser` varchar(20) default NULL,
   `wphone` char(11) default NULL,
   `wnumber` int(11) default NULL,
+  `flag` int(11) default NULL,
   PRIMARY KEY  (`wid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
