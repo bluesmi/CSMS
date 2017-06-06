@@ -1,5 +1,10 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://"
+            + request.getServerName() + ":" + request.getServerPort()
+            + path + "/";
+%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <head>
@@ -7,7 +12,7 @@
 <META HTTP-EQUIV="content-script-type" CONTENT="text/JavaScript">
 <META HTTP-EQUIV="content-style-type" CONTENT="text/css">
 <title>用户详细</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/cjpm.css">
+<link rel="stylesheet" href="<%=basePath%>css/cjpm.css">
  
 </head>
 
