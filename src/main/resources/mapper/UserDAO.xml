@@ -17,4 +17,35 @@
     <update id="updatePassword">
         update users set password=#{password} where uid=#{uid} and flag = 0
     </update>
+
+    <select id="findByRealnameAndLoginname" resultType="User">
+        select * from users where realName like CONCAT(CONCAT('%', #{realname}), '%') and flag=0
+        <if test='loginName==""'>
+            AND  realName like CONCAT(CONCAT('%', #{loginName}), '%')
+        </if>
+    </select>
+
+    <select id="ajaxValidateLoginname" resultType="boolean">
+        select count(1) from users where flag=0 AND loginName=#{loginName}
+    </select>
+    <insert id="add" parameterType="User">
+        insert into users(loginName,password,realName,phone,flag)
+        values(#{loginName},#{password},#{realName},#{phone},0)
+    </insert>
+    <update id="delete" parameterType="int">
+        UPDATE users SET flag=1 WHERE uid=#{uid}
+    </update>
+    <update id="update" parameterType="User">
+        update users set loginName=#{loginName},password=#{password},realName=#{realName},phone=#{phone}
+         where uid=#{uid} AND flag=0
+    </update>
+    <select id="findAll" resultType="User">
+        select * from users WHERE flag=0
+    </select>
+    <select id="getTotalrecord" resultType="int">
+        select count(*) from users WHERE flag=0
+    </select>
+    <select id="getPageData" resultType="User">
+        select * from users WHERE flag=0  limit #{startindex},#{pagesize}
+    </select>
 </mapper>
