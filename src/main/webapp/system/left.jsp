@@ -25,7 +25,7 @@
 //}
 </SCRIPT>
 <body   nLoad="widgets.ToggleWidget(hideTop1);widgets.ToggleWidget(hideTop2);widgets.ToggleWidget(hideTop3)"> 
-<FORM NAME="idFrmMain" ID="idFrmMain" METHOD="POST"  ACTION="" ONSUBMIT="return false"> 
+<FORM NAME="idFrmMain" ID="idFrmMain" method="post"  ACTION="" ONSUBMIT="return false">
   <table width="180" height="100%"  border="0" cellpadding="0" cellspacing="0"> 
     <tr> 
       <td valign="top" class="left"><table width="98%"  border="0" align="center" cellpadding="0" cellspacing="0"> 
@@ -35,7 +35,12 @@
           <tr> 
             <td > <table width="100%" cellspacing="0" cellpadding="0" border="0"> 
                 <tr> 
-                  <td  class="left1"> <a id="exp52" title="折叠" href="javascript:widgets.ToggleWidget(hideTop1);" ><img id="exp5" alt="折叠" src="<%=basePath%>image/qq_minimize.gif"  border="0"></a> &nbsp;&nbsp;&nbsp;&nbsp;<a id="exp51" title="折叠" href="javascript:widgets.ToggleWidget(hideTop1);">系统管理</a></td>
+                  <td  class="left1">
+                      <a id="exp52" title="折叠" href="javascript:widgets.ToggleWidget(hideTop1);" >
+                          <img id="exp5" alt="折叠" src="<%=basePath%>image/qq_minimize.gif"  border="0">
+                      </a> &nbsp;&nbsp;&nbsp;&nbsp;
+                      <a id="exp51" title="折叠" href="javascript:widgets.ToggleWidget(hideTop1);">系统管理</a>
+                  </td>
                 </tr> 
               </table></td> 
           </tr> 
@@ -80,10 +85,5 @@
 </form> 
 </body>
 </html>
-<SCRIPT LANGUAGE="JavaScript">
-<!--
-
-//-->
-</SCRIPT>
 
 

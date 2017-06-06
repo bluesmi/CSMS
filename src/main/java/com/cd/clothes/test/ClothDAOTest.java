@@ -51,5 +51,20 @@ public class ClothDAOTest {
     public void testfindbyCname()throws Exception{
         System.out.println(clothDAO.findbyCname("长裤"));
     }
+    @Test
+    public void testfindAdd()throws Exception{
+        Cloth cloth = new Cloth();
+        cloth.setCname("西装");
+        cloth.setCnumber(200);
+        cloth.setFlag(0);
+        cloth.setCfacprice(400);
+        cloth.setCretprice(400);
+        cloth.setCsize("250");
+        clothDAO.add(cloth);
+        System.out.println(clothDAO.findAll());
+
+    }
+
+
 
 }

@@ -18,17 +18,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script type="text/javascript"
             src="<%=basePath%>jquery/jquery-1.5.1.js"></script>
     <script language="javascript">
-        var CalendarWebControl = new atCalendarControl();
+        function saveCloth() {
+            var $cname = $("#cname").val();
+            var $cnumber = $("#cnumber").val();
+            var $csize = $("#csize").val();
+            var $ccolor = $("#ccolor").val();
+            var $cfacprice = $("#cfacprice").val();
+            var $cretprice = $("#cretprice").val();
+            if($cname==="" || $cnumber==="" || $csize==="" || $cfacprice==="" || $cretprice===""){
+                alert("请填写完整");
+            }else {
+                $("#idFrmMain").submit();
+            }
 
-        function save()
-        {
-
-            $("#idFrmMain").attr({"action":"/cloth/AddClothServlet.do"})
-            document.getElementById("idFrmMain").submit();
-
-            alert("新增成功！");
 
         }
+
+
         function update()
         {
             alert("进入更新");
@@ -48,14 +54,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 
 <BODY style="background: url('<%=basePath%>image/bg.gif')">
-<FORM NAME="idFrmMain" ID="idFrmMain" METHOD="POST" ONSUBMIT="return false">
+<FORM NAME="idFrmMain" ID="idFrmMain" method="get" action="<%=basePath%>cloth/AddClothServlet.do">
   <table border="0" width="100%"> 
     <tr> 
       <td width="100%" colspan="0" rowspan="0" align="center" valign="center">
           <table border="0" width="100%" id="table" cellspacing="0"  cellpadding="2"  bgcolor="gray">
           <tr> 
             <td class="headerbar61" width="50%">货号详细</td> 
-            <td class="headerbar63" width="50%"> <input type="button" name="save70302002"  onClick="javascript:save()" value="新增确认 "> 
+            <td class="headerbar63" width="50%"> <input type="button" name="save70302002" value="新增确认" onclick="javascript:saveCloth();">
                
 &nbsp; <input type="button" name="save70302002" onClick="javascript:back()" value=" 返 回 "></td> 
           </tr> 
@@ -65,13 +71,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <td width="100%" colspan="0" rowspan="0" align="center" valign="center"> <table border="0" width="100%" id="table1" cellspacing="1"  cellpadding="2"  bgcolor="gray"> 
           <tr> 
            <td class="textbar81" width="15%">货号</td> 
-            <td class="textbar01" width="35%"> <input type="text" name="cid" value="自动编号..." readonly="readonly" size="15" style="width:210px " > </td>  
+            <td class="textbar01" width="35%">自动编号 </td>
 			 <td class="textbar81" width="15%">品名</td> 
-            <td class="textbar01" width="35%"> <input type="text" name="cname" value="${oneCloth.cname }" size="15" style="width:210px "> </td> 
+            <td class="textbar01" width="35%"> <input type="text" id="cname" name="cname" value="${oneCloth.cname }" size="15" style="width:210px "> </td>
           </tr> 
           <tr> 
             <td width="15%" class="textbar81">色号</td> 
-            <td class="textbar01" width="35%"> <select name="ccolor" style="width:210px "> 
+            <td class="textbar01" width="35%"> <select id="ccolor" name="ccolor" style="width:210px ">
                <option value="" <c:if test="">selected</c:if> >请选择</option> 
                 <option <c:if test="${oneCloth.ccolor=='大红色' }">selected</c:if> value="大红色">大红色</option> 
                 <option <c:if test="${oneCloth.ccolor=='浅红色' }">selected</c:if> value="浅红色">浅红色</option> 
@@ -85,7 +91,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </select></td> 
          
             <td width="15%" class="textbar81">尺码</td> 
-            <td class="textbar01" width="35%"> <select name="csize" style="width:210px "> 
+            <td class="textbar01" width="35%"> <select id="csize" name="csize" style="width:210px ">
                <option value="" <c:if test="">selected</c:if> >请选择</option> 
                 <option <c:if test="${oneCloth.csize=='150' }">selected</c:if> value="150">150</option> 
                 <option <c:if test="${oneCloth.csize=='155' }">selected</c:if> value="155">155</option> 
@@ -100,15 +106,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           </tr> 
 		   <tr> 
             <td width="15%" class="textbar81">库存</td> 
-            <td class="textbar01" width="35%"> <input type="text" value="${oneCloth.cnumber}" name="cnumber" size="15" style="width:210px "> </td> 
+            <td class="textbar01" width="35%"> <input type="text" id="cnumber" value="${oneCloth.cnumber}" name="cnumber" size="15" style="width:210px "> </td>
             <td class="textbar81" width="15%">图片</td> 
-            <td class="textbar01" width="35%"> <input type="text" value="${oneCloth.cimage}" name="cimage" size="15" style="width:210px "> </td> 
+            <td class="textbar01" width="35%"> <input type="text" id="cimage" value="${oneCloth.cimage}" name="cimage" size="15" style="width:210px "> </td>
           </tr> 
           <tr> 
             <td width="15%" class="textbar81">出厂价</td> 
-            <td class="textbar01" width="35%"> <input type="text" value="${oneCloth.cfacprice}" name= "cfacprice" size="15" style="width:210px "> </td> 
+            <td class="textbar01" width="35%"> <input type="text" id="cfacprice" value="${oneCloth.cfacprice}" name= "cfacprice" size="15" style="width:210px "> </td>
             <td class="textbar81" width="15%">零售价</td> 
-            <td class="textbar01" width="35%"> <input type="text" value="${oneCloth.cretprice}" name ="cretprice" size="15" style="width:210px "> </td> 
+            <td class="textbar01" width="35%"> <input type="text" id="cretprice" value="${oneCloth.cretprice}" name ="cretprice" size="15" style="width:210px "> </td>
           </tr> 
           
  
@@ -119,7 +125,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           </tr> 
         </table></td> 
     </tr> 
-  </table> 
+  </table>
+
 </FORM> 
 </BODY>
 </html>

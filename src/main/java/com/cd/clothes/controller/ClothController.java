@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,12 +23,13 @@ public class ClothController {
     @Autowired
     private ClothService clothService;
 
-    @RequestMapping("/AddClothServlet.do")
+    @RequestMapping(value = "/AddClothServlet.do",method = RequestMethod.GET)
     public String addCloth(Cloth cloth, ModelMap modelMap){
         try {
+            cloth.setFlag(0);
             clothService.add(cloth);
             System.out.println(cloth);
-            return "QueryAllClothServlet.do";
+            return "redirect:QueryAllClothServlet.do";
         } catch (Exception e) {
             e.printStackTrace();
             modelMap.addAttribute("message","系统维护升级中");
