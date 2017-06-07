@@ -58,7 +58,7 @@ function updatestockout(){
  		idmig0101.action="${pageContext.request.contextPath }/AddStockoutitemServletUI2";
 		idmig0101.submit();
  		}
--->
+
 </SCRIPT>
 
 <BODY BACKGROUND="${pageContext.request.contextPath }/image/bg.gif">

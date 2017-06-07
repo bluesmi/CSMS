@@ -23,7 +23,7 @@
 <script type="text/javascript"
 	src="<%=basePath%>jquery/jquery-1.5.1.js"></script>
 <script type="text/javascript"
-	src="<%=basePath%>jquery/laydate/laydate.js'"></script>
+	src="<%=basePath%>jquery/laydate/laydate.js"></script>
 
 <script type="text/javascript"
 	src="<%=basePath%>js/page.js"></script>
@@ -35,36 +35,40 @@
 
 <script language="javascript">
 	function goto1(url) {
-		window.location = url;
+        var location = (window.location + '').split('/');
+        var basePath = location[0] + '//' + location[2] + '/' + location[3] + '/';
+		window.location = basePath+url;
 	}
 
 	function goSearch() {
-		
+        var location = (window.location + '').split('/');
+        var basePath = location[0] + '//' + location[2] + '/' + location[3] + '/';
 		var wid = $("#wid").val();
 		var sid = $("#sid").val();
 		var btime = $("#frmWRPT_OPT_DATE2_PJT70302").val();
 		var otime = $("#frmWRPT_OPT_DATE3_PJT70302").val();
 		if (sid != "") {
-			window.location.href = "/clothing/QuerybySid?sid=" + sid;
+			window.location.href = basePath+"stockIn/QuerybySid.do?sid=" + sid;
 		} else if (wid != "") {
-			window.location = "/clothing/QueryByWid?wid=" + wid;
+			window.location = basePath+"stockIn/QueryByWid.do?wid=" + wid;
 
 		} else if (btime != "" && otime != "") {
-			var str = "/clothing/QueryByTime?btime=" + btime + "&otime="
+			var str = basePath+"stockIn/QueryByTime.do?btime=" + btime + "&otime="
 					+ otime;
 			
 			window.location = str;
 
 		} else {
-			window.location = "/clothing/QueryAllStockinOrderServlet";
+			window.location = basePath+"stockIn/QueryAllStockinOrderServlet.do";
 
 		}
 	}
 	function del(id) {
-
+        var location = (window.location + '').split('/');
+        var basePath = location[0] + '//' + location[2] + '/' + location[3] + '/';
 		if (confirm("您确定删除该条入库订单吗？")) {
 
-			var str = "/clothing/DeleteStockinorderServlet?sid=" + id;
+			var str = basePath+"stockIn/DeleteStockinorderServlet.do?sid=" + id;
 
 			window.location.href = str;
 		}
@@ -93,7 +97,7 @@
 	}
 </script>
 
-<BODY BACKGROUND="${pageContext.request.contextPath }/image/bg.gif">
+<BODY BACKGROUND="<%=basePath%>image/bg.gif">
 	<FORM NAME="idFrmMain" ID="idmig0101" METHOD="POST" ACTION=""
 		ONSUBMIT="return false">
 
@@ -139,13 +143,13 @@
 					type="text" name="frmWRPT_OPT_DATE2_PJT70302"
 					id="frmWRPT_OPT_DATE2_PJT70302" value="2016-06-01"
 					readonly="readonly" size="12"> <img
-					src="${pageContext.request.contextPath }/jquery/calendar.gif"
+					src="<%=basePath%>jquery/calendar.gif"
 					width="18" height="17"
 					onClick="laydate({elem: '#frmWRPT_OPT_DATE2_PJT70302'});"
 					title="显示日历" /> ~ <input type="text"
 					name="frmWRPT_OPT_DATE3_PJT70302" id="frmWRPT_OPT_DATE3_PJT70302"
 					value="2016-06-04" readonly="readonly" size="12"> <img
-					src="${pageContext.request.contextPath }/jquery/calendar.gif"
+					src="<%=basePath%>jquery/calendar.gif"
 					width="18" height="17"
 					onClick="laydate({elem: '#frmWRPT_OPT_DATE3_PJT70302'});"
 					title="显示日历" /></td>
@@ -166,7 +170,7 @@
 				<td class="headerbar61">
 					<p align="rigth">
 						<input type=submit value=" 新 增 "
-							onClick="JavaScript:goto1('/clothing/AddStockinOrderServlet')">
+							onClick="JavaScript:goto1('stock/order2002.jsp')">
 					</p>
 				</td>
 		</table>
@@ -191,12 +195,12 @@
 							<tr>
 								<td class="gridbar01" align="center">${status.count}</td>
 								<td class="gridbar01" align="center"><a
-									href="/clothing/QueryAllStockinOrderItemsServlet?sid=${item.sid}">${item.sid}</a></td>
+									href="<%=basePath%>stockIn/QueryAllStockinOrderItemsServlet.do?sid=${item.sid}">${item.sid}</a></td>
 								<td class="gridbar01" align="center">${item.wid}</td>
 								<td class="gridbar01" align="center">${item.stime}</td>
 								<td class="gridbar01" align="left">${item.loginName}</td>
 								<td class="gridbar01" align="center"><img
-									src="${pageContext.request.contextPath }/image/del.gif"
+									src="<%=basePath%>image/del.gif"
 									align="bottom" border="0" alt="删除"
 									onClick="JavaScript:del('${item.sid}')" /></td>
 							</tr>
@@ -205,12 +209,12 @@
 							<tr>
 								<td class="gridbar01" align="center">${status.count }</td>
 								<td class="gridbar01" align="center"><a
-									href="/clothing/QueryAllStockinOrderItemsServlet?sid=${stockin.sid}">${stockin.sid}</a></td>
+									href="<%=basePath%>stockIn/QueryAllStockinOrderItemsServlet.do?sid=${stockin.sid}">${stockin.sid}</a></td>
 								<td class="gridbar01" align="center">${stockin.wid}</td>
 								<td class="gridbar01" align="center">${stockin.stime}</td>
 								<td class="gridbar01" align="left">${stockin.loginName}</td>
 								<td class="gridbar01" align="center"><img
-									src="${pageContext.request.contextPath }/image/del.gif"
+									src="<%=basePath%>image/del.gif"
 									align="bottom" border="0" alt="删除"
 									onClick="JavaScript:del('${stockin.sid}')" /></td>
 							</tr>

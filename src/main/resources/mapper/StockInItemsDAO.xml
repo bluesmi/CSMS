@@ -10,6 +10,9 @@
     <delete id="delete" parameterType="Integer">
         DELETE FROM stockin_item WHERE siid=#{siid}
     </delete>
+    <delete id="deleteBysid" parameterType="String">
+        DELETE FROM stockin_item WHERE sid=#{sid}
+    </delete>
     <select id="findAllBySid" resultType="StockInItems"  parameterType="String">
         select * from StockIn_item where sid=#{sid}
     </select>

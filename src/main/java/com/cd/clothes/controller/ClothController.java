@@ -1,6 +1,7 @@
 package com.cd.clothes.controller;
 
 import com.cd.clothes.model.Cloth;
+import com.cd.clothes.model.StockInItems;
 import com.cd.clothes.service.ClothService;
 import com.google.gson.Gson;
 import org.apache.ibatis.annotations.Param;
@@ -78,6 +79,7 @@ public class ClothController {
         }
     }
 
+
   @RequestMapping("/QueryClothServlet.do")
    public String queryClothServlet(@Param("cid") String cid,ModelMap modelMap){
 
@@ -102,7 +104,7 @@ public class ClothController {
            return "system/CLOTHING1001";
 
        } catch (Exception e) {
-           return "QueryAllClothServlet.do";
+           return "redirect:QueryAllClothServlet.do";
        }
    }
 
@@ -115,7 +117,7 @@ public class ClothController {
            modelMap.addAttribute("allCloth", list);
            return "system/CLOTHING1001";
        } catch (Exception e) {
-           return "QueryAllClothServlet.do";
+           return "redirect:QueryAllClothServlet.do";
        }
    }
 
@@ -129,7 +131,7 @@ public class ClothController {
             modelMap.addAttribute("allCloth", list);
             return "system/CLOTHING1001";
         } catch (Exception e) {
-            return "QueryAllClothServlet.do";
+            return "redirect:QueryAllClothServlet.do";
         }
     }
 
@@ -139,8 +141,10 @@ public class ClothController {
             clothService.deleteCloth(cid);
             return "redirect:QueryAllClothServlet.do";
         } catch (Exception e) {
-            return "QueryAllClothServlet.do";
+            return "redirect:QueryAllClothServlet.do";
         }
     }
+
+
 
 }

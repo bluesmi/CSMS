@@ -140,6 +140,7 @@ public class StockInServiceImpl implements StockInService {
     public void deleteStockin(String sid) throws Exception {
         try {
             stockInDAO.delete(sid);
+            stockInItemsDAO.deleteBysid(sid);
         }catch (Exception e){
             throw new RuntimeException();
         }

@@ -28,9 +28,7 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/js/addFunction.js"></script>
 </head>
-<script language="javascript">
-	var CalendarWebControl = new atCalendarControl();
-</script>
+
 <SCRIPT LANGUAGE="javaScript">
 <!--
 	var trFlag = 0;
@@ -42,7 +40,9 @@
 		}
 	}
 	function goto1() {
-		window.location = "stock/order2003.jsp?sid=${stockin.sid}";
+        var location = (window.location + '').split('/');
+        var basePath = location[0] + '//' + location[2] + '/' + location[3] + '/';
+		window.location = basePath+"stock/order2003.jsp?sid=${stockin.sid}";
 	}
 
 	function del(siid) {
