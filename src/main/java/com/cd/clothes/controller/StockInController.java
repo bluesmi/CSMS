@@ -123,6 +123,15 @@ public class StockInController {
         }
     }
 
+    @RequestMapping("/AddStockinOrderItemServlet.do")
+    public void addStockinOrderServlet(Stockin stockin,ModelMap modelMap){
+        System.out.println(stockin);
+//        stockinService.addStockin();
+//        Stockin stockin_number = stockinService.findlastStockin_number();
+//        request.setAttribute("lastnumber", stockin_number.getSid());
+//        request.getRequestDispatcher("stock/order2002.jsp").forward(request, response);
+    }
+
     @RequestMapping("/DeleteStockinorderServlet.do")
     public String deleteStockinorderServlet(@Param("sid") String sid,ModelMap modelMap){
         try {
@@ -132,6 +141,51 @@ public class StockInController {
             e.printStackTrace();
             modelMap.addAttribute("message","系统维护升级中");
             return "views/message";
+        }
+    }
+
+    @RequestMapping("/DeleteStockinOrderItemServlet.do")
+    public String deleteStockinOrderItemServlet(@Param("siid") String siid,ModelMap modelMap){
+        //前台页面需要参数 siid  商品号 cid 订单项的数量 number
+        //订单项表中删除一个订单项
+        System.out.println("进来了删除明细");
+
+
+        StockInItems stockIn_items = null;
+        try {
+            stockIn_items = stockInService.findbySiid(siid);
+            stockInService.deleteStockin_items(siid);
+            //在商品表中加库存
+            Cloth cloth = clothService.findCloth(Integer.toString(stockIn_items.getCid()));
+            clothService.updateNumber(cloth.getCid(), cloth.getCnumber()-stockIn_items.getSinumber());
+            String str="redirect:QueryAllStockinOrderItemsServlet.do?sid="+stockIn_items.getSid();
+            return str;
+        } catch (Exception e) {
+            e.printStackTrace();
+            modelMap.addAttribute("message","系统维护升级中");
+            return "views/message";
+        }
+    }
+
+    @RequestMapping("/UpdateStockinOrderServlet.do")
+    public String updateStockinOrderServlet(Stockin stockin,ModelMap modelMap){
+        try {
+            stockInService.updateStockin(stockin);
+            String str="redirect:QueryAllStockinOrderItemsServlet.do?sid="+stockin.getSid();
+            return str;
+        } catch (Exception e) {
+            e.printStackTrace();
+            modelMap.addAttribute("message","系统维护升级中");
+            return "views/message";
+        }
+    }
+
+    @RequestMapping("/UpdateStockinOrderItemServlet.do")
+    public void updateStockinOrderItemServlet(StockInItems stockInItems){
+        try {
+            stockInService.updateStockin_items(stockInItems);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

@@ -30,7 +30,7 @@
 </head>
 
 <SCRIPT LANGUAGE="javaScript">
-<!--
+
 	var trFlag = 0;
 	function tabMove0(objId, position) {
 		if (event.keyCode == 13) {
@@ -47,18 +47,16 @@
 
 	function del(siid) {
 		if (confirm("您确定删除该条明细？")) {
-			var str = "/clothing/DeleteStockinOrderItemServlet?siid=" + siid;
+            var location = (window.location + '').split('/');
+            var basePath = location[0] + '//' + location[2] + '/' + location[3] + '/';
+			var str = basePath+"stockIn/DeleteStockinOrderItemServlet.do?siid=" + siid;
 			window.location.href = str;
 		}
 	}
 
 	function save() {
 
-		$("#idmig0101").attr({
-			"action" : "/clothing/UpdateStockinOrderServlet"
-		})
-		document.getElementById("idmig0101").submit();
-		alert('保存成功');
+
 	}
 	function setValue() {
 		document.forms[0].gys.value = "610";
@@ -73,11 +71,22 @@
 	function setValue1() {
 		document.forms[0].sccj.value = "";
 	}
-	-->
+
+
+	function saveStockIn() {
+        var location = (window.location + '').split('/');
+        var basePath = location[0] + '//' + location[2] + '/' + location[3] + '/';
+        $("#idmig0101").attr({
+            "action" :basePath+ "stockIn/UpdateStockinOrderServlet.do"
+        })
+        document.getElementById("idmig0101").submit();
+        alert('保存成功');
+    }
+
 </SCRIPT>
 
 <BODY BACKGROUND="${pageContext.request.contextPath }/image/bg.gif">
-	<FORM NAME="mig0101" ID="idmig0101" METHOD="POST" ACTION=""
+	<FORM NAME="mig0101" ID="idmig0101" METHOD="POST" ACTION="<%=basePath%>"
 		ONSUBMIT="return false">
 
 		<table border=0 cellspacing=0 cellpadding=2 width="100%"
@@ -85,7 +94,7 @@
 			<tr>
 				<td class="headerbar61">入库单详细</td>
 				<td class="headerbar61"><p align="right">
-						<input type=button value=" 保 存 " onClick="JavaScript:save();">
+						<input type=button value=" 保 存 " onClick="JavaScript:saveStockIn();">
 						<input type=button value=" 返 回 "
 							onClick="JavaScript:history.back();">
 					</p></td>

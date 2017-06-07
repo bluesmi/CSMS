@@ -29,7 +29,7 @@
 </head>
 
 <SCRIPT LANGUAGE="javaScript">
-<!--
+
 	var trFlag = 0;
 	function tabMove0(objId, position) {
 		if (event.keyCode == 13) {
@@ -66,11 +66,14 @@
 	function setValue1() {
 		document.forms[0].sccj.value = "";
 	}
-	-->
+
+	function addStockIn() {
+		$("#idmig0101").submit();
+    }
 </SCRIPT>
 
 <BODY BACKGROUND="${pageContext.request.contextPath }/image/bg.gif">
-	<FORM NAME="mig0101" ID="idmig0101" METHOD="POST" ACTION=""
+	<FORM NAME="mig0101" ID="idmig0101" METHOD="POST" ACTION="<%=basePath%>stock/AddStockinOrderItemServlet.do"
 		ONSUBMIT="return false">
 
 		<table border=0 cellspacing=0 cellpadding=2 width="100%"
@@ -78,8 +81,8 @@
 			<tr>
 				<td class="headerbar61">入库单详细</td>
 				<td class="headerbar61"><p align="right">
-						<input type="button" value="确认"> <input type=button
-							value=" 保 存 " onClick="JavaScript:history.save();"> <input
+						 <input type=button
+							value=" 确认 " onClick="JavaScript:addStockIn();"> <input
 							type=button value=" 返 回 " onClick="JavaScript:history.back();">
 					</p></td>
 			</tr>

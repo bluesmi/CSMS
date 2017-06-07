@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.cd.clothes.dao.StockInDAO">
     <insert id="add" parameterType="Stockin">
-        INSERT INTO stockin(wid, loginName, stime, sremark, sstute)
-        VALUES (#{wid},#{loginName},#{stime},#{sremark},#{ssture})
+        INSERT INTO stockin(sid,wid, loginName, stime, sremark, sstute)
+        VALUES (#{sid},#{wid},#{loginName},#{stime},#{sremark},#{ssture})
     </insert>
     <update id="update" parameterType="Stockin">
         update stockin set wid=#{wid},loginName=#{loginName},stime=#{stime},sremark=#{sremark},sstute=#{sstute}
