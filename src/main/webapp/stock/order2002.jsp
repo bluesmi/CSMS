@@ -73,8 +73,8 @@
 </SCRIPT>
 
 <BODY BACKGROUND="${pageContext.request.contextPath }/image/bg.gif">
-	<FORM NAME="mig0101" ID="idmig0101" METHOD="POST" ACTION="<%=basePath%>stock/AddStockinOrderItemServlet.do"
-		ONSUBMIT="return false">
+	<FORM NAME="mig0101" ID="idmig0101" METHOD="POST" ACTION="<%=basePath%>stockIn/AddStockinOrderServlet.do"
+		>
 
 		<table border=0 cellspacing=0 cellpadding=2 width="100%"
 			bgcolor="gray">
@@ -97,7 +97,7 @@
 			<tr>
 				<td class="textbar81" width="15%">单据号</td>
 				<td class="textbar01" width="35%"><input type="text"
-					value="${lastnumber}" onfocus=this.blur() readonly size="20">
+					name="sid" value="${lastnumber}" onfocus=this.blur() readonly size="20">
 				</td>
 				<td class="textbar81" width="15%">入库日期</td>
 				<td class="textbar01" width="35%"><input type="text"

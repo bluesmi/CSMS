@@ -47,7 +47,7 @@ parent.main.location="main.jsp"
             </tr>
 			<tr>
               <td width="16%"><div align="right"><img src="${pageContext.request.contextPath }/image/dot1.gif" width="13" height="16"></div></td>
-              <td width="84%"><a href="${pageContext.request.contextPath }/ListStockoutServlet" target="main">出库管理</a></td>
+              <td width="84%"><a href="<%=basePath%>stockout/ListStockoutServlet.do" target="main">出库管理</a></td>
             </tr>
 			
             <tr>
