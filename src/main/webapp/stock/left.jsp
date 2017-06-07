@@ -1,5 +1,10 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://"
+            + request.getServerName() + ":" + request.getServerPort()
+            + path + "/";
+%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -26,7 +31,7 @@ parent.main.location="main.jsp"
 		<table width="100%" cellspacing="0" cellpadding="0" border="0">
 				<tr>
 				<td  class="left1">
-				<a id="exp52" title="折叠" href="javascript:widgets.ToggleWidget(hideTop1);"><img id="exp5" alt="折叠" src="${pageContext.request.contextPath }/image/qq_minimize.gif"  border="0"></a>
+				<a id="exp52" title="折叠" href="javascript:widgets.ToggleWidget(hideTop1);"><img id="exp5" alt="折叠" src="<%=basePath%>image/qq_minimize.gif"  border="0"></a>
 				&nbsp;&nbsp;&nbsp;&nbsp;<a id="exp51" title="折叠" href="javascript:widgets.ToggleWidget(hideTop1);">库存管理</a></td>
 				</tr>
 			</table>		</td>
@@ -37,8 +42,8 @@ parent.main.location="main.jsp"
 		<table width="100%"  border="0" cellspacing="1" cellpadding="0">
            
 			 <tr>
-              <td width="16%"><div align="right"><img src="${pageContext.request.contextPath }/image/dot1.gif" width="13" height="16"></div></td>
-              <td width="84%"><a href="${pageContext.request.contextPath }/QueryAllStockinOrderServlet " target="main">入库管理</a></td>
+              <td width="16%"><div align="right"><img src="<%=basePath%>image/dot1.gif" width="13" height="16"></div></td>
+              <td width="84%"><a href="<%=basePath%>stockIn/QueryAllStockinOrderServlet.do " target="main">入库管理</a></td>
             </tr>
 			<tr>
               <td width="16%"><div align="right"><img src="${pageContext.request.contextPath }/image/dot1.gif" width="13" height="16"></div></td>

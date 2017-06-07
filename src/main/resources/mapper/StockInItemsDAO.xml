@@ -7,8 +7,8 @@
     <update id="update" parameterType="StockInItems">
         update StockIn_item set siid=#{siid},cid=#{cid},sinumber=#{sinumber} where sid=#{sid}
     </update>
-    <delete id="delete" parameterType="String">
-        DELETE FROM stockin_item WHERE sid=#{sid}
+    <delete id="delete" parameterType="Integer">
+        DELETE FROM stockin_item WHERE siid=#{siid}
     </delete>
     <select id="findAllBySid" resultType="StockInItems"  parameterType="String">
         select * from StockIn_item where sid=#{sid}

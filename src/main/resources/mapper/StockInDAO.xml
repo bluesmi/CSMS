@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cd.clothes.dao.StockInDAO">
+    <insert id="add" parameterType="Stockin">
+        INSERT INTO stockin(wid, loginName, stime, sremark, sstute)
+        VALUES (#{wid},#{loginName},#{stime},#{sremark},#{ssture})
+    </insert>
+    <update id="update" parameterType="Stockin">
+        update stockin set wid=#{wid},loginName=#{loginName},stime=#{stime},sremark=#{sremark},sstute=#{sstute}
+         where sid=#{sid}
+    </update>
+    <delete id="delete" parameterType="String">
+        delete from stockin  where sid=#{sid}
+    </delete>
+    <select id="querysid" resultType="com.cd.clothes.model.Stockin">
+        SELECT * FROM stockin ORDER BY sid DESC LIMIT 1
+    </select>
+    <select id="findAll" resultType="Stockin">
+        SELECT * FROM stockin
+    </select>
+    <select id="findAllbyWid" resultType="Stockin">
+        select * from stockin where wid=#{wid}
+    </select>
+    <select id="findAllbyTime" resultType="Stockin">
+        select * from stockin where stime between #{time1} and #{time2}
+    </select>
+    <select id="findBySid" resultType="Stockin">
+        select * from stockin where sid=#{sid}
+    </select>
+</mapper>

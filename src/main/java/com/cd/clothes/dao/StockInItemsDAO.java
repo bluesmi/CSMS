@@ -24,10 +24,10 @@ public interface StockInItemsDAO {
 
     /**
      * 按订单条目id删除一个订单条目
-     * @param sid
+     * @param siid
      * @throws SQLException
      */
-     void delete(@Param("sid") String sid) throws SQLException;
+     void delete(@Param("siid") Integer siid) throws SQLException;
 
 
     /**

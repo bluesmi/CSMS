@@ -16,20 +16,20 @@
 <META HTTP-EQUIV="content-style-type" CONTENT="text/css">
 <title>采购入库管理</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/css/cjpm.css">
+	href="<%=basePath%>css/cjpm.css">
 
 <script type="text/javascript"
-	src="${pageContext.request.contextPath }/js/cjcalendar.js"></script>
+	src="<%=basePath%>js/cjcalendar.js"></script>
 <script type="text/javascript"
-	src="<c:url value='/jquery/jquery-1.5.1.js'/>"></script>
+	src="<%=basePath%>jquery/jquery-1.5.1.js"></script>
 <script type="text/javascript"
-	src="<c:url value='/jquery/laydate/laydate.js'/>"></script>
+	src="<%=basePath%>jquery/laydate/laydate.js'"></script>
 
 <script type="text/javascript"
-	src="${pageContext.request.contextPath }/js/page.js"></script>
+	src="<%=basePath%>js/page.js"></script>
 </head>
 <script language="javascript">
-	var CalendarWebControl = new atCalendarControl();
+
 </script>
 
 
