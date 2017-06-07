@@ -123,7 +123,7 @@ public class StockInController {
         }
     }
 
-    @RequestMapping("/AddStockinOrderItemServlet.do")
+    @RequestMapping("/AddStockinOrderServlet.do")
     public void addStockinOrderServlet(Stockin stockin,ModelMap modelMap){
         System.out.println(stockin);
 //        stockinService.addStockin();
