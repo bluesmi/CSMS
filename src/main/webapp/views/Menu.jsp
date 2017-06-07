@@ -93,7 +93,6 @@
 					
 					<td><img src="<%=basePath%>image/top_line.gif" width="2" height="29"></td>
 					<td align="right">${sessionScope.sessionUser.loginName},您好！<span id="clock"></span></td>
-					
 				  </tr>
 			 </table>
 		</td>

@@ -1,6 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <head>
@@ -8,19 +11,21 @@
 <META HTTP-EQUIV="content-script-type" CONTENT="text/JavaScript">
 <META HTTP-EQUIV="content-style-type" CONTENT="text/css">
 <title>出库单查询</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/cjpm.css">
-<script type="text/javascript" src="${pageContext.request.contextPath }/js/cjcalendar.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/js/page.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/jquery/laydate/laydate.js"></script>
+<link rel="stylesheet" href="<%=basePath%>css/cjpm.css">
+<script type="text/javascript" src="<%=basePath%>js/cjcalendar.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/page.js"></script>
+<script type="text/javascript" src="<%=basePath%>jquery/laydate/laydate.js"></script>
+	<script type="text/javascript" src="<%=basePath%>jquery/jquery-1.5.1.js"></script>
 </head>
 <script language="javascript">
-	var CalendarWebControl = new atCalendarControl();
+
 </script>
-<SCRIPT LANGUAGE="javaScript">
-<!--
+
+<script type="text/javascript">
 function addstockout(){
-	idFrmMain.action="${pageContext.request.contextPath }/stock/order3002.jsp";
-	idFrmMain.submit();
+    var location = (window.location + '').split('/');
+    var basePath = location[0] + '//' + location[2] + '/' + location[3] + '/';
+    window.location.href=basePath+"stockout/enter.do";
 	}
 
 function delCom(id){
@@ -52,22 +57,31 @@ function setValue()
 }
 
 function dodelete(soid){
-	 	var b = window.confirm("您确认删除吗?");
-	 	if(b){
-	 			window.location.href = "${pageContext.request.contextPath }/DeleteStockoutServlet?soid=" + soid;  
-	 			alert("出库单删除成功！");
-	 		}
- 		} 
+    var location = (window.location + '').split('/');
+    var basePath = location[0] + '//' + location[2] + '/' + location[3] + '/';
+    var b = window.confirm("您确认删除吗?");
+    if (b) {
+        var str = basePath + "stockout/DeleteStockoutServlet.do?soid=" + soid;
+
+        window.location.href = str;
+        alert("删除成功");
+    }
+}
  		
 function goSearch()
 {
-	document.forms[0].action="${pageContext.request.contextPath }/QueryStockoutServlet";
-	document.forms[0].submit();
+    var location = (window.location+'').split('/');
+    var basePath = location[0]+'//'+location[2]+'/'+location[3]+'/';
+    var $wid = $("#wid").val();
+    var $soid = $("#soid").val();
+    var $starttime = $("#starttime").val();
+    var $endtime = $("#endtime").val();
+    var rex = /^[0-9]*$/;
+    window.location.href = basePath+"stockout/QueryStockoutServlet.do?wid="+$wid+"&soid+"+$soid+"&starttime"+$starttime+"&endtime"+$endtime;
 }
--->
-</SCRIPT>
+</script>
 
-<BODY BACKGROUND="${pageContext.request.contextPath }/image/bg.gif">
+<BODY BACKGROUND="<%=basePath%>image/bg.gif">
 <FORM NAME="idFrmMain" ID="idmig0101" METHOD="POST"  ACTION="" ONSUBMIT="return false">
 <input type="hidden" id="slide_img">
 <table border=0 cellspacing=0 cellpadding=2 width="100%" bgcolor="gray">
@@ -98,7 +112,7 @@ function goSearch()
 		</td>
 	  <td class="textbar81" width="15%">单据编号</td>
 		<td class="textbar01" width="35%">
-			<input type="text" name="soid" style="width:152px" value="${soid }">
+			<input type="text" name="soid" id="soid" style="width:152px" value="${soid}">
 		</td>				
 
 	</tr>
@@ -107,10 +121,10 @@ function goSearch()
 		<td class="textbar81" width="15%">出库日期</td>
 		<td class="textbar01" width="35%" colspan="3">
 			<input type="text" name="frmWRPT_OPT_DATE2_PJT70302" id="frmWRPT_OPT_DATE2_PJT70302" value="2016-06-01" readonly="readonly" size="12">
-			<input type="image" src="${pageContext.request.contextPath }/jquery/calendar.gif" width="18" height="17" onClick="laydate({elem: '#frmWRPT_OPT_DATE2_PJT70302'});" title="显示日历" />
+			<input type="image" src="<%=basePath%>jquery/calendar.gif" width="18" height="17" onClick="laydate({elem: '#frmWRPT_OPT_DATE2_PJT70302'});" title="显示日历" />
 			~ 
 			<input type="text" name="frmWRPT_OPT_DATE3_PJT70302" id="frmWRPT_OPT_DATE3_PJT70302" value="2016-06-10" readonly="readonly" size="12">
-			<input type="image" src="${pageContext.request.contextPath }/jquery/calendar.gif" width="18" height="17" onClick="laydate({elem: '#frmWRPT_OPT_DATE3_PJT70302'});" title="显示日历" />
+			<input type="image" src="<%=basePath%>jquery/calendar.gif" width="18" height="17" onClick="laydate({elem: '#frmWRPT_OPT_DATE3_PJT70302'});" title="显示日历" />
 	  </td>
 		
 	</tr>	
@@ -149,13 +163,13 @@ function goSearch()
 				<c:forEach  items="${allStockout }" var="stock" varStatus="s">
 				<tr>
 					<td  class="gridbar11" align="center">${s.count }</td>
-					<td  class="gridbar11" align="center"><a href="${pageContext.request.contextPath }/UpdateStockoutServletUI?soid=${stock.soid }">${stock.soid }</a></td>
+					<td  class="gridbar11" align="center"><a href="<%=basePath%>stockout/UpdateStockoutServletUI.do?soid=${stock.soid }">${stock.soid }</a></td>
 					<td  class="gridbar11" align="center">${stock.wid }</td>
 					<td  class="gridbar11" align="center">${stock.sotime }</td>
 					<td  class="gridbar11" align="left">${stock.loginName }</td>
 					<td  class="gridbar11" align="left">${stock.adress }</td>
 					<td  class="gridbar11" align="center">
-						<a href = "#"><img src="${pageContext.request.contextPath }/image/del.gif" align="bottom" border="0" alt="作废" onClick="javascript:dodelete('${stock.soid }')" /></a>					</td>
+						<a href = "#"><img src="<%=basePath%>image/del.gif" align="bottom" border="0" alt="作废" onClick="javascript:dodelete('${stock.soid }')" /></a>					</td>
 				</tr>
 				</c:forEach>
 			</table>

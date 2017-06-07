@@ -60,7 +60,6 @@ public class UserController {
                 if(null == session){
                     session = request.getSession(true);
                 }
-
                 session.setAttribute("sessionUser", user);
 
                 loginName = URLEncoder.encode(loginName, "utf-8");

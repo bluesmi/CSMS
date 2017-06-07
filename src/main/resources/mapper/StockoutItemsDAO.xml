@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cd.clothes.dao.StockoutItemsDAO">
+
+    <insert id="add" parameterType="StockoutItems">
+        insert into stockoutitem set soid=#{soid},cid=#{cid},sonumber=#{sonumber}
+    </insert>
+
+    <update id="update" parameterType="String">
+        update stockoutitem set soid=#{soid},cid=#{cid},sonumber=#{sonumber} where soiid=#{soiid}
+    </update>
+
+    <select id="findAll" resultType="Stockout">
+        select * from stockoutitem
+    </select>
+
+    <select id="findBySoid" resultType="Stockout" parameterType="String">
+        select * from stockoutitem  where soid=#{soid}
+    </select>
+
+    <delete id="delete" parameterType="String">
+        delete from stockoutitem where soiid=#{soiid}
+    </delete>
+
+    <delete id="deleteBySoid" parameterType="String">
+        delete from stockoutitem where soid=#{soid}
+    </delete>
+
+</mapper>

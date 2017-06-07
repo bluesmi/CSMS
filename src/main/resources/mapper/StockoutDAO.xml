@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cd.clothes.dao.StockoutDAO">
+    <insert id="add" parameterType="Stockout">
+        INSERT INTO stockout(soid, wid, loginName, soremark, sotime, sostute, adress, sphone) VALUES (#{soid},#{wid},#{loginName},#{soremark},#{sotime},#{sostute},#{adress},#{sphone});
+    </insert>
+    <select id="Querysoid" resultType="Stockout">
+        SELECT * FROM stockout ORDER BY soid DESC LIMIT 1
+    </select>
+    <update id="update" parameterType="String">
+        update stockout set wid=#{wid},loginName=#{loginName},soremark=#{soremark},sotime=#{sotime},adress=#{adress},sphone=#{sphone} where soid=#{soid}
+    </update>
+    <delete id="delete" parameterType="String">
+        delete from stockout where soid=#{soid}
+    </delete>
+    <select id="findAll" resultType="Stockout" >
+        select * from stockout
+    </select>
+    <select id="findBySoid" resultType="Stockout"  parameterType="String">
+        select * from stockout where soid=#{soid}
+    </select>
+    <select id="queryStockout" resultType="Stockout" >
+        select * from stockout
+        <if test="wid != null and soid != null and sotime !=null">
+            where wid = #{wid} and soid = #{soid} like CONCAT(CONCAT('%', #{soid}), '%') and sotime BETWEEN #{starttime} and #{endtime}
+        </if>
+        <if test="wid == null and soid != null and sotime !=null">
+            where wid = #{wid} and soid = #{soid} like CONCAT(CONCAT('%', #{soid}), '%') and sotime BETWEEN #{starttime} and #{endtime}
+        </if>
+    </select>
+</mapper>
