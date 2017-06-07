@@ -5,11 +5,13 @@ import com.cd.clothes.model.StockInItems;
 import com.cd.clothes.model.Stockin;
 import com.cd.clothes.service.ClothService;
 import com.cd.clothes.service.StockInService;
+import com.cd.clothes.util.StringUtil;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -108,7 +110,7 @@ public class StockInController {
         }
     }
 
-    @RequestMapping("/AddStockinOrderItemServlet.do")
+    @RequestMapping(value = "/AddStockinOrderItemServlet.do",method = RequestMethod.POST)
     public String addStockinOrderItemServlet(StockInItems stockInItems,ModelMap modelMap){
         try {
             stockInService.addStockin_items(stockInItems);
@@ -122,10 +124,30 @@ public class StockInController {
             return "views/message";
         }
     }
-
-    @RequestMapping("/AddStockinOrderServlet.do")
-    public void addStockinOrderServlet(Stockin stockin,ModelMap modelMap){
-        System.out.println(stockin);
+//    http://localhost:8080/csms/stockIn/AddStockinOrderServlet.do?stime=2007-06-21&wid=1&loginName=%E5%AE%8C&sremark=%E2%80%9C%E2%80%9D
+    @RequestMapping(value = "/AddStockinOrderServlet.do",method = RequestMethod.GET)
+    public String addStockinOrderServlet(@Param("stime") String stime,@Param("wid") String wid,
+                                        @Param("loginName") String loginName,
+                                       @Param("sremark") String sremark, ModelMap modelMap){
+        System.out.println("进来了");
+        Stockin stockin = new Stockin();
+        stockin.setSid(StringUtil.getSid(stime));
+        stockin.setStime(Date.valueOf(stime));
+        stockin.setWid(Integer.parseInt(wid));
+        stockin.setLoginName(loginName);
+        stockin.setSremark(sremark);
+        stockin.setStute(1);
+        try {
+            stockInService.addStockin(stockin);
+            Stockin stockin_number = stockInService.findlastStockin_number();
+            modelMap.addAttribute("lastnumber",stockin_number.getSid());
+            modelMap.addAttribute("stockin",stockin);
+            return "stock/order2004";
+        } catch (Exception e) {
+            e.printStackTrace();
+            modelMap.addAttribute("message","系统维护升级中");
+            return "views/message";
+        }
 //        stockinService.addStockin();
 //        Stockin stockin_number = stockinService.findlastStockin_number();
 //        request.setAttribute("lastnumber", stockin_number.getSid());

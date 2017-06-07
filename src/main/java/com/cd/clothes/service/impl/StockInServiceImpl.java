@@ -87,6 +87,7 @@ public class StockInServiceImpl implements StockInService {
         try {
             stockInDAO.add(stockin);
         }catch (Exception e){
+            e.printStackTrace();
             throw new RuntimeException();
         }
     }

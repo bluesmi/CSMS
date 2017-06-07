@@ -3,7 +3,7 @@
 <mapper namespace="com.cd.clothes.dao.StockInDAO">
     <insert id="add" parameterType="Stockin">
         INSERT INTO stockin(sid,wid, loginName, stime, sremark, sstute)
-        VALUES (#{sid},#{wid},#{loginName},#{stime},#{sremark},#{ssture})
+        VALUES (#{sid},#{wid},#{loginName},#{stime},#{sremark},#{stute})
     </insert>
     <update id="update" parameterType="Stockin">
         update stockin set wid=#{wid},loginName=#{loginName},stime=#{stime},sremark=#{sremark},sstute=#{sstute}

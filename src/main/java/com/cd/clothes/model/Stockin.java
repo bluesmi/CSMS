@@ -33,7 +33,7 @@ public class Stockin implements Serializable {
     /**
      * 状态
      */
-    private int sstute;
+    private int stute;
 
     public String getSid() {
         return sid;
@@ -76,12 +76,12 @@ public class Stockin implements Serializable {
         this.sremark = sremark;
     }
 
-    public int getSstute() {
-        return sstute;
+    public int getStute() {
+        return stute;
     }
 
-    public void setSstute(int sstute) {
-        this.sstute = sstute;
+    public void setStute(int stute) {
+        this.stute = stute;
     }
 
     @Override
@@ -92,7 +92,7 @@ public class Stockin implements Serializable {
         Stockin stockin = (Stockin) o;
 
         if (wid != stockin.wid) return false;
-        if (sstute != stockin.sstute) return false;
+        if (stute != stockin.stute) return false;
         if (sid != null ? !sid.equals(stockin.sid) : stockin.sid != null) return false;
         if (loginName != null ? !loginName.equals(stockin.loginName) : stockin.loginName != null) return false;
         if (stime != null ? !stime.equals(stockin.stime) : stockin.stime != null) return false;
@@ -106,7 +106,7 @@ public class Stockin implements Serializable {
         result = 31 * result + (loginName != null ? loginName.hashCode() : 0);
         result = 31 * result + (stime != null ? stime.hashCode() : 0);
         result = 31 * result + (sremark != null ? sremark.hashCode() : 0);
-        result = 31 * result + sstute;
+        result = 31 * result + stute;
         return result;
     }
 
@@ -118,7 +118,7 @@ public class Stockin implements Serializable {
                 ", loginName='" + loginName + '\'' +
                 ", stime=" + stime +
                 ", sremark='" + sremark + '\'' +
-                ", sstute=" + sstute +
+                ", stute=" + stute +
                 '}';
     }
 }

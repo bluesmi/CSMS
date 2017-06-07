@@ -1,10 +1,10 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+String path = request.getContextPath();
+String basePath = request.getScheme() + "://"
++ request.getServerName() + ":" + request.getServerPort()
++ path + "/";
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -73,7 +73,7 @@
 </SCRIPT>
 
 <BODY BACKGROUND="${pageContext.request.contextPath }/image/bg.gif">
-	<FORM NAME="mig0101" ID="idmig0101" METHOD="POST" ACTION="<%=basePath%>stockIn/AddStockinOrderServlet.do"
+	<FORM NAME="mig0101" ID="idmig0101" METHOD="get" ACTION="<%=basePath%>stockIn/AddStockinOrderServlet.do"
 		>
 
 		<table border=0 cellspacing=0 cellpadding=2 width="100%"
@@ -96,8 +96,7 @@
 			bgcolor="gray">
 			<tr>
 				<td class="textbar81" width="15%">单据号</td>
-				<td class="textbar01" width="35%"><input type="text"
-					name="sid" value="${lastnumber}" onfocus=this.blur() readonly size="20">
+				<td class="textbar01" width="35%">自动编号。。。
 				</td>
 				<td class="textbar81" width="15%">入库日期</td>
 				<td class="textbar01" width="35%"><input type="text"
@@ -125,7 +124,7 @@
 			<tr>
 				<td class="textbar81" width="15%">备注</td>
 				<td class="textbar01" width="85%" colspan="3"><textarea
-						name="sremark" cols="80" rows="4"></textarea></td>
+						name="sremark" cols="80" rows="4">&nbsp;</textarea></td>
 			</tr>
 
 
