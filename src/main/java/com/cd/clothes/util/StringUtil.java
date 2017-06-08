@@ -7,17 +7,13 @@ package com.cd.clothes.util;
  * time 21:27
  */
 public class StringUtil {
-    private static int IN = 1;
-    private static int OUT = 1;
-    public static String getSid(String time){
-        String sid = "rk"+time.replace("-","")+"0000"+IN;
-        IN++;
+    public static String getSid(String time,int size){
+        String sid = "rk"+time.replace("-","")+String.format("%05d", size+1);
         return sid;
     }
 
-    public static String getSoid(String time){
-        String soid = "ck"+time.replace("-","")+"0000"+OUT;
-        OUT++;
+    public static String getSoid(String time,int size){
+        String soid = "ck"+time.replace("-","")+String.format("%05d", size+1);;
         return soid;
     }
 }
