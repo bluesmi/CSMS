@@ -6,6 +6,7 @@ import com.cd.clothes.service.StockoutService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
@@ -50,5 +51,15 @@ public class StockoutServiceImpl implements StockoutService {
     @Override
     public List<Stockout> queryStockout(Integer wid, String soid, Date starttime, Date endtime) throws Exception {
         return stockoutDAO.queryStockout(wid,soid,starttime,endtime);
+    }
+
+    @Override
+    public List<Stockout> findAllbyTime(Date time1, Date time2) {
+        try {
+            return stockoutDAO.findAllbyTime(time1, time2);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException();
+        }
     }
 }

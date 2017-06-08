@@ -31,4 +31,7 @@
             and sotime BETWEEN #{starttime} and #{endtime}
         </if>
     </select>
+    <select id="findAllbyTime" resultType="Stockout">
+        SELECT * FROM stockout WHERE sotime BETWEEN #{time1} and #{time2}
+    </select>
 </mapper>

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -46,6 +47,7 @@ public class StockoutDAOTest {
     @Test
     public void testQuery() throws Exception {
 //        System.out.println(stockoutDAO.queryStockout(null,"rk2016061100003",null,null));
-
+        System.out.println(stockoutDAO.findAllbyTime(
+                Date.valueOf("2016-6-1"),Date.valueOf("2016-7-1")));
     }
 }
