@@ -19,9 +19,6 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/addFunction.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/jquery/laydate/laydate.js"></script>
 </head>
-<script language="javascript">
-	var CalendarWebControl = new atCalendarControl();
-</script>
 <SCRIPT LANGUAGE="javaScript">
 <!--
 var trFlag = 0;
@@ -42,7 +39,7 @@ function gotos(strURL)
 function gotoadditem(soid){
     var location = (window.location + '').split('/');
     var basePath = location[0] + '//' + location[2] + '/' + location[3] + '/';
-	window.location.href = basePath+"stockoutitems/AddStockoutitemServletUI?soid=${stockout.soid}" ;
+	window.location.href = basePath+"stockoutitems/AddStockoutitemServletUI.do?soid=${stockout.soid}" ;
 	 			
  		}
 
@@ -74,12 +71,12 @@ function setValue1(){
  function dodelete(soiid){
 	 		var b = window.confirm("您确认删除吗?");
 	 		if(b){
-	 			window.location.href = "${pageContext.request.contextPath }/DeleteStockoutitemServlet?soiid=" + soiid;  
+	 			window.location.href = "${pageContext.request.contextPath }/stockoutitems/DeleteStockoutitemServlet.do?soiid=" + soiid;
 	 			}
 	 			
  		} 
 function update(){
-	idmig0101.action="${pageContext.request.contextPath }/UpdateStockoutServlet";
+	idmig0101.action="${pageContext.request.contextPath }/stockout/UpdateStockoutServlet.do";
 	idmig0101.submit();
 	alert("出库单保存成功！");
 }
@@ -179,7 +176,7 @@ function update(){
 	<td  class="headerbar82">操作</td>
 </tr>
 
-<c:forEach items="${itemlist }" var="stockitem" varStatus="s">
+<c:forEach items="${allStockoutitem}" var="stockitem" varStatus="s">
 <tr>
 	<td   class="gridbar11" align="center">${s.count }</td>
 	<td   class="gridbar11" align="center">${stockitem.cid }</td>

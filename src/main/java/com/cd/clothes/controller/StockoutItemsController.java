@@ -35,7 +35,7 @@ public class StockoutItemsController {
     public String addStockoutItmesUI(@Param("soid") String soid,StockoutItems stockoutItems, ModelMap modelMap){
         try {
             modelMap.addAttribute("soid",soid);
-            return "redirect:ListStockoutitemServlet.do?sid="+stockoutItems.getSoid();
+            return "stock/order3005";
         } catch (Exception e) {
             e.printStackTrace();
             modelMap.addAttribute("message","系统维护升级中");
@@ -76,8 +76,10 @@ public class StockoutItemsController {
     @RequestMapping("/DeleteStockoutitemServlet.do")
     public String DeleteStockoutitemServlet(@Param("soiid") String soiid,ModelMap modelMap){
         try {
+            StockoutItems stockoutItems = stockoutItemsService.findStockoutitemBySoiid(Integer.parseInt(soiid));
             stockoutItemsService.deleteStockoutitem(Integer.parseInt(soiid));
-            return "/message";
+
+            return "redirect:ListStockoutitemServlet.do?soid="+stockoutItems.getSoid();
         } catch (Exception e) {
             e.printStackTrace();
             modelMap.addAttribute("message","系统维护升级中");

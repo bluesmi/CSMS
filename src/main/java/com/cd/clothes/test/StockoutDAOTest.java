@@ -1,6 +1,7 @@
 package com.cd.clothes.test;
 
 import com.cd.clothes.dao.StockoutDAO;
+import com.cd.clothes.dao.StockoutItemsDAO;
 import com.cd.clothes.model.Stockout;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,6 +21,8 @@ import java.util.List;
 public class StockoutDAOTest {
     @Autowired
     StockoutDAO stockoutDAO;
+    @Autowired
+    StockoutItemsDAO stockoutItemsDAO;
     @Test
     public void testGetsoid() throws Exception {
         stockoutDAO.Querysoid();
@@ -50,4 +53,11 @@ public class StockoutDAOTest {
         System.out.println(stockoutDAO.findAllbyTime(
                 Date.valueOf("2016-6-1"),Date.valueOf("2016-7-1")));
     }
+
+    @Test
+    public void testItemsDelete() throws Exception {
+//        System.out.println(stockoutDAO.queryStockout(null,"rk2016061100003",null,null));
+        stockoutItemsDAO.deleteBySOiid(Integer.parseInt("27"));
+    }
+
 }

@@ -37,8 +37,13 @@ public class StockoutItemsServiceImpl implements StockoutItemsService {
     }
 
     @Override
+    public StockoutItems findStockoutitemBySoiid(int soiid) throws Exception {
+        return stockoutItemsDAO.findStockoutitemBySoiid(soiid);
+    }
+
+    @Override
     public void deleteStockoutitem(int soiid) throws Exception {
-        stockoutItemsDAO.delete(soiid);
+        stockoutItemsDAO.deleteBySOiid(soiid);
     }
 
     @Override

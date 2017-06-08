@@ -1,6 +1,11 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://"
+            + request.getServerName() + ":" + request.getServerPort()
+            + path + "/";
+%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <head>
@@ -14,49 +19,72 @@
 </head>
 
 <SCRIPT LANGUAGE="javaScript">
-<!--
-function save()
-{
-	alert("保存成功！");
+
+jQuery(document).ready(function () {
+    var location = (window.location + '').split('/');
+    var basePath = location[0] + '//' + location[2] + '/' + location[3] + '/';
+    var url = basePath+"cloth/AjaxQueryAllclothServlet.do";
+    $.ajax(url,{
+        type:"get",
+        dataType:"json",
+        success:function (data) {
+            console.log(data);
+            var $cid = $("#cid");
+            $cid.html("");
+            var str = '<option value="" selected="selected">请选择</option>';
+            var strColor = '<option value="" selected="selected">请选择</option>'
+            for(var i = 0; i< data.length;i++){
+                str += '<option value="'+data[i].cid+'">'+data[i].cid+'</option>';
+            }
+            $cid.append(str);
+        }
+    });
+    $("#cid").change(function () {
+        var url = basePath+"cloth/AjaxQueryclothServlet.do";
+        $.ajax(url,{
+            type:"get",
+            dataType:"json",
+            data:{
+                "cid":$("#cid").val()
+            },
+            success:function (data) {
+                console.log(data);
+                var $ccolor = $("#ccolor");
+                var $csize = $("#csize");
+                var $cnumber = $("#cnumber");
+                $csize.html("");
+                $ccolor.html("");
+
+                var str = '<option value="" selected="selected">请选择</option>'
+                var strColor =str+ '<option value="'+data.ccolor+'">'+data.ccolor+'</option>';
+                var strSize = str +'<option value="'+data.csize+'">'+data.csize+'</option>'
+                $ccolor.append(strColor);
+                $csize.append(strSize);
+                $cnumber.val(data.cnumber);
+            }
+        });
+    });
+});
+
+function addstockoutitems() {
+    var $sonumber = $("#sonumber").val();
+    var $cnumber = $("#cnumber").val();
+    var check = parseInt($cnumber)-parseInt($sonumber);
+    if(check >= 0){
+        $("#idmig0102").submit();
+    }else {
+        alert("库存不够，请修改数量");
+    }
 }
-function update(){
-	idFrmMain.action="${pageContext.request.contextPath }/AddStockoutitemServlet";
-	idFrmMain.submit();
-	alert("保存成功！");
-}
-function back()
-{
-	history.back();
-}
- function check(){//动态加载货品的库存量
-var id = "cid";
-var soid = "soid";
-var value = $("#" + id).val();//获取输入框内容
-var value1 = $("#" + soid).val();//获取输入框内容
-$.ajax({
-		url:"/clothing/CheckClothServletUI",//要请求的servlet
-		data:{cid:value,soid:value1},//给服务器的参数
-		type:"POST",
-		dataType:"json",
-		async:false,//是否异步请求，如果是异步，那么不会等服务器返回，我们这个函数就向下运行了。
-		cache:false,
-		error: function(msg) { alert("error"); },
-		success:function(result) {
-			$("#"+"cnumber").attr("value",result);
-		}          
-	});				
-}
- 
--->
 </SCRIPT>
 <BODY BACKGROUND="${pageContext.request.contextPath }/image/bg.gif">
-<FORM NAME="idFrmMain" ID="idmig0102" METHOD="POST"  ACTION="">
+<FORM NAME="idFrmMain" ID="idmig0102" METHOD="get"  ACTION="<%=basePath%>stockoutitems//AddStockoutitemServlet.do">
 	<input type="hidden" id="soid" name="soid" value="${soid }">
 <table border="0" width="100%" id="table1" cellspacing="0"  cellpadding="2"  bgcolor="gray">
 	<tr>
   	<td class="headerbar61" width="15%" colspan="1">出库单详细</td>
     <td class="headerbar63" width="85%" colspan="1">
-      <input type="button" name="save70302002" value=" 保 存 " onclick="javascript:update()">&nbsp;
+      <input type="button" name="save70302002" value=" 保 存 " onclick="javascript:addstockoutitems()">&nbsp;
       <input type="button" name="back70302003" onClick="javascript:back()" value=" 返 回 ">
     </td>
   </tr>
@@ -72,41 +100,21 @@ $.ajax({
 	<tr>
   	<td class="textbar81" width="15%" colspan="1">货号</td>
    <td class="textbar01" width="85%" colspan="1">
-    	<select id="cid" name="cid" style="width:210px " onchange="check()"> 
-               <option value="" selected="selected">请选择</option> 
-                <option value="1">1</option> 
-                <option value="2">2</option>  
-                <option value="3">3</option>
+    	<select id="cid" name="cid" style="width:210px " >
+               <option value="" selected="selected">请选择</option>
               </select></td>
   </tr>
 	<tr>
   	<td class="textbar81" width="15%" colspan="1">色号</td>
-    <td class="textbar01" width="85%" colspan="1"><select name="ccolor" style="width:210px "> 
-               <option value="" selected="selected">请选择</option> 
-                <option value="大红色">大红色</option> 
-                <option value="浅红色">浅红色</option> 
-                <option value="紫红色">紫红色</option> 
-				<option value="纯白色">纯白色</option> 
-                <option value="米白色">米白色</option> 
-				<option value="深蓝色">深蓝色</option> 
-                <option value="淡蓝色">淡蓝色</option> 
-				<option value="黑色">黑色</option> 
-                <option value="棕色">棕色</option> 
+    <td class="textbar01" width="85%" colspan="1"><select name="ccolor" id="ccolor" style="width:210px ">
+               <option value="" selected="selected">请选择</option>
               </select></td>
   </tr>          
   <tr>
   	<td class="textbar81" width="15%" colspan="1">尺码</td>
-    <td class="textbar01" width="85%" colspan="1"><select name="csize" style="width:210px "> 
+    <td class="textbar01" width="85%" colspan="1"><select name="csize" id="csize" style="width:210px ">
                <option value="" selected="selected">请选择</option> 
-                <option value="150">150</option> 
-                <option value="155">155</option> 
-                <option value="160">160</option> 
-				<option value="165">165</option> 
-                <option value="170">170</option> 
-				<option value="175">175</option> 
-                <option value="180">180</option> 
-				<option value="185">185</option> 
-                <option value="190">190</option> 
+
               </select></td>
   </tr>
   
@@ -117,7 +125,7 @@ $.ajax({
             
 	<tr>
   	<td class="textbar81" width="15%" colspan="1">数量</td>
-    <td class="textbar01" width="85%" colspan="1"><input  name="sonumber" value="" style="width:210px;"></td>
+    <td class="textbar01" width="85%" colspan="1"><input id="sonumber" name="sonumber" value="" style="width:210px;"></td>
   </tr>      
 </table>${message }
 

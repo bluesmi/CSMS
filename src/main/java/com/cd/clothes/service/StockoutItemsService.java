@@ -12,6 +12,7 @@ public interface StockoutItemsService {
     public void updateStockoutitem(StockoutItems sout)throws Exception;
     public List<StockoutItems> getAll()throws Exception;
     public List<StockoutItems> findStockoutitem(String soid)throws Exception;
+    public StockoutItems findStockoutitemBySoiid(int soiid)throws Exception;
     public void deleteStockoutitem(int soiid)throws Exception;
     public void deleteStockoutitemBySoid(String soid)throws Exception;
 }

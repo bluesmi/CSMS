@@ -17,8 +17,11 @@
     <select id="findBySoid" resultType="StockoutItems" parameterType="String">
         select * from stockoutitem  where soid=#{soid}
     </select>
+    <select id="findStockoutitemBySoiid" resultType="StockoutItems">
+        SELECT * FROM stockoutitem WHERE soiid=#{soiid}
+    </select>
 
-    <delete id="delete" parameterType="String">
+    <delete id="deleteBySOiid" parameterType="Integer">
         delete from stockoutitem where soiid=#{soiid}
     </delete>
 

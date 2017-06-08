@@ -1,9 +1,8 @@
 package com.cd.clothes.controller;
 
-import com.cd.clothes.model.Cloth;
-import com.cd.clothes.model.Stockin;
-import com.cd.clothes.model.Stockout;
-import com.cd.clothes.model.Warehouse;
+import com.cd.clothes.model.*;
+import com.cd.clothes.service.ClothService;
+import com.cd.clothes.service.StockoutItemsService;
 import com.cd.clothes.service.StockoutService;
 import com.cd.clothes.util.StringUtil;
 import org.apache.ibatis.annotations.Param;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,7 +25,10 @@ public class StockoutController {
 
     @Autowired
     private StockoutService stockoutService;
-
+    @Autowired
+    private StockoutItemsService stockoutItemsService;
+    @Autowired
+    private ClothService clothService;
     @RequestMapping(value = "/AddStockoutServlet.do",method = RequestMethod.GET)
     public String addStockout(@Param("sotime") String sotime,@Param("wid") String wid,
                               @Param("loginName") String loginName,@Param("soremark") String soremark,
@@ -35,7 +38,7 @@ public class StockoutController {
 
         try {
             Stockout stockout1 = new Stockout();
-            int numberSize = stockoutService.queryStockout(null,"",Date.valueOf(sotime),Date.valueOf(sotime)).size();
+            int numberSize = stockoutService.findAllbyTime(Date.valueOf(sotime),Date.valueOf(sotime)).size();
             stockout1.setSoid(StringUtil.getSoid(sotime,numberSize));
 //        System.out.println(StringUtil.getSoid(sotime));
             stockout1.setSotime(Date.valueOf(sotime));
@@ -76,7 +79,18 @@ public class StockoutController {
     public String updateStockoutUI(@Param("soid") String soid, ModelMap modelMap){
         try {
             Stockout stockout=stockoutService.findStockout(soid);
+            List<StockoutItems> list = new ArrayList();
+            List<StockoutItems> allStockoutitem = stockoutItemsService.findStockoutitem(soid);
+            for(StockoutItems item:allStockoutitem){
+                int id = item.getCid();
+                String cid = id+"";
+                Cloth cloth = clothService.findCloth(cid);
+                item.setCloth(cloth);
+                list.add(item);
+            }
             modelMap.addAttribute("stockout",stockout);
+            modelMap.addAttribute("list", list);
+            modelMap.addAttribute("allStockoutitem", allStockoutitem);
             return "stock/order3004";
         } catch (Exception e) {
             e.printStackTrace();

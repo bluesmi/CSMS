@@ -10,7 +10,7 @@
     <update id="update" parameterType="String">
         update stockout set wid=#{wid},loginName=#{loginName},soremark=#{soremark},sotime=#{sotime},adress=#{adress},sphone=#{sphone} where soid=#{soid}
     </update>
-    <delete id="delete" parameterType="String">
+    <delete id="delete" parameterType="int">
         delete from stockout where soid=#{soid}
     </delete>
     <select id="findAll" resultType="Stockout" >
