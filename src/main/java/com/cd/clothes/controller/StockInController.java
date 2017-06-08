@@ -132,6 +132,7 @@ public class StockInController {
         System.out.println("进来了");
         Stockin stockin = new Stockin();
         stockin.setSid(StringUtil.getSid(stime));
+        System.out.println(StringUtil.getSoid(stime));
         stockin.setStime(Date.valueOf(stime));
         stockin.setWid(Integer.parseInt(wid));
         stockin.setLoginName(loginName);

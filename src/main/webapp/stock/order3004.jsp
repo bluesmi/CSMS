@@ -1,5 +1,11 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <head>
@@ -34,8 +40,9 @@ function gotos(strURL)
 	document.forms[0].submit();
 }
 function gotoadditem(soid){
-	 		
-	 			window.location.href = "${pageContext.request.contextPath }/AddStockoutitemServletUI?soid=" + soid;  
+    var location = (window.location + '').split('/');
+    var basePath = location[0] + '//' + location[2] + '/' + location[3] + '/';
+	window.location.href = basePath+"stockoutitems/AddStockoutitemServletUI?soid=" + soid;
 	 			
  		}
 

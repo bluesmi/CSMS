@@ -14,4 +14,10 @@ public class StringUtil {
         IN++;
         return sid;
     }
+
+    public static String getSoid(String time){
+        String soid = "ck"+time.replace("-","")+"0000"+OUT;
+        OUT++;
+        return soid;
+    }
 }

@@ -54,7 +54,7 @@ function back()
 
 <BODY BACKGROUND="<%=basePath%>image/bg.gif">
 
-<FORM NAME="idFrmMain" ID="idmig0102" METHOD="POST"  ACTION="" ONSUBMIT="return false"> 
+<FORM NAME="idFrmMain" ID="idmig0102" METHOD="POST"  ACTION="" ONSUBMIT="return false">
 <input type="hidden" id="soid" name="soid" value="${soid }">${soid }
 <table border="0" width="100%" id="table1" cellspacing="0"  cellpadding="2"  bgcolor="gray">
 	<tr>

@@ -49,9 +49,19 @@ function back()
 }
 
 function addstockout(){
-    var location = (window.location+'').split('/');
-    var basePath = location[0]+'//'+location[2]+'/'+location[3]+'/';
-    window.location.href = basePath+"stockout/AddStockoutServlet.do";
+    var $sotime = $("#sotime").val();
+    var $wid = $("#wid").val();
+    var $loginName = $("#loginName").val();
+    var $soremark = $("#soremark").val();
+    var $sphone = $("#sphone").val();
+    var sphone = /^^1[34578]\d{9}$/;
+    console.log($sotime+","+$wid+","+$loginName+","+$soremark+","+sphone.test($sphone));
+    if($sotime==="" || $wid==="" || $loginName==="" || $soremark==""||!sphone.test($sphone)){
+        alert("格式不正确，请重新输入！");
+    }else {
+        $("#idmig0101").submit();
+        alert("用户添加成功！");
+    }
 	}
 function updatestockout(){
     var location = (window.location+'').split('/');
@@ -62,14 +72,13 @@ function updatestockout(){
 	function gotoadditem(){
         var location = (window.location + '').split('/');
         var basePath = location[0] + '//' + location[2] + '/' + location[3] + '/';
- 		idmig0101.action=basePath+"stockoutitems/AddStockoutitemServletUI2.do";
-		idmig0101.submit();
+        window.location = basePath+"stock/order3003.jsp?sid=${soidnumber}";
  		}
 
 </SCRIPT>
 
 <BODY BACKGROUND="<%=basePath%>image/bg.gif">
-<FORM NAME="mig0101" ID="idmig0101" METHOD="post"  ACTION="">
+<FORM NAME="mig0101" ID="idmig0101" METHOD="get"  ACTION="<%=basePath%>stockout/AddStockoutServlet.do">
 
 <table border=0 cellspacing=0 cellpadding=2 width="100%" bgcolor="gray">
 <tr>
@@ -77,7 +86,6 @@ function updatestockout(){
 
 	<td class="headerbar61"><p align="right">
 		<input type="button" value=" 创 建  " onClick="JavaScript:addstockout();">
-		<input type="button" value=" 保 存 " onClick="JavaScript:updatestockout();">
 		<input type=button value=" 返 回 " onClick="JavaScript:history.back();">
     </p></td>	
 </tr>
@@ -90,41 +98,43 @@ function updatestockout(){
 <table border=0 cellspacing=1 cellpadding=2 width="100%" bgcolor="gray">
 <tr>
   <td class="textbar81" width="15%">单据号</td>
-		<td class="textbar01" width="35%">
-      <input type="text" value="${stockout.soid }" style="width:200px" name="soid" id="soid">    </td>
+	<td class="textbar01" width="35%">自动编号</td>
     <td class="textbar81" width="15%">单据日期</td>
-		<td class="textbar01" width="35%">
-			<input type="text" name="sotime" id="sotime" value="${stockout.sotime }" readonly="readonly" size="12">
-			<img src="<%=basePath%>jquery/calendar.gif" width="18" height="17" onClick="laydate({elem: '#sotime'});" title="显示日历" />    </td>
+	<td class="textbar01" width="35%">
+		<input type="text"name="sotime" id="frmWRPT_OPT_DATE2_PJT70302"
+											 value="2017-06-21" readonly="readonly" size="12"> <img
+			src="${pageContext.request.contextPath }/jquery/calendar.gif"
+			width="18" height="17"
+			onClick="laydate({elem: '#frmWRPT_OPT_DATE2_PJT70302'});"
+			title="显示日历" /></td>
 </tr>
 <tr>
     <td class="textbar81" width="15%">所出仓库</td>
 	<td class="textbar01" width="35%">
 			<select name="wid" style="width:200px">
 				<option value="" selected>------</option>
-				<option value="">------</option>
 				<option <c:if test="${stockout.wid=='1' }">selected</c:if> value="1">一号仓库</option>
 				<option <c:if test="${stockout.wid=='2' }">selected</c:if> value="2">二号仓库</option>
 				<option <c:if test="${stockout.wid=='3' }">selected</c:if> value="3">三号仓库</option>
 				<option <c:if test="${stockout.wid=='4' }">selected</c:if> value="4">四号仓库</option>			
 			</select>    </td>
     <td class="textbar81" width="15%">接收人</td>
-	  <td class="textbar01" width="35%"><input type="text" name="loginName" id="loginName" style="width:200px" value="${stockout.loginName }"></td>
+	  <td class="textbar01" width="35%"><input type="text" name="loginName" id="loginName" style="width:200px" value=""></td>
 </tr>
 <tr>
     <td class="textbar81" width="15%">接收人电话</td>
 				<td class="textbar01" width="35%">
-      <input type="text" value="${stockout.sphone }" style="width:200px" name="sphone" id="sphone">    </td>
+      <input type="text" value="" style="width:200px" name="sphone" id="sphone">    </td>
 
     <td class="textbar81" width="15%">发往地址</td>
 		<td class="textbar01"  width="35%">
-      <input type="text" name="adress" id="adress" value="${stockout.adress }" style="width:200px">    </td>
+      <input type="text" name="adress" id="adress" value="" style="width:200px">    </td>
 
 </tr>
 <tr>  
 		<td class="textbar81" width="15%">备注</td>
     <td class="textbar01" colspan="3" width="85%">
-    	<textarea cols="80" rows="4" name="soremark" id="soremark">${stockout.soremark }</textarea>    </td>
+    	<textarea cols="80" rows="4" name="soremark" id="soremark"></textarea>    </td>
 </tr>
 </table>
 

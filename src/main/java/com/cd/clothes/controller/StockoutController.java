@@ -1,9 +1,11 @@
 package com.cd.clothes.controller;
 
 import com.cd.clothes.model.Cloth;
+import com.cd.clothes.model.Stockin;
 import com.cd.clothes.model.Stockout;
 import com.cd.clothes.model.Warehouse;
 import com.cd.clothes.service.StockoutService;
+import com.cd.clothes.util.StringUtil;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -24,15 +27,28 @@ public class StockoutController {
     private StockoutService stockoutService;
 
     @RequestMapping(value = "/AddStockoutServlet.do",method = RequestMethod.GET)
-    public String addStockout(Stockout stockout, ModelMap modelMap){
+    public String addStockout(@Param("sotime") String sotime,@Param("wid") String wid,
+                              @Param("loginName") String loginName,@Param("soremark") String soremark,
+                              @Param("sphone") String sphone,@Param("adress") String adress,
+                               ModelMap modelMap){
+        System.out.println("进来了");
+        Stockout stockout1 = new Stockout();
+        stockout1.setSoid(StringUtil.getSoid(sotime));
+        System.out.println(StringUtil.getSoid(sotime));
+        stockout1.setSotime(Date.valueOf(sotime));
+        stockout1.setWid(Integer.parseInt(wid));
+        stockout1.setSphone(sphone);
+        stockout1.setLoginName(loginName);
+        stockout1.setSoremark(soremark);
+        stockout1.setAdress(adress);
+        stockout1.setSostute(1);
         try {
-            stockout.setFlag(0);
-            stockoutService.addStockout(stockout);
-            String soid = "ck" + stockout.getSotime()+"0000"+stockout.getSostute();
-            stockout.setSoid(soid);
-            modelMap.addAttribute("stockout",stockout);
-            System.out.println(stockout);
-            return "stock/order3002";
+            stockoutService.addStockout(stockout1);
+            Stockout stockout_number = stockoutService.findStockout(stockout1.getSoid());
+            modelMap.addAttribute("soidnumber",stockout_number.getSoid());
+            modelMap.addAttribute("stockout",stockout1);
+            System.out.println(stockout1);
+            return "stock/order3004";
         } catch (Exception e) {
             e.printStackTrace();
             modelMap.addAttribute("message","系统维护升级中");
@@ -108,7 +124,7 @@ public class StockoutController {
 
     @RequestMapping("/QueryStockoutServlet.do")
     public String QueryStockoutServlet(@Param("wid") String wid,@Param("soid") String soid,
-                                       @Param("starttime")String starttime,@Param("endtime")String endtime,
+                                       @Param("starttime")Date starttime,@Param("endtime")Date endtime,
                                        ModelMap modelMap){
         Integer reWid = "".equals(wid) ? null : Integer.parseInt(wid);
         List<Stockout> allStockout=null;

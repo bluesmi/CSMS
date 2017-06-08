@@ -6,6 +6,7 @@ import com.cd.clothes.service.StockoutService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -47,7 +48,7 @@ public class StockoutServiceImpl implements StockoutService {
     }
 
     @Override
-    public List<Stockout> queryStockout(Integer wid, String soid, String starttime, String endtime) throws Exception {
+    public List<Stockout> queryStockout(Integer wid, String soid, Date starttime, Date endtime) throws Exception {
         return stockoutDAO.queryStockout(wid,soid,starttime,endtime);
     }
 }

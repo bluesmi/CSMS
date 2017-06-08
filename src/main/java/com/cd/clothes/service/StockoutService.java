@@ -2,6 +2,7 @@ package com.cd.clothes.service;
 
 import com.cd.clothes.model.Stockout;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -15,6 +16,6 @@ public interface StockoutService {
     public Stockout findStockout(String soid) throws Exception;
     public void updateStockout(Stockout stockout) throws Exception;
     public void deleteStockout(String soid) throws Exception;
-    public List<Stockout> queryStockout(Integer wid, String soid, String starttime, String endtime) throws Exception;
+    public List<Stockout> queryStockout(Integer wid, String soid, Date starttime, Date endtime) throws Exception;
 
 }

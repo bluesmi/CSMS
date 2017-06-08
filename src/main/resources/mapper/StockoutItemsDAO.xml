@@ -10,11 +10,11 @@
         update stockoutitem set soid=#{soid},cid=#{cid},sonumber=#{sonumber} where soiid=#{soiid}
     </update>
 
-    <select id="findAll" resultType="Stockout">
+    <select id="findAll" resultType="StockoutItems">
         select * from stockoutitem
     </select>
 
-    <select id="findBySoid" resultType="Stockout" parameterType="String">
+    <select id="findBySoid" resultType="StockoutItems" parameterType="String">
         select * from stockoutitem  where soid=#{soid}
     </select>
 
