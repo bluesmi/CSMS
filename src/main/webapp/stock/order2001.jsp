@@ -138,14 +138,16 @@
 
 			<tr>
 				<td class="textbar81" width="15%">入库日期</td>
-				<td class="textbar01" width="35%" colspan="3"><input
+				<td class="textbar01" width="35%" colspan="3">
+					<input
 					type="text" name="frmWRPT_OPT_DATE2_PJT70302"
 					id="frmWRPT_OPT_DATE2_PJT70302" value="2016-06-01"
 					readonly="readonly" size="12"> <img
 					src="<%=basePath%>jquery/calendar.gif"
 					width="18" height="17"
 					onClick="laydate({elem: '#frmWRPT_OPT_DATE2_PJT70302'});"
-					title="显示日历" /> ~ <input type="text"
+					title="显示日历" /> ~
+					<input type="text"
 					name="frmWRPT_OPT_DATE3_PJT70302" id="frmWRPT_OPT_DATE3_PJT70302"
 					value="2016-06-04" readonly="readonly" size="12"> <img
 					src="<%=basePath%>jquery/calendar.gif"

@@ -142,9 +142,10 @@ public class StockoutController {
     public String QueryStockoutServlet(@Param("wid") String wid,@Param("soid") String soid,
                                        @Param("starttime")String starttime,@Param("endtime")String endtime,
                                        ModelMap modelMap){
-        Integer reWid = "".equals(wid) ? null : Integer.parseInt(wid);
+
         List<Stockout> allStockout=null;
         try {
+            Integer reWid = "".equals(wid) ? null : Integer.parseInt(wid);
             allStockout = stockoutService.queryStockout(reWid,soid,Date.valueOf(starttime),Date.valueOf(endtime));
             modelMap.addAttribute("allStockout", allStockout);
             modelMap.addAttribute("soid", soid);

@@ -74,15 +74,15 @@ function goSearch()
     var basePath = location[0]+'//'+location[2]+'/'+location[3]+'/';
     var $wid = $("#wid").val();
     var $soid = $("#soid").val();
-    var $starttime = $("#starttime").val();
-    var $endtime = $("#endtime").val();
+    var $starttime = $("#frmWRPT_OPT_DATE2_PJT70302").val();
+    var $endtime = $("#frmWRPT_OPT_DATE3_PJT70302").val();
     var rex = /^[0-9]*$/;
     window.location.href = basePath+"stockout/QueryStockoutServlet.do?wid="+$wid+"&soid="+$soid+"&starttime="+$starttime+"&endtime="+$endtime;
 }
 </script>
 
 <BODY BACKGROUND="<%=basePath%>image/bg.gif">
-<FORM NAME="idFrmMain" ID="idmig0101" METHOD="POST"  ACTION="" ONSUBMIT="return false">
+<FORM NAME="idFrmMain" ID="idmig0101" METHOD="POST" ONSUBMIT="return false">
 <input type="hidden" id="slide_img">
 <table border=0 cellspacing=0 cellpadding=2 width="100%" bgcolor="gray">
 <tr>
@@ -120,11 +120,21 @@ function goSearch()
 	<tr>			  
 		<td class="textbar81" width="15%">出库日期</td>
 		<td class="textbar01" width="35%" colspan="3">
-			<input type="text"  name="starttime" id="starttime" value="" readonly="readonly" size="12">
-			<input type="image" src="<%=basePath%>jquery/calendar.gif" width="18" height="17" onClick="laydate({elem: '#starttime'});" title="显示日历" />
-			~ 
-			<input type="text" name="endtime" id="endtime" value="" readonly="readonly" size="12">
-			<input type="image" src="<%=basePath%>jquery/calendar.gif" width="18" height="17" onClick="laydate({elem: '#endtime'});" title="显示日历" />
+			<input
+					type="text" name="frmWRPT_OPT_DATE2_PJT70302"
+					id="frmWRPT_OPT_DATE2_PJT70302" value="2016-06-01"
+					readonly="readonly" size="12"> <img
+				src="<%=basePath%>jquery/calendar.gif"
+				width="18" height="17"
+				onClick="laydate({elem: '#frmWRPT_OPT_DATE2_PJT70302'});"
+				title="显示日历" />~
+			<input type="text"
+				   name="frmWRPT_OPT_DATE3_PJT70302" id="frmWRPT_OPT_DATE3_PJT70302"
+				   value="2016-06-04" readonly="readonly" size="12"> <img
+				src="<%=basePath%>jquery/calendar.gif"
+				width="18" height="17"
+				onClick="laydate({elem: '#frmWRPT_OPT_DATE3_PJT70302'});"
+				title="显示日历" />
 	  </td>
 		
 	</tr>	

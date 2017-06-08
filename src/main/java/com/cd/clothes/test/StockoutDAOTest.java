@@ -56,8 +56,8 @@ public class StockoutDAOTest {
 
     @Test
     public void testItemsDelete() throws Exception {
-//        System.out.println(stockoutDAO.queryStockout(null,"rk2016061100003",null,null));
-        stockoutItemsDAO.deleteBySOiid(Integer.parseInt("27"));
+        System.out.println(stockoutDAO.queryStockout(null,"ck2016060600003",null,null));
+//        stockoutItemsDAO.deleteBySOiid(Integer.parseInt("27"));
     }
 
 }
