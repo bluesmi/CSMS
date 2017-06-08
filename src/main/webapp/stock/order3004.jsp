@@ -42,7 +42,7 @@ function gotos(strURL)
 function gotoadditem(soid){
     var location = (window.location + '').split('/');
     var basePath = location[0] + '//' + location[2] + '/' + location[3] + '/';
-	window.location.href = basePath+"stockoutitems/AddStockoutitemServletUI?soid=" + soid;
+	window.location.href = basePath+"stockoutitems/AddStockoutitemServletUI?soid=${stockout.soid}" ;
 	 			
  		}
 
