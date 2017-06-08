@@ -101,7 +101,7 @@ public class StockoutController {
 
 
 
-    @RequestMapping(value = "/UpdateStockoutServlet2.do",method = RequestMethod.GET)
+    @RequestMapping(value = "/UpdateStockoutServlet2.do",method = RequestMethod.POST)
     public String updateStockout2(Stockout stockout, ModelMap modelMap){
         try {
             stockoutService.updateStockout(stockout);
@@ -140,12 +140,12 @@ public class StockoutController {
 
     @RequestMapping("/QueryStockoutServlet.do")
     public String QueryStockoutServlet(@Param("wid") String wid,@Param("soid") String soid,
-                                       @Param("starttime")Date starttime,@Param("endtime")Date endtime,
+                                       @Param("starttime")String starttime,@Param("endtime")String endtime,
                                        ModelMap modelMap){
         Integer reWid = "".equals(wid) ? null : Integer.parseInt(wid);
         List<Stockout> allStockout=null;
         try {
-            allStockout = stockoutService.queryStockout(reWid,soid,starttime,endtime);
+            allStockout = stockoutService.queryStockout(reWid,soid,Date.valueOf(starttime),Date.valueOf(endtime));
             modelMap.addAttribute("allStockout", allStockout);
             modelMap.addAttribute("soid", soid);
             return "stock/liststockout";

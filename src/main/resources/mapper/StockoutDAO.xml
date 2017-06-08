@@ -7,7 +7,7 @@
     <select id="Querysoid" resultType="Stockout">
         SELECT * FROM stockout ORDER BY soid DESC LIMIT 1
     </select>
-    <update id="update" parameterType="String">
+    <update id="update" parameterType="Stockout">
         update stockout set wid=#{wid},loginName=#{loginName},soremark=#{soremark},sotime=#{sotime},adress=#{adress},sphone=#{sphone} where soid=#{soid}
     </update>
     <delete id="delete" parameterType="int">

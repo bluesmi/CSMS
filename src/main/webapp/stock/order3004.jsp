@@ -18,6 +18,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/cjcalendar.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/addFunction.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/jquery/laydate/laydate.js"></script>
+	<script type="text/javascript"src="${pageContext.request.contextPath }/jquery/jquery-1.5.1.js"></script>
 </head>
 <SCRIPT LANGUAGE="javaScript">
 <!--
@@ -76,15 +77,14 @@ function setValue1(){
 	 			
  		} 
 function update(){
-	idmig0101.action="${pageContext.request.contextPath }/stockout/UpdateStockoutServlet.do";
-	idmig0101.submit();
+	$("#idmig0101").submit();
 	alert("出库单保存成功！");
 }
 -->
 </SCRIPT>
 
 <BODY BACKGROUND="${pageContext.request.contextPath }/image/bg.gif">
-<FORM NAME="mig0101" ID="idmig0101" METHOD="POST"  ACTION="" >
+<FORM NAME="mig0101" ID="idmig0101" METHOD="POST"  ACTION="<%=basePath%>stockout/UpdateStockoutServlet.do" >
 
 <table border=0 cellspacing=0 cellpadding=2 width="100%" bgcolor="gray">
 <tr>
