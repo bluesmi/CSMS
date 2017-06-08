@@ -156,6 +156,9 @@ public class ClothController {
         }
     }
 
-
+    @RequestMapping("/enter.do")
+    public String enter(){
+        return "system/CLOTHING1002";
+    }
 
 }

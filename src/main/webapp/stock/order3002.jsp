@@ -62,7 +62,7 @@ function updatestockout(){
 	function gotoadditem(){
         var location = (window.location + '').split('/');
         var basePath = location[0] + '//' + location[2] + '/' + location[3] + '/';
- 		idmig0101.action=basePath+"/AddStockoutitemServletUI2.do";
+ 		idmig0101.action=basePath+"stockoutitems/AddStockoutitemServletUI2.do";
 		idmig0101.submit();
  		}
 

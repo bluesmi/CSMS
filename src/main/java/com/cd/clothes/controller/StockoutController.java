@@ -28,6 +28,8 @@ public class StockoutController {
         try {
             stockout.setFlag(0);
             stockoutService.addStockout(stockout);
+            String soid = "ck" + stockout.getSotime()+"0000"+stockout.getSostute();
+            stockout.setSoid(soid);
             modelMap.addAttribute("stockout",stockout);
             System.out.println(stockout);
             return "stock/order3002";
@@ -52,13 +54,12 @@ public class StockoutController {
         }
     }
 
-    @RequestMapping(value = "/UpdateStockoutServletUI.do",method = RequestMethod.POST)
+    @RequestMapping(value = "/UpdateStockoutServletUI.do",method = RequestMethod.GET)
     public String updateStockoutUI(@Param("soid") String soid, ModelMap modelMap){
         try {
             Stockout stockout=stockoutService.findStockout(soid);
             modelMap.addAttribute("stockout",stockout);
             return "stock/order3004";
-
         } catch (Exception e) {
             e.printStackTrace();
             modelMap.addAttribute("message","系统维护升级中");

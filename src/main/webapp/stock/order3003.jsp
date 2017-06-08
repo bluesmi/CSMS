@@ -1,5 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
 <HTML>
@@ -13,14 +17,14 @@
 </head>
 
 <SCRIPT LANGUAGE="javaScript">
-<!--
+
 function check(){//动态加载货品的库存量
 var id = "cid";
 var soid = "soid";
 var value = $("#" + id).val();//获取输入框内容
 var value1 = $("#" + soid).val();//获取输入框内容
 $.ajax({
-		url:"/clothing/CheckClothServletUI",//要请求的servlet
+		url:"/clothing/CheckClothServletUI.do",//要请求的servlet
 		data:{cid:value,soid:value1},//给服务器的参数
 		type:"POST",
 		dataType:"json",
@@ -34,20 +38,21 @@ $.ajax({
 }
 
 function addstockoutitem(){
-	idFrmMain.action="${pageContext.request.contextPath }/AddStockoutitemServlet";
-	idFrmMain.submit();
-	alert("保存成功！");
+    var location = (window.location+'').split('/');
+    var basePath = location[0]+'//'+location[2]+'/'+location[3]+'/';
+    window.location.href = basePath+"stockoutitems/AddStockoutitemServlet.do?soid="+soid+"&sonumber="+sonumber;
+    alert("保存成功！");
 }
 
 function back()
 {
 	history.back();
 } 
--->
+
 </SCRIPT>
 
 
-<BODY BACKGROUND="${pageContext.request.contextPath }/image/bg.gif">
+<BODY BACKGROUND="<%=basePath%>image/bg.gif">
 
 <FORM NAME="idFrmMain" ID="idmig0102" METHOD="POST"  ACTION="" ONSUBMIT="return false"> 
 <input type="hidden" id="soid" name="soid" value="${soid }">${soid }
@@ -114,7 +119,7 @@ function back()
 		  </tr>         
 			<tr>
 		  	<td class="textbar81" width="15%" colspan="1">出库数量</td>
-		    <td class="textbar01" width="85%" colspan="1"><input  name="sonumber" value="" style="width:210px;"></td>
+		    <td class="textbar01" width="85%" colspan="1"><input  id="sonumber" name="sonumber" value="" style="width:210px;"></td>
 		  </tr>      
 	</table>
 

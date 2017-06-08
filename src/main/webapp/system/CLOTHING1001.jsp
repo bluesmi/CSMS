@@ -78,8 +78,9 @@
         }
 
         function doAdd() {
-            document.forms[0].action = "/csms/system/CLOTHING1002.jsp";
-            document.forms[0].submit();
+            var location = (window.location + '').split('/');
+            var basePath = location[0] + '//' + location[2] + '/' + location[3] + '/';
+            window.location.href=basePath+"cloth/enter.do";
         }
     </script>
 

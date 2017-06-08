@@ -10,8 +10,8 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>无标题文档</title>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/frame.css">
-	<script type="text/jscript" language="JavaScript" src="${pageContext.request.contextPath }/js/qq_hidemenu.js"></script>
+	<link rel="stylesheet" type="text/css" href="<%=basePath%>css/frame.css">
+	<script type="text/jscript" language="JavaScript" src="<%=basePath%>js/qq_hidemenu.js"></script>
 </head>
 <SCRIPT language=JavaScript>
 function  Content(){
@@ -46,7 +46,7 @@ parent.main.location="main.jsp"
               <td width="84%"><a href="<%=basePath%>stockIn/QueryAllStockinOrderServlet.do " target="main">入库管理</a></td>
             </tr>
 			<tr>
-              <td width="16%"><div align="right"><img src="${pageContext.request.contextPath }/image/dot1.gif" width="13" height="16"></div></td>
+              <td width="16%"><div align="right"><img src="<%=basePath%>image/dot1.gif" width="13" height="16"></div></td>
               <td width="84%"><a href="<%=basePath%>stockout/ListStockoutServlet.do" target="main">出库管理</a></td>
             </tr>
 			
