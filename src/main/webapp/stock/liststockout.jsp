@@ -77,7 +77,7 @@ function goSearch()
     var $starttime = $("#starttime").val();
     var $endtime = $("#endtime").val();
     var rex = /^[0-9]*$/;
-    window.location.href = basePath+"stockout/QueryStockoutServlet.do?wid="+$wid+"&soid+"+$soid+"&starttime"+$starttime+"&endtime"+$endtime;
+    window.location.href = basePath+"stockout/QueryStockoutServlet.do?wid="+$wid+"&soid="+$soid+"&starttime="+$starttime+"&endtime="+$endtime;
 }
 </script>
 

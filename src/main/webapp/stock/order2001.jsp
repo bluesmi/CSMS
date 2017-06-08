@@ -60,7 +60,6 @@
 
 		} else {
 			window.location = basePath+"stockIn/QueryAllStockinOrderServlet.do";
-
 		}
 	}
 	function del(id) {

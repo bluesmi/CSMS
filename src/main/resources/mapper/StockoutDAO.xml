@@ -20,12 +20,15 @@
         select * from stockout where soid=#{soid}
     </select>
     <select id="queryStockout" resultType="Stockout" >
-        select * from stockout
-        <if test="wid != null and soid != null and sotime !=null">
-            where wid = #{wid} and soid = #{soid} like CONCAT(CONCAT('%', #{soid}), '%') and sotime BETWEEN #{starttime} and #{endtime}
+        select * from stockout where 1=1
+        <if test="wid != null">
+            and  wid = #{wid}
         </if>
-        <if test="wid == null and soid != null and sotime !=null">
-            where wid = #{wid} and soid = #{soid} like CONCAT(CONCAT('%', #{soid}), '%') and sotime BETWEEN #{starttime} and #{endtime}
+        <if test="soid != null">
+           and soid like CONCAT(CONCAT('%', #{soid}), '%')
+        </if>
+        <if test="endtime!=null and starttime!=null">
+            and sotime BETWEEN #{starttime} and #{endtime}
         </if>
     </select>
 </mapper>

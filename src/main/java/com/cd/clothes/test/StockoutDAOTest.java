@@ -45,6 +45,6 @@ public class StockoutDAOTest {
 
     @Test
     public void testQuery() throws Exception {
-        stockoutDAO.queryStockout(2,"ck2016060200001"," "," ");
+        System.out.println(stockoutDAO.queryStockout(null,"rk2016061100003",null,null));
     }
 }
