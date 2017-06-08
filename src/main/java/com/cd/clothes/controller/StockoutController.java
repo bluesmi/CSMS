@@ -32,17 +32,19 @@ public class StockoutController {
                               @Param("sphone") String sphone,@Param("adress") String adress,
                                ModelMap modelMap){
         System.out.println("进来了");
-        Stockout stockout1 = new Stockout();
-        stockout1.setSoid(StringUtil.getSoid(sotime));
-        System.out.println(StringUtil.getSoid(sotime));
-        stockout1.setSotime(Date.valueOf(sotime));
-        stockout1.setWid(Integer.parseInt(wid));
-        stockout1.setSphone(sphone);
-        stockout1.setLoginName(loginName);
-        stockout1.setSoremark(soremark);
-        stockout1.setAdress(adress);
-        stockout1.setSostute(1);
+
         try {
+            Stockout stockout1 = new Stockout();
+            int numberSize = stockoutService.queryStockout(null,"",Date.valueOf(sotime),Date.valueOf(sotime)).size();
+            stockout1.setSoid(StringUtil.getSoid(sotime,numberSize));
+//        System.out.println(StringUtil.getSoid(sotime));
+            stockout1.setSotime(Date.valueOf(sotime));
+            stockout1.setWid(Integer.parseInt(wid));
+            stockout1.setSphone(sphone);
+            stockout1.setLoginName(loginName);
+            stockout1.setSoremark(soremark);
+            stockout1.setAdress(adress);
+            stockout1.setSostute(1);
             stockoutService.addStockout(stockout1);
             Stockout stockout_number = stockoutService.findStockout(stockout1.getSoid());
             modelMap.addAttribute("soidnumber",stockout_number.getSoid());

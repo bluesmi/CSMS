@@ -131,14 +131,16 @@ public class StockInController {
                                        @Param("sremark") String sremark, ModelMap modelMap){
         System.out.println("进来了");
         Stockin stockin = new Stockin();
-        stockin.setSid(StringUtil.getSid(stime));
-        System.out.println(StringUtil.getSoid(stime));
-        stockin.setStime(Date.valueOf(stime));
-        stockin.setWid(Integer.parseInt(wid));
-        stockin.setLoginName(loginName);
-        stockin.setSremark(sremark);
-        stockin.setStute(1);
+
         try {
+            int numberSize = stockInService.getAllbyTime(Date.valueOf(stime),Date.valueOf(stime)).size();
+                    stockin.setSid(StringUtil.getSid(stime,numberSize));
+//        System.out.println(StringUtil.getSoid(stime));
+            stockin.setStime(Date.valueOf(stime));
+            stockin.setWid(Integer.parseInt(wid));
+            stockin.setLoginName(loginName);
+            stockin.setSremark(sremark);
+            stockin.setStute(1);
             stockInService.addStockin(stockin);
             Stockin stockin_number = stockInService.findlastStockin_number();
             modelMap.addAttribute("lastnumber",stockin_number.getSid());
