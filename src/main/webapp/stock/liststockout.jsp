@@ -103,8 +103,8 @@ function goSearch()
 	<tr>
 		<td class= "textbar81" width="15%">所出仓库</td>
 		<td class="textbar01" width="35%">
-			<select name="wid" style="width:152px">
-				<option value="1">一号仓库</option>
+			<select id="wid" name="wid" style="width:152px">
+				<option value="1" selected>一号仓库</option>
 				<option value="2">二号仓库</option>
 				<option value="3">三号仓库</option>
 				<option value="4">四号仓库</option>		
@@ -120,11 +120,11 @@ function goSearch()
 	<tr>			  
 		<td class="textbar81" width="15%">出库日期</td>
 		<td class="textbar01" width="35%" colspan="3">
-			<input type="text" name="frmWRPT_OPT_DATE2_PJT70302" id="frmWRPT_OPT_DATE2_PJT70302" value="2016-06-01" readonly="readonly" size="12">
-			<input type="image" src="<%=basePath%>jquery/calendar.gif" width="18" height="17" onClick="laydate({elem: '#frmWRPT_OPT_DATE2_PJT70302'});" title="显示日历" />
+			<input type="text"  name="starttime" id="starttime" value="" readonly="readonly" size="12">
+			<input type="image" src="<%=basePath%>jquery/calendar.gif" width="18" height="17" onClick="laydate({elem: '#starttime'});" title="显示日历" />
 			~ 
-			<input type="text" name="frmWRPT_OPT_DATE3_PJT70302" id="frmWRPT_OPT_DATE3_PJT70302" value="2016-06-10" readonly="readonly" size="12">
-			<input type="image" src="<%=basePath%>jquery/calendar.gif" width="18" height="17" onClick="laydate({elem: '#frmWRPT_OPT_DATE3_PJT70302'});" title="显示日历" />
+			<input type="text" name="endtime" id="endtime" value="" readonly="readonly" size="12">
+			<input type="image" src="<%=basePath%>jquery/calendar.gif" width="18" height="17" onClick="laydate({elem: '#endtime'});" title="显示日历" />
 	  </td>
 		
 	</tr>	

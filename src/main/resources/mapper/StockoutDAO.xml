@@ -24,10 +24,10 @@
         <if test="wid != null">
             and  wid = #{wid}
         </if>
-        <if test="soid != null">
+        <if test='soid != ""'>
            and soid like CONCAT(CONCAT('%', #{soid}), '%')
         </if>
-        <if test="endtime!=null and starttime!=null">
+        <if test='endtime!="" and starttime!=""'>
             and sotime BETWEEN #{starttime} and #{endtime}
         </if>
     </select>
