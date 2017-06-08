@@ -6,7 +6,7 @@
         VALUES (#{sid},#{wid},#{loginName},#{stime},#{sremark},#{stute})
     </insert>
     <update id="update" parameterType="Stockin">
-        update stockin set wid=#{wid},loginName=#{loginName},stime=#{stime},sremark=#{sremark},sstute=#{sstute}
+        update stockin set wid=#{wid},loginName=#{loginName},stime=#{stime},sremark=#{sremark},sstute=#{stute}
          where sid=#{sid}
     </update>
     <delete id="delete" parameterType="String">

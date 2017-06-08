@@ -42,7 +42,7 @@
 	function goto1() {
         var location = (window.location + '').split('/');
         var basePath = location[0] + '//' + location[2] + '/' + location[3] + '/';
-		window.location = basePath+"stock/order2003.jsp?sid=${stockin.sid}";
+		window.location.href = basePath+"stock/order2003.jsp?sid=${stockin.sid}";
 	}
 
 	function del(siid) {
@@ -74,20 +74,16 @@
 
 
 	function saveStockIn() {
-        var location = (window.location + '').split('/');
-        var basePath = location[0] + '//' + location[2] + '/' + location[3] + '/';
-        $("#idmig0101").attr({
-            "action" :basePath+ "stockIn/UpdateStockinOrderServlet.do"
-        })
-        document.getElementById("idmig0101").submit();
+
+        $("#idmig0101").submit();
         alert('保存成功');
     }
 
 </SCRIPT>
 
 <BODY BACKGROUND="${pageContext.request.contextPath }/image/bg.gif">
-	<FORM NAME="mig0101" ID="idmig0101" METHOD="POST" ACTION="<%=basePath%>"
-		ONSUBMIT="return false">
+	<FORM NAME="mig0101" ID="idmig0101" METHOD="POST" ACTION="<%=basePath%>stockIn/UpdateStockinOrderServlet.do"
+		>
 
 		<table border=0 cellspacing=0 cellpadding=2 width="100%"
 			bgcolor="gray">

@@ -117,7 +117,7 @@ public class StockInController {
             //更新商品表中的库存数据
             Cloth cloth = clothService.findCloth(stockInItems.getCid()+"");
             clothService.updateNumber(stockInItems.getCid(), cloth.getCnumber() + stockInItems.getSinumber());
-            return "redirect:QueryAllStockinOrderItemsServlet?sid="+stockInItems.getSid();
+            return "redirect:QueryAllStockinOrderItemsServlet.do?sid="+stockInItems.getSid();
         } catch (Exception e) {
             e.printStackTrace();
             modelMap.addAttribute("message","系统维护升级中");

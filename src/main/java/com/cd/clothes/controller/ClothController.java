@@ -78,7 +78,18 @@ public class ClothController {
             e.printStackTrace();
         }
     }
-
+    @RequestMapping("/AjaxQueryclothServlet.do")
+    public void ajaxQueryclothServlet(@Param("cid")String cid, HttpServletResponse response){
+        Cloth cloth = null;
+        try {
+            cloth = clothService.findCloth(cid);
+            String json =new Gson().toJson(cloth);
+            response.setCharacterEncoding("utf-8");
+            response.getWriter().print(json);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
   @RequestMapping("/QueryClothServlet.do")
    public String queryClothServlet(@Param("cid") String cid,ModelMap modelMap){

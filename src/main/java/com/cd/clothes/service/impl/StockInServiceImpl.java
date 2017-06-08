@@ -133,6 +133,7 @@ public class StockInServiceImpl implements StockInService {
         try {
             stockInDAO.update(stockin);
         }catch (Exception e){
+            e.printStackTrace();
             throw new RuntimeException();
         }
     }
