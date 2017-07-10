@@ -6,12 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- * autour m199
- * mail  2803934061@qq.com
- * date 2017/6/4
- * time 16:05
- */
+
 public interface WarehouseDAO {
 
     /**

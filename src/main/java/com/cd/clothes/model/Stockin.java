@@ -3,12 +3,7 @@ package com.cd.clothes.model;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * autour m199
- * mail  2803934061@qq.com
- * date 2017/6/4
- * time 15:46
- */
+
 public class Stockin implements Serializable {
     /**
      * 入库号

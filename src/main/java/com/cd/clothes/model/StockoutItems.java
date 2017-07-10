@@ -3,13 +3,25 @@ package com.cd.clothes.model;
 import java.io.Serializable;
 
 /**
- * Created by Forgets on 2017/6/7.
+ * 出库详情
  */
 public class StockoutItems implements Serializable {
+    /**
+     * 出库详情主键
+     */
     private int soiid;
+    /**
+     * 出库表的主键
+     */
     private String soid;
+    /**
+     * 服装ID
+     */
     private int cid;
     private Cloth cloth;
+    /**
+     * 出库数量
+     */
     private int sonumber;
     public int getSoiid() {
         return soiid;

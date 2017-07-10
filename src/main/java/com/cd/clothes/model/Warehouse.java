@@ -3,10 +3,6 @@ package com.cd.clothes.model;
 import java.io.Serializable;
 
 /**
- * autour m199
- * mail  2803934061@qq.com
- * date 2017/6/4
- * time 15:49
  * 仓库名
  */
 public class Warehouse implements Serializable {

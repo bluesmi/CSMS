@@ -5,9 +5,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-/**
- * Created by Forgets on 2017/6/7.
- */
+
 public interface StockoutItemsDAO {
     public void add(StockoutItems sout) throws Exception;
 

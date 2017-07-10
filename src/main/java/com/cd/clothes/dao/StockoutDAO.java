@@ -7,9 +7,7 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by Forgets on 2017/6/6.
- */
+
 public interface StockoutDAO {
 
     public void add(Stockout stockout) throws Exception;

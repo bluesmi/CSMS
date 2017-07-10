@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by Forgets on 2017/6/6.
+ * 出库
  */
 public class Stockout implements Serializable{
     private String soid;
@@ -16,6 +16,7 @@ public class Stockout implements Serializable{
     private String adress;
     private String sphone;
     private int flag;
+
     public int getFlag() {
         return flag;
     }

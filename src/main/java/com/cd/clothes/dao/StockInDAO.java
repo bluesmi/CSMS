@@ -7,12 +7,7 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
-/**
- * autour m199
- * mail  2803934061@qq.com
- * date 2017/6/6
- * time 19:12
- */
+
 public interface StockInDAO {
 
     /**
